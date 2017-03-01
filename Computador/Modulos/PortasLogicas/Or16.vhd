@@ -7,3 +7,13 @@ entity Or16 is
 			b:   in  STD_LOGIC_VECTOR(15 downto 0);
 			q:   out STD_LOGIC_VECTOR(15 downto 0));
 end entity;
+architecture arch_Or16 of Or16
+begin
+	for I in 0 to 16 loop
+		if (a(I) = b(I)) then
+			q(I) = a(I);
+		else
+			q(I) = '1';
+		end if;
+	end loop
+end architecture;
