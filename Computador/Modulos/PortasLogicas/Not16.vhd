@@ -10,7 +10,7 @@ architecture arch_not16 of Not16 is
 begin
 process (a,q)
 	begin
-		for I in 0 to 15 loop
+		for I in 0 to 16 loop
 			q(I) <= not a(I);
 		end loop;
 end process;
