@@ -9,15 +9,13 @@ entity Mux16 is
 			q:   out STD_LOGIC_VECTOR(15 downto 0));
 end entity;
 architecture arch_Mux16 of Mux16 is 
-begin 
+begin
 process (a,b,sel)
-	begin
-		for I in 0 to 16 loop
-			if (sel = '1') then
-				q(I) <= a(I);
-			else
-				q(I) <= b(I);
-			end if;
-		end loop;
-end process;	
+begin
+		if (sel = '1') then
+			q <= b;
+		else
+			q <= a;
+		end if;
+end process;
 end architecture;	
