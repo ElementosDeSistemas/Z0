@@ -8,9 +8,9 @@ entity Not16 is
 end entity;
 architecture arch_not16 of Not16 is
 begin
-process (a)
+process (a,q)
 	begin
-		for I in 0 to 16 loop
+		for I in 0 to 15 loop
 			q(I) <= not a(I);
 		end loop;
 end process;
