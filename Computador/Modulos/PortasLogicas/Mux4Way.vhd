@@ -10,3 +10,18 @@ entity Mux4Way is
 			sel: in  STD_LOGIC_VECTOR(1 downto 0);
 			q:   out STD_LOGIC);
 end entity;
+architecture arch_Mux4Way of Mux4Way is 
+	begin
+		process (a,b,c,d,sel)
+			begin
+				if (sel = "00") then
+					q <= a;
+				elsif (sel = "01") then
+					q <= b;
+				elsif (sel = "10") then
+					q <= c;
+				elsif (sel = "11") then
+					q <= d;
+				end if;
+		end process;
+end architecture;
