@@ -10,7 +10,14 @@ entity Mux16 is
 end entity;
 architecture arch_Mux16 of Mux16 is 
 begin 
-	for I in 0 to 16 loop
-		q(I) <= a(I) when(sel = '1') else b(I);
-	end loop	
+process (a,b,sel)
+	begin
+		for I in 0 to 16 loop
+			if (sel = '1') then
+				q(I) <= a(I);
+			else
+				q(I) <= b(I);
+			end if;
+		end loop;
+end process;	
 end architecture;	
