@@ -14,10 +14,10 @@ architecture arch_DMux2Way of DMux2Way is
 			begin
 				if (sel = '0') then
 					q0 <= a;
-					q1 <= not a;
+					q1 <= '0';
 				elsif (sel = '1') then
 					q1 <= a;
-					q0 <= not a;
+					q0 <= '0';
 				end if;
 		end process;
 end architecture;
