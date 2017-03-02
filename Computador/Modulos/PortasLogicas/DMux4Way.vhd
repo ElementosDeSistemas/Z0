@@ -16,13 +16,25 @@ begin
 process (a, sel)
 begin
 if (sel = "00") then
+	q2 <= '0';  
+	q1 <= '0';
 	q0 <= a;
+	q3 <= '0';
 elsif (sel = "01") then
+	q0 <= '0';
+	q2 <= '0';
 	q1 <= a;
+	q3 <= '0';
 elsif (sel = "10") then
+	q0 <= '0';
+	q1 <= '0';
 	q2 <= a;
+	q3 <= '0';
 else
-	q3 <= a;
+	q0 <= '0';
+	q1 <= '0';
+	q3 <= a ;
+	q2 <= '0';
 end if;
 end process;
 end behave;
