@@ -13,9 +13,9 @@ end entity;
 	
 	architecture Run of Mux4Way is
 		begin
-		with (sel) select
-      q <= a when '00',
-		q <= b when '01',
-		q <= c when '10',
-		q <= d when '11'
+	   q <= a when a = "00" else 
+			b when a = "01" else 
+			c when a = "10" else 
+			d when a = "11";
+
 	end architecture;
