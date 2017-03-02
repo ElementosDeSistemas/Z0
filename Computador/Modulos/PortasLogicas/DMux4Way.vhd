@@ -19,7 +19,7 @@ elsif (sel = '01') then
 	q1 <= a;
 elsif (sel = '10') then
 	q2 <= a;
-elsif (sel = '11') then
+else
 	q3 <= a;
-end process;
+end if;
 end bhv;
