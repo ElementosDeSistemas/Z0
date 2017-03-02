@@ -12,8 +12,8 @@ entity Mux4Way16 is
 end entity;
 architecture chip_Mux4Way16 of Mux4way16 is
 begin
-	q <= a when (sel = '00') else
-	   b when (sel = '01') else
-		c when (sel = '10') else
-		d when (sel = '11') else a;
+	q <= a when (sel = 00) else
+	   b when (sel = 01) else
+		c when (sel = 10) else
+		d when (sel = 11) else a;
 end architecture;
