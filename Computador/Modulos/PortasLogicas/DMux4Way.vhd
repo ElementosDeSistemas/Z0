@@ -13,13 +13,13 @@ end entity;
 
 architecture bhv of Dmux4Way is
 begin
-if (sel1 = '00') then
+if (sel = '00') then
 	q0 <= a;
 elsif (sel = '01') then
 	q1 <= a;
-elsif (sel_1 = '10') then
+elsif (sel = '10') then
 	q2 <= in_1;
-elsif (sel1 = '11') then
+elsif (sel = '11') then
 	q3 <= a;
 end process;
 end bhv;
