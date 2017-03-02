@@ -11,15 +11,18 @@ entity DMux4Way is
 			q3:  out STD_LOGIC);
 end entity;
 
-architecture bhv of Dmux4Way is
+architecture behave of Dmux4Way is
 begin
-if (sel = '00') then
+process (a, sel)
+begin
+if (sel = "00") then
 	q0 <= a;
-elsif (sel = '01') then
+elsif (sel = "01") then
 	q1 <= a;
-elsif (sel = '10') then
+elsif (sel = "10") then
 	q2 <= a;
 else
 	q3 <= a;
 end if;
-end bhv;
+end process;
+end behave;
