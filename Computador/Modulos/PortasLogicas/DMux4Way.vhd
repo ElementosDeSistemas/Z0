@@ -18,7 +18,7 @@ if (sel = '00') then
 elsif (sel = '01') then
 	q1 <= a;
 elsif (sel = '10') then
-	q2 <= in_1;
+	q2 <= a;
 elsif (sel = '11') then
 	q3 <= a;
 end process;
