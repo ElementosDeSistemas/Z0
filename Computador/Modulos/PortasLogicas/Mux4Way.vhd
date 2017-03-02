@@ -13,9 +13,9 @@ end entity;
 	
 	architecture Run of Mux4Way is
 		begin
-	   q <= a when a = "00" else 
-			b when a = "01" else 
-			c when a = "10" else 
-			d when a = "11";
+	   q <= a when sel = "00" else 
+			b when sel = "01" else 
+			c when sel = "10" else 
+			d when sel = "11";
 
 	end architecture;
