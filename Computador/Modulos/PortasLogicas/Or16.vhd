@@ -11,20 +11,20 @@ end entity;
 
 architecture arch_or16 of Or16 is
 	begin
-	q(0) <= or a(0);
-	q(1) <= or a(1);
-	q(2) <= or a(2);
-	q(3) <= or a(3);
-	q(4) <= or a(4);
-	q(5) <= or a(5);
-	q(6) <= or a(6);
-	q(7) <= or a(7);
-	q(8) <= or a(8);
-	q(9) <= or a(9);
-	q(10) <= or a(10);
-	q(11) <= or a(11);
-	q(12) <= or a(12);
-	q(13) <= or a(13);
-	q(14) <= or a(14);
-	q(15) <= or a(15);
+	q(0) <= a(0) or b(0);
+	q(1) <= a(1) or b(1);
+	q(2) <= a(2) or b(2);
+	q(3) <= a(3) or b(3);
+	q(4) <= a(4) or b(4);
+	q(5) <= a(5) or b(5);
+	q(6) <= a(6) or b(6);
+	q(7) <= a(7) or b(7);
+	q(8) <= a(8) or b(8);
+	q(9) <= a(9) or b(9);
+	q(10) <=  a(10) or  b(10);
+	q(11) <= a(11) or b(11);
+	q(12) <= a(12) or b(12);
+	q(13) <= a(13) or b(13);
+	q(14) <= a(14) or b(14);
+	q(15) <= a(15) or b(15);
 end arch_or16;
