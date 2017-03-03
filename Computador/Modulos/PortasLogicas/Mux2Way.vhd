@@ -12,6 +12,6 @@ end entity;
 
 architecture arch_mux4way of Mux2Way is
 	begin
-   q <= a when sel = "0" else 
-				b when sel = "1";
+   q <= a when sel = '0' else
+				b when sel = '1';
 end arch_mux4way;
