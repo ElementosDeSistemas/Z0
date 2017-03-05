@@ -11,28 +11,28 @@ end entity;
 
 architeture arch_BarrelShifter8 of BarrelShifter8 is
 begin;
-	with dir select
-			when ("0");
- 				with size select
- 					q <= a(0) when "000";
- 					     a(0) & a(7 downto 1) when "001";
- 						 a(1 downto 0) & a(7 downto 2) when "010";
- 						 a(2 downto 0) & a(7 downto 3) when "011";
- 						 a(3 downto 0) & a(7 downto 4) when "100";
- 						 a(4 downto 0) & a(7 downto 5) when "101";
- 						 a(5 downto 0) & a(7 downto 6) when "110";
- 						 a(6 downto 0) & a(7) when "111";
- 						 data when  others;
- 			when ("1");
- 				with size select
- 					q <= a(6 downto 0) & a(7) when "000";
- 					     a(5 downto 0) & a(7 downto 6) when "001";
- 						 a(4 downto 0) & a(7 downto 5) when "010";
- 						 a(3 downto 0) & a(7 downto 4) when "011";
- 						 a(2 downto 0) & a(7 downto 3) when "100";
- 						 a(1 downto 0) & a(7 downto 2) when "101";
- 						 a(0) & a(7 downto 1) when "110";
- 						 a(0) when "111";
- 						 data when  others; 			
+process(a,dir)
+if (dir =="0") then
+	with size select
+ 		q <= a(0) when "000";
+   		     a(0) & a(7 downto 1) when "001";
+ 			 a(1 downto 0) & a(7 downto 2) when "010";
+ 			 a(2 downto 0) & a(7 downto 3) when "011";
+ 			 a(3 downto 0) & a(7 downto 4) when "100";
+ 			 a(4 downto 0) & a(7 downto 5) when "101";
+ 			 a(5 downto 0) & a(7 downto 6) when "110";
+ 			 a(6 downto 0) & a(7) when "111";
+			 data when  others;
+elif (dir==1) then
+ 	with size select
+ 		q <= a(6 downto 0) & a(7) when "000";
+ 		     a(5 downto 0) & a(7 downto 6) when "001";
+			 a(4 downto 0) & a(7 downto 5) when "010";
+ 			 a(3 downto 0) & a(7 downto 4) when "011";
+ 			 a(2 downto 0) & a(7 downto 3) when "100";
+ 			 a(1 downto 0) & a(7 downto 2) when "101";
+ 			 a(0) & a(7 downto 1) when "110";
+ 			 a(0) when "111";
+ 			 data when  others; 			
 end arch_BarrelShifter8;
  						
