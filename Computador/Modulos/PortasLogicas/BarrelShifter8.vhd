@@ -10,7 +10,7 @@ entity BarrelShifter8 is
 end entity;
 
 architeture arch_BarrelShifter8 of BarrelShifter8 is
-begin;
+begin
 process(a,dir)
 if (dir =="0") then
 	with size select
