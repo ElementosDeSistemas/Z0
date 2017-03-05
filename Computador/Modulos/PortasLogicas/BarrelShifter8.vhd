@@ -23,7 +23,7 @@ if (dir =="0") then
  			 a(5 downto 0) & a(7 downto 6) when "110";
  			 a(6 downto 0) & a(7) when "111";
 			 data when  others;
-elif (dir==1) then
+elif (dir == "1") then
  	with size select
  		q <= a(6 downto 0) & a(7) when "000";
  		     a(5 downto 0) & a(7 downto 6) when "001";
