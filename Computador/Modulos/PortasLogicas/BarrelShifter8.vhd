@@ -9,7 +9,7 @@ entity BarrelShifter8 is
 			q:    out STD_LOGIC_VECTOR(7 downto 0));  -- output vector (shifted)
 end entity;
 
-architeture arch_BarrelShifter8 of Barrelshifter8 is
+architeture arch_BarrelShifter8 of BarrelShifter8 is
 begin;
 	with dir select
 			when ("0");
