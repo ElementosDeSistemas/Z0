@@ -29,24 +29,24 @@ process(a,dir,size)
 		elsif (dir ='0') and (size = "110") then
 				q <= a(1 downto 0) & a(7 downto 2); 
 		elsif (dir ='0') and (size = "111") then
-				q <= a(0) & a(7 downto 1); 	
+				q <= a(7 downto 2) & a(3 downto 2);	
 		
-		elsif (dir = '1') and (size = "000") then
-				q <= a(2 downto 0) & a(7 downto 3);
-		elsif (dir = '1') and (size = "001") then
-				q <= a(3 downto 0) & a(7 downto 4);
-		elsif (dir = '1') and (size = "010") then
-				q <= a(4 downto 0) & a(7 downto 5);
-		elsif (dir = '1') and (size = "011") then
-				q <= a(5 downto 0) & a(7 downto 6);
-		elsif (dir = '1') and (size = "100") then
-				q <= a(6 downto 0) & a(7);
-		elsif (dir = '1') and (size = "101") then
-				q <= a(7 downto 0);
-		elsif (dir = '1') and (size = "110") then
-				q <= a(0) & a(7 downto 1);
-		elsif (dir = '1') and (size = "111") then
-				q <= a(1 downto 0) & a(7 downto 2);		
+		elsif (dir ='0') and (size = "000") then
+				q <= a(0 to 7); 
+	   elsif (dir ='0') and (size = "001") then
+				q <= a(7) & a(0 to 6); 
+		elsif (dir ='0') and (size = "010") then
+				q <= a(7 downto 6) & a(0 to 5); 
+		elsif (dir ='0') and (size = "011") then
+				q <= a(7 downto 5) & a(0 to 4); 
+		elsif (dir ='0') and (size = "100") then
+				q <= a(7 downto 4) & a(0 to 3); 
+		elsif (dir ='0') and (size = "101") then
+				q <= a(7 downto 3) & a(0 to 2); 
+		elsif (dir ='0') and (size = "110") then
+				q <= a(7 downto 2) & a(0 to 1); 
+		elsif (dir ='0') and (size = "111") then
+				q <= a(7 downto 2) & a(3 downto 2);
 		end if;
 end process;
 end arch_BarrelShifter8;
