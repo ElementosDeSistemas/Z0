@@ -35,21 +35,21 @@ process(a,dir,size)
 		end if;
 		if (dir = '1') then 
 			 if (size = "000") then
-				q <= a(0) & a(7 downto 1);
-			 elsif (size = "001") then
-				q <= a(1 downto 0) & a(7 downto 2);
-			 elsif (size = "010") then
 				q <= a(2 downto 0) & a(7 downto 3);
-			 elsif (size = "011") then
+			 elsif (size = "001") then
 				q <= a(3 downto 0) & a(7 downto 4);
-			 elsif (size = "100") then
+			 elsif (size = "010") then
 				q <= a(4 downto 0) & a(7 downto 5);
-			 elsif (size = "101") then
+			 elsif (size = "011") then
 				q <= a(5 downto 0) & a(7 downto 6);
-			 elsif (size = "110") then
+			 elsif (size = "100") then
 				q <= a(6 downto 0) & a(7);
-			 elsif (size = "111") then
+			 elsif (size = "101") then
 				q <= a(7 downto 0);
+			 elsif (size = "110") then
+				q <= a(0) & a(7 downto 1);
+			 elsif (size = "111") then
+				q <= a(1 downto 0) & a(7 downto 2);
 			 end if;		
 
 		end if;
