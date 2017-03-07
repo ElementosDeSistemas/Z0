@@ -15,7 +15,7 @@ entity DMux8Way is
 			q7:  out STD_LOGIC);
 end entity;
 
-architecture behave of Dmux8Way is
+architecture behave of DMux8Way is
 begin
 process (a, sel)
 begin
