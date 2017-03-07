@@ -11,43 +11,15 @@ end entity;
 
 architecture arch_BarrelShifter8 of BarrelShifter8 is
 begin
-process(a,dir,size)
-	begin
-
-		if (dir ='0') and (size = "000") then
-				q <= a(7 downto 0); 
-	   elsif (dir ='0') and (size = "001") then
-				q <= a(6 downto 0) & a(7); 
-		elsif (dir ='0') and (size = "010") then
-				q <= a(5 downto 0) & a(7 downto 6); 
-		elsif (dir ='0') and (size = "011") then
-				q <= a(4 downto 0) & a(7 downto 5); 
-		elsif (dir ='0') and (size = "100") then
-				q <= a(3 downto 0) & a(7 downto 4); 
-		elsif (dir ='0') and (size = "101") then
-				q <= a(2 downto 0) & a(7 downto 3); 
-		elsif (dir ='0') and (size = "110") then
-				q <= a(1 downto 0) & a(7 downto 2); 
-		elsif (dir ='0') and (size = "111") then
-				q <= a(7 downto 2) & a(3 downto 2);	
-		
-		elsif (dir ='0') and (size = "000") then
-				q <= a(0 to 7); 
-	   elsif (dir ='0') and (size = "001") then
-				q <= a(7) & a(0 to 6); 
-		elsif (dir ='0') and (size = "010") then
-				q <= a(7 downto 6) & a(0 to 5); 
-		elsif (dir ='0') and (size = "011") then
-				q <= a(7 downto 5) & a(0 to 4); 
-		elsif (dir ='0') and (size = "100") then
-				q <= a(7 downto 4) & a(0 to 3); 
-		elsif (dir ='0') and (size = "101") then
-				q <= a(7 downto 3) & a(0 to 2); 
-		elsif (dir ='0') and (size = "110") then
-				q <= a(7 downto 2) & a(0 to 1); 
-		elsif (dir ='0') and (size = "111") then
-				q <= a(7 downto 2) & a(3 downto 2);
-		end if;
-end process;
+		    q <= a when (size = "000") else
+					a(6 downto 0) & a(7) when (size = "001" and dir = '0') else
+					a(5 downto 0) & a(7 downto 6) when (size = "010" and dir = '0') else
+					a(4 downto 0) & a(7 downto 5) when (size = "011" and dir = '0') else
+					a(3 downto 0) & a(7 downto 4) when (size = "100" and dir = '0') else
+		         a(0) & a(7 downto 1)  when (dir = '1' and size = "001") else
+		         a(1) & a(0) & a(7 downto 2) when (dir = '1' and size = "010") else
+	            a(2) & a(1) & a(0) & a(7 downto 3)  when (dir = '1' and size = "011") else
+	            a(3) & a(2) & a(1) & a(0) & a(7 downto 4)  when (dir = '1' and size = "100");
+					
 end arch_BarrelShifter8;
  						
