@@ -14,6 +14,7 @@ entity Mux8Way is
 			sel: in  STD_LOGIC_VECTOR(2 downto 0);
 			q:   out STD_LOGIC);
 end entity;
+  
 	architecture Run of Mux8Way is
 		begin
 	   q <= a when sel = "000" else 
@@ -24,4 +25,5 @@ end entity;
 			f when sel = "101" else 
 			g when sel = "110" else 
 			h when sel = "111"; 
+
 	end architecture;
