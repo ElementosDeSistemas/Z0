@@ -8,3 +8,18 @@ entity BarrelShifter8 is
 			size: in  std_logic_vector(2 downto 0);    -- shift amount
 			q:    out STD_LOGIC_VECTOR(7 downto 0));  -- output vector (shifted)
 end entity;
+
+architecture arch_BarrelShifter8 of BarrelShifter8 is
+begin
+		    q <= a when (size = "000") else
+					a(6 downto 0) & a(7) when (size = "001" and dir = '0') else
+					a(5 downto 0) & a(7 downto 6) when (size = "010" and dir = '0') else
+					a(4 downto 0) & a(7 downto 5) when (size = "011" and dir = '0') else
+					a(3 downto 0) & a(7 downto 4) when (size = "100" and dir = '0') else
+		         a(0) & a(7 downto 1)  when (dir = '1' and size = "001") else
+		         a(1) & a(0) & a(7 downto 2) when (dir = '1' and size = "010") else
+	            a(2) & a(1) & a(0) & a(7 downto 3)  when (dir = '1' and size = "011") else
+	            a(3) & a(2) & a(1) & a(0) & a(7 downto 4)  when (dir = '1' and size = "100");
+					
+end arch_BarrelShifter8;
+ 						
