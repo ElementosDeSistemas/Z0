@@ -10,7 +10,15 @@ entity Zerador16 is
 end entity;
 
 architecture arch_zerador16 of Zerador16 is
+begin
+process(a,sel)
+begin
 
-Begin
-    q <= not sel and a;
+    if (sel = '1') then
+		q <= "0000000000000000";
+	else
+		q <= a;
+
+end if;
+end process;
 End arch_zerador16;
