@@ -1,8 +1,8 @@
 -- Unidade Lógica Aritmética (ULA)
--- Recebe dois valores de 16bits e 
+-- Recebe dois valores de 16bits e
 -- calcula uma das seguintes funções:
 -- X+y, x-y, y-x, 0, 1, -1, x, y, -x, -y,
--- X+1, y+1, x-1, y-1, x&y, x|y 
+-- X+1, y+1, x-1, y-1, x&y, x|y
 -- De acordo com os 6 bits de entrada denotados:
 -- zx, nx, zy, ny, f, no.
 -- Também calcula duas saídas de 1 bit:
@@ -23,7 +23,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 entity ALU is
-	port ( 
+	port (
 			x,y:   in STD_LOGIC_VECTOR(15 downto 0); -- entradas de dados da ALU
 			zx:    in STD_LOGIC;                     -- zera a entrada x
 			nx:    in STD_LOGIC;                     -- inverte a entrada x
@@ -34,5 +34,41 @@ entity ALU is
 			zr:    out STD_LOGIC;                    -- setado se saída igual a zero
 			ng:    out STD_LOGIC;                    -- setado se saída é negativa
 			saida: out STD_LOGIC_VECTOR(15 downto 0) -- saída de dados da ALU
-	); 
-end entity; 
+	);
+end entity;
+
+
+architecture arch_alu of ALU is
+
+-- COMPONENTES
+		component Add16 is
+			port(
+				a   :  in STD_LOGIC_VECTOR(15 downto 0);
+				b   :  in STD_LOGIC_VECTOR(15 downto 0);
+				q   : out STD_LOGIC_VECTOR(15 downto 0)
+			);
+		end component;
+
+		component And16 is
+			port (
+					a:   in  STD_LOGIC_VECTOR(15 downto 0);
+					b:   in  STD_LOGIC_VECTOR(15 downto 0);
+					q:   out STD_LOGIC_VECTOR(15 downto 0));
+
+		end component;
+
+		component Mux16 is
+			port (
+					a:   in  STD_LOGIC_VECTOR(15 downto 0);
+					b:   in  STD_LOGIC_VECTOR(15 downto 0);
+					sel: in  STD_LOGIC;
+					q:   out STD_LOGIC_VECTOR(15 downto 0));
+		end component;
+
+
+Begin
+
+	if (f = "1") then
+		u1: Add16 port map(x, y, saida);
+
+End ALU;
