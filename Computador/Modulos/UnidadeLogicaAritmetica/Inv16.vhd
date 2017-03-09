@@ -10,13 +10,14 @@ entity Inv16 is
 end entity;
 
 architecture arch_inv16 of Inv16 is
-
-Begin
+begin
+process(a,sel)
+begin
 
   if (sel = '1') then
     q <= not a;
   else
     q <= a;
   end if;
-
+end process;
 End arch_inv16;

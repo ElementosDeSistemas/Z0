@@ -85,7 +85,7 @@ architecture arch_alu of ALU is
 signal saida_nx, saida_ny, saida_zx, saida_zy, saida_mux, saida_and, saida_add: STD_LOGIC_VECTOR(15 downto 0);
 
 
-Begin
+begin
 
 		u: Zerador16 port map(x, zx, saida_zx);
 		u2: Inv16 port map(saida_zx, nx, saida_nx);
@@ -99,4 +99,4 @@ Begin
 
 		a4: Inv16 port map(saida_mux, no, saida);
 
-End ALU;
+end ALU;
