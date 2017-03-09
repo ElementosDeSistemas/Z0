@@ -99,4 +99,4 @@ begin
 
 		a4: Inv16 port map(saida_mux, no, saida);
 
-end ALU;
+end arch_alu;
