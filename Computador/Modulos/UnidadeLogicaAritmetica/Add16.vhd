@@ -11,3 +11,10 @@ entity Add16 is
 		q   : out STD_LOGIC_VECTOR(15 downto 0) 
 	); 
 end entity; 
+
+architecture a_add16 of Add16 is
+Begin
+
+	q = a + b;
+
+End Architecture a_add16;
