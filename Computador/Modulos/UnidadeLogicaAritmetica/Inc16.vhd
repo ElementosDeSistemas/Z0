@@ -23,6 +23,6 @@ end component;
 
 Begin
 
-q <= Add16(a,"0000000000000001");
+m: Add16 port map (a,"0000000000000001", open);
 
 end a_inc16;
