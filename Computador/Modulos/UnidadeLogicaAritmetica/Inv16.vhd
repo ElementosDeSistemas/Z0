@@ -13,7 +13,7 @@ architecture arch_inv16 of Inv16 is
 
 Begin
 
-  if (sel = "1") then
+  if (sel = '1') then
     q <= not a;
   else then
     q <= a;
