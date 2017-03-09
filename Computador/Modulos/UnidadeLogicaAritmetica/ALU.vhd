@@ -41,34 +41,62 @@ end entity;
 architecture arch_alu of ALU is
 
 -- COMPONENTES
-		component Add16 is
-			port(
-				a   :  in STD_LOGIC_VECTOR(15 downto 0);
-				b   :  in STD_LOGIC_VECTOR(15 downto 0);
-				q   : out STD_LOGIC_VECTOR(15 downto 0)
-			);
-		end component;
+	component Zerador16 is
+		port(
+			a   :  in STD_LOGIC_VECTOR(15 downto 0);
+			sel   : in STD_LOGIC;
+			q:  out STD_LOGIC_VECTOR(15 downto 0)
+		);
+	end component;
 
-		component And16 is
-			port (
-					a:   in  STD_LOGIC_VECTOR(15 downto 0);
-					b:   in  STD_LOGIC_VECTOR(15 downto 0);
-					q:   out STD_LOGIC_VECTOR(15 downto 0));
+	component Inv16 is
+		port(
+			a   :  in STD_LOGIC_VECTOR(15 downto 0);
+			sel   : in STD_LOGIC;
+	    q:  out STD_LOGIC_VECTOR(15 downto 0)
+		);
+	end component;
 
-		end component;
+	component Add16 is
+		port(
+			a   :  in STD_LOGIC_VECTOR(15 downto 0);
+			b   :  in STD_LOGIC_VECTOR(15 downto 0);
+			q   : out STD_LOGIC_VECTOR(15 downto 0)
+		);
+	end component;
 
-		component Mux16 is
-			port (
-					a:   in  STD_LOGIC_VECTOR(15 downto 0);
-					b:   in  STD_LOGIC_VECTOR(15 downto 0);
-					sel: in  STD_LOGIC;
-					q:   out STD_LOGIC_VECTOR(15 downto 0));
-		end component;
+	component And16 is
+		port (
+				a:   in  STD_LOGIC_VECTOR(15 downto 0);
+				b:   in  STD_LOGIC_VECTOR(15 downto 0);
+				q:   out STD_LOGIC_VECTOR(15 downto 0));
+
+	end component;
+
+	component Mux16 is
+		port (
+				a:   in  STD_LOGIC_VECTOR(15 downto 0);
+				b:   in  STD_LOGIC_VECTOR(15 downto 0);
+				sel: in  STD_LOGIC;
+				q:   out STD_LOGIC_VECTOR(15 downto 0));
+	end component;
+
+
+signal saida_nx, saida_ny, saida_zx, saida_zy, saida_mux, saida_and, saida_add: STD_LOGIC_VECTOR(15 downto 0);
 
 
 Begin
 
-	if (f = "1") then
-		u1: Add16 port map(x, y, saida);
+		u: Zerador16 port map(x, zx, saida_zx);
+		u2: Inv16 port map(saida_zx, nx, saida_nx);
+
+		i: Zerador16 port map(y, zy, saida_zy);
+		i2: Inv16 port map(saida_zy, ny, saida_ny);
+
+		a: Add16 port map(saida_nx, saida_ny, saida_add);
+		a2: And16 port map(saida_nx, saida_ny, saida_and);
+		a3: Mux16 port map(saida_and, saida_add, f, saida_mux);
+
+		a4: Inv16 port map(saida_mux, no, saida);
 
 End ALU;
