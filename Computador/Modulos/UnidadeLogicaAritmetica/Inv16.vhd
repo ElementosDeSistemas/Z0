@@ -15,7 +15,7 @@ Begin
 
   if (sel = '1') then
     q <= not a;
-  else then
+  else
     q <= a;
   end if;
 
