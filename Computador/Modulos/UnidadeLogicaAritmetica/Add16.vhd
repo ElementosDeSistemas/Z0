@@ -17,14 +17,13 @@ architecture a_add16 of Add16 is
 component FullAdder is
 	port(
 		a,b,c: 		in STD_LOGIC;
-		soma, valum: out STD_LOGIC
+		soma, vaium: out STD_LOGIC
 		);
 end component;
 
 signal s: STD_LOGIC_VECTOR(14 downto 0);
 
 Begin
-
 	add1: FullAdder port map (a(0), b(0), '0', q(0), s(0));
 	add2: FullAdder port map (a(1), b(1), s(0), q(1), s(1));
 	add3: FullAdder port map (a(2), b(2), s(1), q(2), s(2));
@@ -40,7 +39,7 @@ Begin
 	add13: FullAdder port map (a(12), b(12), s(11), q(12), s(12));
 	add14: FullAdder port map (a(13), b(13), s(12), q(13), s(13));
 	add15: FullAdder port map (a(14), b(14), s(13), q(14), s(14));
-	add16: FullAdder port map (a(15), b(15), s(14), q(15), s(15));
+	add16: FullAdder port map (a(15), b(15), s(14), q(15), open);
 	
 
 End a_add16;
