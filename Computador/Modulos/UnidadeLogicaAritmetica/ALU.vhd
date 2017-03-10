@@ -98,5 +98,9 @@ begin
 		a3: Mux16 port map(saida_and, saida_add, f, saida_mux);
 
 		a4: Inv16 port map(saida_mux, no, saida);
+		zr <= '1' when (saida="0000000000000000") else
+			  '0';
+		ng <= '1' when (saida(15) = '1') else	
+				'0';
 
 end arch_alu;
