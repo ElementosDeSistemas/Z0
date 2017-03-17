@@ -41,7 +41,7 @@ end component;
 signal w: std_logic;
 
 begin
-		mux: Mux2Way port map (w,input,load)
-		FlipFlopD: port map (clock,q,'1','1',w)
+		mux: Mux2Way port map (w,input,load);
+		flip: FlipFlopD port map (clock,q,'1','1',w);
 		
 end architecture;
