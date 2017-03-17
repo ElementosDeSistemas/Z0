@@ -26,3 +26,4 @@ begin
   q(14) <= not a(14);
   q(15) <= not a(15);
 end arch_Not16;
+
