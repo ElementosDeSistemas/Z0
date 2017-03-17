@@ -39,9 +39,10 @@ component FlipFlopD is
 end component;
 
 signal w: std_logic;
+signal t: std_logic;
 
 begin
-		mux: Mux2Way port map (w,input,load);
-		flip: FlipFlopD port map (clock,q,'1','1',w);
+		mux: Mux2Way port map (w,input,load,t);
+		flip: FlipFlopD port map (clock,t,'1','1',w);
 		
 end architecture;
