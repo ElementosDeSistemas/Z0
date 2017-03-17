@@ -10,3 +10,30 @@ entity DMux4Way is
 			q2:  out STD_LOGIC;
 			q3:  out STD_LOGIC);
 end entity;
+architecture arch_DMux4Way of DMux4Way is
+	begin
+		process (a,sel)
+			begin
+				if (sel = "00") then
+					q0 <= a;
+					q1 <= '0';
+					q2 <= '0';
+					q3 <= '0';
+				elsif (sel = "01") then
+					q1 <= a;
+					q0 <= '0';
+					q2 <= '0';
+					q3 <= '0';
+				elsif (sel = "10") then
+					q2 <= a;
+					q0 <= '0';
+					q1 <= '0';
+					q3 <= '0';
+				elsif (sel = "11") then
+					q3 <= a;
+					q0 <= '0';
+					q1 <= '0';
+					q2 <= '0';
+				end if;
+		end process;
+end architecture;

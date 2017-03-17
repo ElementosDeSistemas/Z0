@@ -8,3 +8,16 @@ entity DMux2Way is
 			q0:  out STD_LOGIC;
 			q1:  out STD_LOGIC);
 end entity;
+architecture arch_DMux2Way of DMux2Way is
+	begin
+		process (a,sel)
+			begin
+				if (sel = '0') then
+					q0 <= a;
+					q1 <= '0';
+				elsif (sel = '1') then
+					q1 <= a;
+					q0 <= '0';
+				end if;
+		end process;
+end architecture;

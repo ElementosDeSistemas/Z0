@@ -1,5 +1,6 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
+use ieee.numeric_std.all;
 
 entity Mux2Way is
 	port ( 
@@ -8,3 +9,14 @@ entity Mux2Way is
 			sel: in  STD_LOGIC;
 			q:   out STD_LOGIC);
 end entity;
+architecture arch_Mux2Way of Mux2Way is 
+	begin
+		process (a,b,sel)
+			begin
+				if (sel = '0') then
+					q <= a;
+				else 
+					q <= b;
+				end if;
+		end process;
+end architecture;
