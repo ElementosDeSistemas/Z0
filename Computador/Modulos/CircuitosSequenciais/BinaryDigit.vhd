@@ -2,9 +2,9 @@
 -- by Luciano Soares
 -- BinaryDigit.vhd
 
-Library ieee; 
+Library ieee;
 use ieee.std_logic_1164.all;
-  
+
 entity BinaryDigit is
 	port(
 		clock:   in STD_LOGIC;
@@ -43,6 +43,8 @@ signal t: std_logic;
 
 begin
 		mux: Mux2Way port map (w,input,load,t);
+    output <= t;
 		flip: FlipFlopD port map (clock,t,'1','1',w);
-		
+
+
 end architecture;
