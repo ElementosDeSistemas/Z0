@@ -61,8 +61,8 @@ signal address1: STD_LOGIC_VECTOR(2 downto 0);
 
 begin
 
-address0 <= address(2 downto 0);
-address1 <= address(8 downto 3);
+address0 <= address(5 downto 0);
+address1 <= address(8 downto 6);
 
 dmux: DMux8Way port map (load,address1,loadList(0),loadList(1),loadList(2),loadList(3),loadList(4),loadList(5),loadList(6),loadList(7));
 
