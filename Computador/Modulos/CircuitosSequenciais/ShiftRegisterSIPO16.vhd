@@ -15,25 +15,21 @@ entity ShiftRegisterSIPO16 is
 		output: out STD_LOGIC_VECTOR(15 downto 0)
 	);
 end entity;
+architecture arch_SIPO of ShiftRegisterSIPO16 is
 
--- Componentes
-
-component FlipFlopD is
+component FlipFlopD is 
 	port(
 		clock:  in std_logic;
 		d:      in std_logic;
 		clear:  in std_logic;
 		preset: in std_logic;
 		q:     out std_logic
-	);
+	); 
 end component;
-
-architecture arch_SIPO of ShiftRegisterSIPO16 is
-
 signal saida: STD_LOGIC_VECTOR(15 downto 0);
 
 begin
-	w : port map FlipFlopD(clock,input,'1','1',saida(0));
+	w : port map FlipFlopD(clock,input,'0','1',saida(0));
 	w1 : port map FlipFlopD(clock,saida(0),'1','1',saida(1));
 	w2 : port map FlipFlopD(clock,saida(1),'1','1',saida(2));
 	w3 : port map FlipFlopD(clock,saida(2),'1','1',saida(3));
@@ -51,4 +47,4 @@ begin
 	w15 : port map FlipFlopD(clock,saida(14),'1','1',saida(15));
 	q <= saida;
 	
-end architecture;
+end arch_SIPO;
