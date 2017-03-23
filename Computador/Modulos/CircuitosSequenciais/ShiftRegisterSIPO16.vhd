@@ -30,12 +30,25 @@ end component;
 
 architecture arch_SIPO of ShiftRegisterSIPO16 is
 
-signal saida_0,saida_1,saida_2: STD_LOGIC_VECTOR(15 downto 0);
+signal saida: STD_LOGIC_VECTOR(15 downto 0);
 
 begin
-	w : port map FlipFlopD(clock,input,'1','1',saida_0);
-	w1 : port map FlipFlopD(clock,saida_0,'1','1',saida_1);
-	w2 : port map FlipFlopD(clock,saida_1,'1','1',saida_2);
-	w3 : port map FlipFlopD(clock,saida_2,'1','1',q);
-
+	w : port map FlipFlopD(clock,input,'1','1',saida(0));
+	w1 : port map FlipFlopD(clock,saida(0),'1','1',saida(1));
+	w2 : port map FlipFlopD(clock,saida(1),'1','1',saida(2));
+	w3 : port map FlipFlopD(clock,saida(2),'1','1',saida(3));
+	w4 : port map FlipFlopD(clock,saida(3),'1','1',saida(4));
+	w5 : port map FlipFlopD(clock,saida(4),'1','1',saida(5));
+	w6 : port map FlipFlopD(clock,saida(5),'1','1',saida(6));
+	w7 : port map FlipFlopD(clock,saida(6),'1','1',saida(7));
+	w8: port map FlipFlopD(clock,saida(7),'1','1',saida(8));
+	w9 : port map FlipFlopD(clock,saida(8),'1','1',saida(9));
+	w10 : port map FlipFlopD(clock,saida(9),'1','1',saida(10));
+	w11 : port map FlipFlopD(clock,saida(10),'1','1',saida(11));
+	w12 : port map FlipFlopD(clock,saida(11),'1','1',saida(12));
+	w13 : port map FlipFlopD(clock,saida(12),'1','1',saida(13));
+	w14 : port map FlipFlopD(clock,saida(13),'1','1',saida(14));
+	w15 : port map FlipFlopD(clock,saida(14),'1','1',saida(15));
+	q <= saida;
+	
 end architecture;
