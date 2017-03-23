@@ -21,7 +21,7 @@ end entity;
 
 architecture piso16 of ShiftRegisterPISO16 is
 
-signal tmp: std_logic_vector(15 downto 0) := (others=>'0');
+signal tmp: std_logic_vector(15 downto 0);
 
 
 begin
@@ -30,9 +30,12 @@ process (clock,input,shift)
  begin
      if (shift = '1') then
      tmp <= input;
-   elsif rising_edge(clock) then
-     tmp <= '0' & tmp(15 downto 1);
+	  
+   elsif rising_edge(clock) and clock='1' then
+		if (shift = '0') then
+			tmp <= '0' & tmp(15 downto 1);
    end if;
+	end if;
  end process;
 
 output <= tmp(0);
