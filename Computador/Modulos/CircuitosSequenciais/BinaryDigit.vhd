@@ -43,7 +43,7 @@ signal t: std_logic;
 
 begin
 		mux: Mux2Way port map (w,input,load,t);
-    output <= t;
+		output <= t;
 		flip: FlipFlopD port map (clock,t,'1','1',w);
 
 
