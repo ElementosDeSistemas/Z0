@@ -50,14 +50,14 @@ begin
 	FF4: FlipFlopD port map (clock,input(4),'1','1',saida(4));
 	FF5: FlipFlopD port map (clock,input(5),'1','1',saida(5));
 	FF6: FlipFlopD port map (clock,input(6),'1','1',saida(6));
-  FF7: FlipFlopD port map (clock,input(7),'1','1',saida(7));
+	FF7: FlipFlopD port map (clock,input(7),'1','1',saida(7));
 	FF8: FlipFlopD port map (clock,input(8),'1','1',saida(8));
 	FF9: FlipFlopD port map (clock,input(9),'1','1',saida(9));
 	FF10: FlipFlopD port map (clock,input(10),'1','1',saida(10));
 	FF11: FlipFlopD port map (clock,input(11),'1','1',saida(11));
 	FF12: FlipFlopD port map (clock,input(12),'1','1',saida(12));
-  FF13: FlipFlopD port map (clock,input(13),'1','1',saida(13));
-  FF14: FlipFlopD port map (clock,input(14),'1','1',saida(14));
+	FF13: FlipFlopD port map (clock,input(13),'1','1',saida(13));
+	FF14: FlipFlopD port map (clock,input(14),'1','1',saida(14));
 	FF15: FlipFlopD port map (clock,input(15),'1','1',saida(15));
 
 	outShifter: BarrelShifter16 port map (saida, direction, "001", saidaShifter);
