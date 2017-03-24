@@ -82,5 +82,4 @@ begin
 
 	output <= saidaMuxes;
 
-
 end architecture;
