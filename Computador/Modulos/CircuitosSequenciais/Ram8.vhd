@@ -14,9 +14,8 @@ entity Ram8 is
 		output:  out STD_LOGIC_VECTOR(15 downto 0)
 	);
 end entity;
-architecture ram8 of Ram8 is
-
-Component Register16 is
+architecture vm8 of Ram8 is
+component Register16 is
 	port(
 		clock:   in STD_LOGIC;
 		input:   in STD_LOGIC_VECTOR(15 downto 0);
@@ -24,6 +23,8 @@ Component Register16 is
 		output: out STD_LOGIC_VECTOR(15 downto 0)
 	);
 end component;
+
+component Mux8Way16 is
 	port ( 
 			a:   in  STD_LOGIC_VECTOR(15 downto 0);
 			b:   in  STD_LOGIC_VECTOR(15 downto 0);
