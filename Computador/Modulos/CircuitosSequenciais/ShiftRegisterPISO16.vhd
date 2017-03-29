@@ -3,11 +3,13 @@
 -- ShiftRegisterPISO16.vhd
 
 -- shift register tipo PISO de 16 bits:
--- If load == 1 then load in  <---------------------- ??????
--- out = in[0], out = in[1], out = in[2], ...
--- os outros bits podem ser preenchidos com 0
+-- If shift == 0 then carrega dados da entrada (input)
+-- Senão a saída (output) vai emitindo bit a bit o valor do registrar interno
+-- ou seja, a cada pulso de clock: output = input[0], output = input[1], output = input[2], ...
+-- os outros bits necessário para preencher o espaço que abriu no shift podem ser preenchidos com 0
 
-Library ieee; 
+
+Library ieee;
 use ieee.std_logic_1164.all;
 
 entity ShiftRegisterPISO16 is
@@ -20,7 +22,7 @@ entity ShiftRegisterPISO16 is
 end entity;
 architecture piso16 of ShiftRegisterPISO16 is
 
-signal w01, w02, w03, w04, w05, w06, w07, w08, w09, w10, w11, w12, w13, w14, 
+signal w01, w02, w03, w04, w05, w06, w07, w08, w09, w10, w11, w12, w13, w14,
 w15, w16, w17,w18, w19, w20, w21, w22, w23, w24, w25, w26, w27, w28, w29, w30,
 w31,load: STD_LOGIC;
 
@@ -35,7 +37,7 @@ component FlipFlopD
 end component;
 
 component Mux2way
-		port ( 
+		port (
 			a:   in  STD_LOGIC;
 			b:   in  STD_LOGIC;
 			sel: in  STD_LOGIC;
