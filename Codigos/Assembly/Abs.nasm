@@ -9,12 +9,16 @@ leaw $0,%A ; começo do modulo
 subw %A,%D, %A
 movw %A,%D
 leaw $0,%A
-movw %D,(%A) ;final do modulo
-leaw $100,%A
+movw %D,(%A) 
+leaw $100,%A ;final do modulo
 jmp
 nop
 leaw $1,%A; jump inicial para essa linha -1
+
 movw (%A),%D
+leaw $0,%A
+movw %D,(%A)
+
 leaw $2,%A
 jl
 nop
