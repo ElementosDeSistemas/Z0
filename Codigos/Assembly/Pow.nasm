@@ -5,11 +5,18 @@
 
 leaw $1, %A
 movw (%A), %D
+decw %D
+leaw %PASS, %A
+je
+
+leaw $1, %A
+movw (%A), %D
 leaw $0, %A
 movw %D, (%A)
 leaw $2, %A
 movw %D, (%A)
 decw (%A)
+
 multiplication:
 leaw $0, %A
 movw (%A), %D
@@ -25,6 +32,15 @@ leaw $2, %A
 movw (%A), %D
 leaw %multiplication, %A
 jne
+END:
+leaw $END, %A
+jmp
+
+PASS:
+leaw $1, %A
+movw %A, %D
+leaw $0, %A
+movw %D, (%A)
 END:
 leaw $END, %A
 jmp
