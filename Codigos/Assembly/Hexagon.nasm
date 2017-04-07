@@ -44,6 +44,7 @@ addw %A, %D, %D
 leaw $0, %A
 movw %D, (%A)
 
+;preciso fazer esse valor decrescer
 leaw $R7, %A
 
 movw %A, %D
