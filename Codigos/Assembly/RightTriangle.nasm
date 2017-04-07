@@ -5,7 +5,7 @@
 movw $1, %D
 leaw $0,%A
 movw %D,(%A)
-leaw %SCREEN,%A
+leaw $16417,%A
 movw %A,%D
 leaw $1,%A
 movw %D,(%A)
@@ -25,7 +25,7 @@ movw %A,%D
 leaw $1,%A
 addw %D,(%A),(%A)
 movw (%A),%D
-leaw $16864,%A
+leaw $16897,%A
 subw %A,%D,%D
 leaw %loop,%A
 jge
