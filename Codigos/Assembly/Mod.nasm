@@ -4,7 +4,7 @@ leaw $2,%A
 movw (%A),%A
 subw %A,%D,%D
 leaw %done,%A
-jge
+jg
 nop
 leaw $2,%A
 movw (%A),%D
