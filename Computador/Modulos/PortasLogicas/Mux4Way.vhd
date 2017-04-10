@@ -10,3 +10,12 @@ entity Mux4Way is
 			sel: in  STD_LOGIC_VECTOR(1 downto 0);
 			q:   out STD_LOGIC);
 end entity;
+	
+	architecture Run of Mux4Way is
+		begin
+	   q <= a when sel = "00" else 
+			b when sel = "01" else 
+			c when sel = "10" else 
+			d when sel = "11";
+
+	end architecture;
