@@ -1,56 +1,160 @@
-; Hexagon.nasm
+; RightTriangle.nasm
+; Desenha um triângulo retângulo na tela.
+;triangulo invertido de baixo
 
-; Desenha um hexagon na tela.
-leaw $2016, %A
-movw %A, %D 
-leaw $7, %A 
-movw %D, (%A)
-leaw $4080, %A
-movw %A, %D 
-leaw $6, %A 
-movw %D, (%A)
-leaw $8184, %A
-movw %A, %D 
-leaw $5, %A 
-movw %D, (%A)
-leaw $8184, %A
-movw %A, %D 
-leaw $4, %A 
-movw %D, (%A)
-leaw $4080, %A
-movw %A, %D 
-leaw $3, %A 
-movw %D, (%A)
-leaw $2016, %A
-movw %A, %D 
-leaw $2, %A 
-movw %D, (%A)
-leaw $960, %A
-movw %A, %D 
-leaw $1, %A 
-movw %D, (%A)
+movw $1, %D
+leaw $0,%A
+movw %D,(%A)
+leaw $17959,%A
+movw %A,%D
+leaw $1,%A
+movw %D,(%A)
+
+loop3:
+leaw $0,%A
+movw (%A),%D
+leaw $1,%A
+movw (%A),%A
+notw %D
+movw %D,(%A)
+notw %D
+leaw $0,%A
+addw %D,(%A),%D
+incw %D
+leaw $0,%A
+movw %D,(%A)
+leaw $32,%A
+movw %A,%D
+leaw $1,%A
+addw %D,(%A),(%A)
+movw (%A),%D
+leaw $18471,%A
+subw %A,%D,%D
+leaw %loop3,%A
+jge
+nop
+
+;triangulo invertido de cima
+
+movw $1, %D
+leaw $0,%A
+movw %D,(%A)
+leaw $17895,%A
+movw %A,%D
+leaw $1,%A
+movw %D,(%A)
+
+loop4:
+leaw $0,%A
+movw (%A),%D
+leaw $1,%A
+movw (%A),%A
+notw %D
+movw %D,(%A)
+notw %D
+leaw $0,%A
+addw %D,(%A),%D
+incw %D
+leaw $0,%A
+movw %D,(%A)
+leaw $32,%A
+movw %A,%D
+leaw $1,%A
+subw (%A),%D,(%A)
+movw (%A),%D
+leaw $17383,%A
+subw %A,%D,%D
+leaw %loop4,%A
+jle
+nop
+
+;triangulos normais
+
+movw $1, %D
+leaw $0,%A
+movw %D,(%A)
+leaw $17417,%A
+movw %A,%D
+leaw $1,%A
+movw %D,(%A)
+
+loop:
+leaw $0,%A
+movw (%A),%D
+leaw $1,%A
+movw (%A),%A
+movw %D,(%A)
+addw %D,(%A),%D
+incw %D
+leaw $0,%A
+movw %D,(%A)
+leaw $32,%A
+movw %A,%D
+leaw $1,%A
+addw %D,(%A),(%A)
+movw (%A),%D
+leaw $17897,%A
+subw %A,%D,%D
+leaw %loop,%A
+jge
+nop
+
+movw $1, %D
+leaw $0,%A
+movw %D,(%A)
+leaw $18441,%A
+movw %A,%D
+leaw $1,%A
+movw %D,(%A)
+
+loop1:
+leaw $0,%A
+movw (%A),%D
+leaw $1,%A
+movw (%A),%A
+movw %D,(%A)
+addw %D,(%A),%D
+incw %D
+leaw $0,%A
+movw %D,(%A)
+leaw $32,%A
+movw %A,%D
+leaw $1,%A
+subw (%A),%D,(%A)
+movw (%A),%D
+leaw $17897,%A
+subw %A,%D,%D
+leaw %loop1,%A
+jle
+nop
+
+;quadrado
+
+leaw $17416,%A
+movw %A,%D
+leaw $0,%A
+movw %D,(%A)
 
 
-leaw $960, %A
-movw %A, %D
-leaw $SCREEN, %A
-movw %D, (%A)
-movw %A, %D
+loop2:
+leaw $0,%A
+movw (%A),%D
+movw %D,%A
+movw $-1,(%A)
+leaw $32,%A
+addw %A,%D,%D
 
-Loop:
+leaw $0,%A
+movw %D,(%A)
 
-leaw $32, %A
-addw %A, %D, %D
-leaw $0, %A
-movw %D, (%A)
+leaw $18440,%A
+subw %A,%D,%D
 
-;preciso fazer esse valor decrescer
-leaw $R7, %A
+leaw $loop2,%A
+jge
 
-movw %A, %D
-leaw $0, %A
-movw (%A), %A 
-movw %D, (%A) 
-movw %A, %D
-leaw $Loop,%A
-jmp
+;tampador de buraco
+leaw $17927,%A
+movw $-1,(%A)
+
+
