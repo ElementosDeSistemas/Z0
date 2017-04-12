@@ -29,23 +29,23 @@ incw (%A) ;A += 1
 
 leaw $4, %A; A = 4
 movw %A, %D; D = a
-leaw $2000, %A ; A = 2000
+leaw $7000, %A ; A = 7000
 
 
 
 
 LOOP:
 
-leaw $2000,%A ; A = 2000
+leaw $7000,%A ; A = 7000
 movw (%A),%D ; RAM[A] = D
-leaw %2001,%A ; A = 2001
+leaw %7001,%A ; A = 7001
 movw %D,(%A); RAM[A] = D
 
 ; VERIFICA SE É PAR
 volta:
 leaw $2, %A 		; A = 2
 movw %A, %D 		;  D = A
-leaw $2001, %A 		; A = 2001
+leaw $7001, %A 		; A = 7001
 subw (%A), %D, (%A) ; RAM[A] = RAM[A] - D
 movw (%A),%D 		; D = RAM[A]
 leaw $volta, %A 	; A = volta
@@ -54,13 +54,13 @@ leaw %IMPAR,%A ; A = IMPAR
 jl ; – Salta Execução se Menor que Zero
 
 ; FUNÇÃO VALORES PARES
-leaw $2000, %A ; A = 2000
+leaw $7000, %A ; A = 7000
 movw (%A), %D ; D = RAM[A]
-leaw $2001,%A ;A = 2001
+leaw $7001,%A ;A = 7001
 movw %D, (%A); RAM[A] = D
 leaw $0, %A; A = 0
 movw %A,%D; D = A
-leaw $2002,%A ; A = 2000
+leaw $7002,%A ; A = 7000
 movw %D,(%A) ; RAM[A] = D
 
 
@@ -68,19 +68,19 @@ movw %D,(%A) ; RAM[A] = D
 divisao:
 leaw $2, %A ; A = 2
 movw %A, %D ; D = A
-leaw $2001, %A ; A = 2001
+leaw $7001, %A ; A = 7001
 subw (%A), %D, (%A); RAM[A] = RAM[A] - D
 movw (%A), %D; D = RAM[A]
-leaw $2002, %A; A = 2002
+leaw $7002, %A; A = 7002
 incw (%A) ; A += 1
 leaw $divisao, %A; A = divisao
 jg ;Salta Execução se Maior que Zero
 
-leaw $2002, %A ; A = 2002
+leaw $7002, %A ; A = 7002
 movw (%A),%D ; D = RAM[A]
 movw (%A),%A; A = RAM[A]
 movw (%A),%D ; D = RAM[A]
-leaw $2000,%A; A = 2000
+leaw $7000,%A; A = 7000
 movw (%A),%A; A = RAM[A]
 movw %D,(%A); RAM[A] = D
 
@@ -90,75 +90,75 @@ jmp    ; JUMP INCONDICIONAL
 IMPAR:   ;
 
 
-leaw $2000, %A ; A = 2000
+leaw $7000, %A ; A = 7000
 movw (%A), %D; D = RAM[A]
 decw %D; D -= 1
-leaw $2001,%A   ;i-1
+leaw $7001,%A   ;i-1
 movw %D, (%A) ; RAM[A] = D
 leaw $0, %A; A = 0
 movw %A,%D; D = A
-leaw $2002,%A; A = 2002
+leaw $7002,%A; A = 7002
 movw %D,(%A) ; RAM[A] =D
-leaw $2003,%A; A = 2003
+leaw $7003,%A; A = 7003
 movw %D,(%A) ; RAM[A] = D
 
 div_impar2:
 leaw $2, %A ; A = 2
 movw %A, %D; D = A
-leaw $2001, %A; A = 2001
+leaw $7001, %A; A = 7001
 subw (%A), %D, (%A); RAM[A] = RAM[A] - D
 movw (%A), %D ; D = RAM[A]
-leaw $2002, %A; A = 2002
+leaw $7002, %A; A = 7002
 incw (%A) ;A += 1
 leaw $div_impar2, %A; A =div_impar2
 jg; Salta Execução se Maior que Zero
 
-leaw $2002, %A ; A = 2002
+leaw $7002, %A ; A = 7002
 movw (%A),%D ; D = RAM[A]
 movw %D, %A ; A = D
 movw (%A),%D; D = RAM[A]
-leaw $2002, %A ; A = 2002
+leaw $7002, %A ; A = 7002
 movw %D, (%A); RAM[A] = D
 
-;vai fazer o A[(i+1)/2] e colocar no A[2003]
-leaw $2000, %A; A = 2000
+;vai fazer o A[(i+1)/2] e colocar no A[7003]
+leaw $7000, %A; A = 7000
 movw (%A), %D; D = RAM[A]
 incw %D; D+=1
-leaw $2001,%A ; A = 2001
+leaw $7001,%A ; A = 7001
 movw %D, (%A); RAM[A] = D
 
 
 div_impar:
 leaw $2, %A ; A = 2
 movw %A, %D ; D = A
-leaw $2001, %A ; A = 2001
+leaw $7001, %A ; A = 7001
 subw (%A), %D, (%A); RAM[A] = RAM[A] - D
 movw (%A), %D; D = RAM[A]
-leaw $2003, %A; A = 2003
+leaw $7003, %A; A = 7003
 incw (%A); A += 1
 leaw $div_impar, %A; A = div_impar
 jg ;Salta Execução se Maior que Zero
 
-leaw $2003, %A ; A = 2003
+leaw $7003, %A ; A = 7003
 movw (%A),%D; D = RAM[A]
 movw %D, %A; A = D
 movw (%A),%D; D = RAM[A]
-leaw $2003, %A ; A = 2003
+leaw $7003, %A ; A = 7003
 movw %D, (%A) ; RAM[A] = D
 
-leaw $2003, %A; A = 2003
+leaw $7003, %A; A = 7003
 movw (%A),%D; D = RAM[A]
-leaw $2002, %A; A = 2002
+leaw $7002, %A; A = 7002
 addw (%A),%D,(%A) ; RAM[A] = D + RAM[A]
 
 
 movw (%A),%D; D = RAM[A]
-leaw $2000,%A; A = 2000
+leaw $7000,%A; A = 7000
 movw (%A),%A; A = RAM[A]
 movw %D,(%A); RAM[A] = D
 
 PASSA:
-leaw $2000, %A; A = 2000
+leaw $7000, %A; A = 7000
 incw (%A); contador +=1
 
 movw (%A), %D  ; D = RAM[A]
