@@ -5,18 +5,168 @@
 ; A série deve gerar: 1,1,2,1,3,2,3,1,4,3,5,2,5,3,4,1,5,4,7,3,8,5,7,2,7,5, etc...
 
 
-leaw $0, %A ; A = 0
-movw $1, (%A) ; RAM[0] = 1
-leaw $1, (%A) ; A = 1
-movw $1, (%A) ; RAM[1] = 1
-LOOP:
-leaw $0, %A; A = 0
-movw (%A), %A ; RAM[0] = A
-movw %A , %D ; D = A
 leaw $0,%A ; A = 0
-addw %D , $1, (%A); RAM[0]+=1
 movw (%A), %D ; RAM[0] = D
-movw %D, %A ; D = A
-leaw $LOOP, %A
-jne
-nop
+decw %D ; D-=1
+decw %D; D-=1
+leaw $PASSA, %A ; A = PASSA
+jle ; Salta Execução se Menor Igual a Zero
+
+leaw $0,%A  ; A = 0
+movw (%A), %D ; RAM[0] = D
+addw %D, (%A), (%A) ; RAM[A] = RAM[A] + D
+incw (%A) ;
+
+
+;Criando Lista inicial
+leaw $1,%A ; A = 1
+incw (%A) ; A += 1
+leaw $2,%A ;A = 2
+incw (%A) = ;A+=1
+leaw $3,%A ; A = 3
+incw (%A) ;A += 1
+incw (%A) ;A += 1
+
+leaw $4, %A; A = 4
+movw %A, %D; D = a
+leaw $2000, %A ; A = 2000
+
+
+
+
+LOOP:
+
+leaw $2000,%A ; A = 2000
+movw (%A),%D ; RAM[A] = D
+leaw %2001,%A ; A = 2001
+movw %D,(%A); RAM[A] = D
+
+; VERIFICA SE É PAR
+volta:
+leaw $2, %A 		; A = 2
+movw %A, %D 		;  D = A
+leaw $2001, %A 		; A = 2001
+subw (%A), %D, (%A) ; RAM[A] = RAM[A] - D
+movw (%A),%D 		; D = RAM[A]
+leaw $volta, %A 	; A = volta
+jg ; Salta Execução se Maior que Zero
+leaw %IMPAR,%A ; A = IMPAR
+jl ; – Salta Execução se Menor que Zero
+
+; FUNÇÃO VALORES PARES
+leaw $2000, %A ; A = 2000
+movw (%A), %D ; D = RAM[A]
+leaw $2001,%A ;A = 2001
+movw %D, (%A); RAM[A] = D
+leaw $0, %A; A = 0
+movw %A,%D; D = A
+leaw $2002,%A ; A = 2000
+movw %D,(%A) ; RAM[A] = D
+
+
+; LOOP divisaoNDO POR 2
+divisao:
+leaw $2, %A ; A = 2
+movw %A, %D ; D = A
+leaw $2001, %A ; A = 2001
+subw (%A), %D, (%A); RAM[A] = RAM[A] - D
+movw (%A), %D; D = RAM[A]
+leaw $2002, %A; A = 2002
+incw (%A) ; A += 1
+leaw $divisao, %A; A = divisao
+jg ;Salta Execução se Maior que Zero
+
+leaw $2002, %A ; A = 2002
+movw (%A),%D ; D = RAM[A]
+movw (%A),%A; A = RAM[A]
+movw (%A),%D ; D = RAM[A]
+leaw $2000,%A; A = 2000
+movw (%A),%A; A = RAM[A]
+movw %D,(%A); RAM[A] = D
+
+leaw $PASSA, %A; A = PASSA
+jmp    ; JUMP INCONDICIONAL
+
+IMPAR:   ;
+
+
+leaw $2000, %A ; A = 2000
+movw (%A), %D; D = RAM[A]
+decw %D; D -= 1
+leaw $2001,%A   ;i-1
+movw %D, (%A) ; RAM[A] = D
+leaw $0, %A; A = 0
+movw %A,%D; D = A
+leaw $2002,%A; A = 2002
+movw %D,(%A) ; RAM[A] =D
+leaw $2003,%A; A = 2003
+movw %D,(%A) ; RAM[A] = D
+
+div_impar2:
+leaw $2, %A ; A = 2
+movw %A, %D; D = A
+leaw $2001, %A; A = 2001
+subw (%A), %D, (%A); RAM[A] = RAM[A] - D
+movw (%A), %D ; D = RAM[A]
+leaw $2002, %A; A = 2002
+incw (%A) ;A += 1
+leaw $div_impar2, %A; A =div_impar2
+jg; Salta Execução se Maior que Zero
+
+leaw $2002, %A ; A = 2002
+movw (%A),%D ; D = RAM[A]
+movw %D, %A ; A = D
+movw (%A),%D; D = RAM[A]
+leaw $2002, %A ; A = 2002
+movw %D, (%A); RAM[A] = D
+
+;vai fazer o A[(i+1)/2] e colocar no A[2003]
+leaw $2000, %A; A = 2000
+movw (%A), %D; D = RAM[A]
+incw %D; D+=1
+leaw $2001,%A ; A = 2001
+movw %D, (%A); RAM[A] = D
+
+
+div_impar:
+leaw $2, %A ; A = 2
+movw %A, %D ; D = A
+leaw $2001, %A ; A = 2001
+subw (%A), %D, (%A); RAM[A] = RAM[A] - D
+movw (%A), %D; D = RAM[A]
+leaw $2003, %A; A = 2003
+incw (%A); A += 1
+leaw $div_impar, %A; A = div_impar
+jg ;Salta Execução se Maior que Zero
+
+leaw $2003, %A ; A = 2003
+movw (%A),%D; D = RAM[A]
+movw %D, %A; A = D
+movw (%A),%D; D = RAM[A]
+leaw $2003, %A ; A = 2003
+movw %D, (%A) ; RAM[A] = D
+
+leaw $2003, %A; A = 2003
+movw (%A),%D; D = RAM[A]
+leaw $2002, %A; A = 2002
+addw (%A),%D,(%A) ; RAM[A] = D + RAM[A]
+
+
+movw (%A),%D; D = RAM[A]
+leaw $2000,%A; A = 2000
+movw (%A),%A; A = RAM[A]
+movw %D,(%A); RAM[A] = D
+
+PASSA:
+leaw $2000, %A; A = 2000
+incw (%A); contador +=1
+
+movw (%A), %D  ; D = RAM[A]
+leaw $0, %A; A = 0
+subw (%A),%D,%D ;D = RAM[A] - D
+leaw $LOOP,%A; A = LOOP
+jge; Salta Execução se Maior Igual a Zero
+
+END:
+leaw $END, %A ; A = END
+jmp; JUMP INCONDICIONAL
