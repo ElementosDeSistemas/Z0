@@ -49,7 +49,7 @@ end component;
 component Add16 is
 	port(
 		a   :  in STD_LOGIC_VECTOR(15 downto 0);
-		b   :  in STD_LOGIC; -- talvez seja somente std_logic
+		b   :  in STD_LOGIC_VECTOR(15 downto 0);-- talvez seja somente std_logic
 		q   : out STD_LOGIC_VECTOR(15 downto 0) 
 	); 
 end component;
@@ -69,15 +69,17 @@ signal s3: STD_LOGIC_VECTOR(15 downto 0);
 signal s4: STD_LOGIC_VECTOR(15 downto 0);
 signal s5: STD_LOGIC;
 signal s6: STD_LOGIC;
+signal i2: STD_LOGIC_VECTOR(15 downto 0);
 
 begin
 
 s5 <= not load;
+i2 <= "000000000000000"&increment;
 s6 <= load or increment;
 w1: Mux16 port map(input,s4,s5,s1);
 w2: Mux16 port map(s1,"0000000000000000",reset,s2);
 w3: Register16 port map(clock,s2,s6,s3);
-w4: Add16 port map(s3,increment,s4);
+w4: Add16 port map(s3,i2,s4);
 output <= s3(14 downto 0);
 
 end architecture;
