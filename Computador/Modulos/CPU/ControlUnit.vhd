@@ -21,21 +21,21 @@ architecture CU of ControlUnit is
 
 begin	
 
-muxALUI_A <= not instruction(0);
-loadA <= not instruction(0) or instruction(10);
-muxAM_ALU <= instruction(3) and instruction(0);
+muxALUI_A <= not instruction(15);
+loadA <= not instruction(15) or instruction(5);
+muxAM_ALU <= instruction(12) and instruction(15);
 
-zx <= instruction(4) and instruction(0);
-nx <= instruction(5) and instruction(0);
-zy <= instruction(6) and instruction(0);
-ny <= instruction(7) and instruction(0);
-f <= instruction(8) and instruction(0);
-no <= instruction(9) and instruction(0);
+zx <= instruction(11) and instruction(15);
+nx <= instruction(10) and instruction(15);
+zy <= instruction(9) and instruction(15);
+ny <= instruction(8) and instruction(15);
+f <= instruction(7) and instruction(15);
+no <= instruction(6) and instruction(15);
 
-loadD <= instruction(11) and instruction(0);
-loadM <= instruction(12) and instruction(0);
+loadD <= instruction(4) and instruction(15);
+loadM <= instruction(3) and instruction(15);
 
-loadPC <= ((instruction(15) and not ng and not zr) or (instruction(14) and zr) or (instruction(13) and ng and not zr)) and instruction(0);
+loadPC <= ((instruction(0) and not ng and not zr) or (instruction(1) and zr) or (instruction(2) and ng and not zr)) and instruction(15);
 	
 end architecture;
 	
