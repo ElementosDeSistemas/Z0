@@ -51,7 +51,7 @@ begin
       -- Teste: 1 - leaw $15,%A
       inInstruction <= "0111111111111111"; inZr <= '0'; inNg <= '0'; 
       wait for 200 ps;
-      assert(outMuxALUI_A='1' and outLoadA='1' and outLoadPC='0')  report "Falha em teste: 1" severity error;
+      assert(outMuxALUI_A='1' and outLoadA='1' and outLoadPC='0')  report "Falha em teste: 1 (BATATA)" severity error;
 
       -- Teste: 2 - movw (%A),%D 
       inInstruction <= "1111110000010000"; inZr <= '0'; inNg <= '0'; 
