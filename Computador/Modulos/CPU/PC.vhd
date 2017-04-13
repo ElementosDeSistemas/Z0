@@ -92,4 +92,4 @@ output <= s3(14 downto 0);
 
 end architecture;
 -- Sabrina e Leonardo V.6 
--- Testando novo teste do travis do professor
+-- Testando novo teste do travis do professor.
