@@ -90,7 +90,7 @@ a2: Register16 port map (clock, saida_mux_a, loadA, saida_a); -- REGISTRADOR A
 a3: Mux16 port map (saida_a, inM, muxAM_ALU, saida_mux_b); -- MUX 2
 a4: Register16 port map (clock, saida_alu, loadD, saida_d); -- REGISTRADOR D
 a5: ALU port map (saida_d,saida_mux_b,zx,nx,zy,ny,f,no,zr,ng,saida_alu);
-a6: PC port map (clock,'1',loadPC,reset,saida_a,pcout);
+a6: PC port map (clock,'1',loadPC,reset,saida_a,saida_pc);
 
 addressM <= saida_a;
 outM <= saida_alu;
