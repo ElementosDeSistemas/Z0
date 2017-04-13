@@ -77,25 +77,24 @@ component ControlUnit is
 end component;
 
 --Signals
-signal muxALUI_A,muxAM_ALU,loadA, loadD, loadM, loadPC, saida_uc: std_logic;
-signal saida_mux_a, saida_a,saida_mux_b,saida_alu,saida_d, saida_pc: STD_LOGIC_VECTOR(15 downto 0);
+signal muxALUI_A,muxAM_ALU,loadA, loadD, loadM, loadPC: std_logic;
+signal saida_mux_a, addressM,saida_mux_b,outM,saida_d: STD_LOGIC_VECTOR(15 downto 0);
 signal zx,nx,zy,ny,f,no,zr,ng: std_logic;
 
 
 begin
 
-t0: ControlUnit port map (instruction, zr,ng, muxALUI_A,muxAM_ALU,zx,nx,zy,ny,f,no,loadA, loadD, saida_uc, loadPC);
-a1: Mux16 port map (saida_alu, instruction, muxALUI_A, saida_mux_a); --MUX 1
-a2: Register16 port map (clock, saida_mux_a, loadA, saida_a); -- REGISTRADOR A
-a3: Mux16 port map (saida_a, inM, muxAM_ALU, saida_mux_b); -- MUX 2
-a4: Register16 port map (clock, saida_alu, loadD, saida_d); -- REGISTRADOR D
-a5: ALU port map (saida_d,saida_mux_b,zx,nx,zy,ny,f,no,zr,ng,saida_alu);
-a6: PC port map (clock,'1',loadPC,reset,saida_a,saida_pc);
+t0: ControlUnit port map (instruction, zr,ng, muxALUI_A,muxAM_ALU,zx,nx,zy,ny,f,no,loadA, loadD, writeM, loadPC);
+a1: Mux16 port map (outM, instruction, muxALUI_A, saida_mux_a); --MUX 1
+a2: Register16 port map (clock, saida_mux_a, loadA, addressM); -- REGISTRADOR A
+a3: Mux16 port map (addressM, inM, muxAM_ALU, saida_mux_b); -- MUX 2
+a4: Register16 port map (clock, outM, loadD, saida_d); -- REGISTRADOR D
+a5: ALU port map (saida_d,saida_mux_b,zx,nx,zy,ny,f,no,zr,ng,outM);
+a6: PC port map (clock,'1',loadPC,reset,addressM,pcout);
 
-addressM <= saida_a;
-outM <= saida_alu;
-writeM <= saida_uc;
-pcout <= saida_pc;
+
+
+
 
 
 
