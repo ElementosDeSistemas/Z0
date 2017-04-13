@@ -39,7 +39,6 @@
 
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE22F17C6
-
 set_global_assignment -name TOP_LEVEL_ENTITY ShiftRegisterPIPO16
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.0.2
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "19:56:31  FEBRUARY 08, 2017"
@@ -52,7 +51,6 @@ set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
-<<<<<<< HEAD
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
 set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/ShiftRegisterSISO16.vhd
@@ -69,7 +67,7 @@ set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Ram8.vhd
 set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Ram4K.vhd
 set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/FlipFlopD.vhd
 set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/BinaryDigit.vhd
-=======
+
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
@@ -289,7 +287,7 @@ set_global_assignment -name VHDL_FILE Modulos/UnidadeLogicaAritmetica/FullAdder.
 set_global_assignment -name VHDL_FILE Modulos/UnidadeLogicaAritmetica/comparador16.vhd
 set_global_assignment -name VHDL_FILE Modulos/UnidadeLogicaAritmetica/ALU.vhd
 set_global_assignment -name VHDL_FILE Modulos/UnidadeLogicaAritmetica/Add16.vhd
->>>>>>> 9eab80007c9c3dca25322d7bbe17b354b81ef9a7
+
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/Or16.vhd
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/Or8Way.vhd
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/Not16.vhd
@@ -306,15 +304,10 @@ set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/DMux2Way.vhd
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/BarrelShifter16.vhd
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/BarrelShifter8.vhd
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/And16.vhd
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform1.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform2.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform3.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform6.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform7.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform8.vwf
+set_global_assignment -name VHDL_FILE Modulos/dispositivos/Teclado/ps2_keyboard_to_ascii.vhd
+set_global_assignment -name VHDL_FILE Modulos/dispositivos/Teclado/ps2_keyboard.vhd
+set_global_assignment -name VHDL_FILE Modulos/dispositivos/Teclado/debounce.vhd
+set_global_assignment -name QIP_FILE Modulos/dispositivos/PLL/PLL.qip
+set_global_assignment -name CDF_FILE output_files/Chain18.cdf
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
-
+set_global_assignment -name CDF_FILE Computador.cdf
