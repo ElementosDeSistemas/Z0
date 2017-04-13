@@ -80,7 +80,7 @@ begin
 
 s5 <= not load;
 i2 <= "000000000000000"&increment;
-s6 <= load or increment;
+s6 <= load or increment or reset;
 w1: Mux16 port map(input,s4,s5,s1);
 w2: Mux16 port map(s1,"0000000000000000",reset,s2);
 w3: Register16 port map(clock,s2,s6,s3);
