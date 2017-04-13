@@ -101,7 +101,7 @@ begin
 		a4: Inv16 port map(saida_mux, no, saida2);
 		zr <= '1' when (saida2="0000000000000000") else
 			  '0';
-		ng <= '1' when (saida(15) = '1') else	
+		ng <= '1' when (saida2(15) = '1') else	
 				'0';
 				
 		saida <= saida2;
