@@ -22,6 +22,8 @@ entity PC is
 end entity;
 architecture arch_PC of PC is
 
+-- declarando todos os componentes que teremos que usar
+
 component Not16 is 
 	
 	port (
@@ -62,6 +64,7 @@ component Mux16 is
 			q:   out STD_LOGIC_VECTOR(15 downto 0));
 end component;
 
+-- temos que criar os sinais que vao guiar nosso prime counter
 
 signal s1: STD_LOGIC_VECTOR(15 downto 0);
 signal s2: STD_LOGIC_VECTOR(15 downto 0);
@@ -69,9 +72,12 @@ signal s3: STD_LOGIC_VECTOR(15 downto 0);
 signal s4: STD_LOGIC_VECTOR(15 downto 0);
 signal s5: STD_LOGIC;
 signal s6: STD_LOGIC;
+
+-- esse ultimo sinal serve para transformar o incriment em um vetor de 16 bits
 signal i2: STD_LOGIC_VECTOR(15 downto 0);
 
 begin
+
 
 w2: Mux16 port map(s1,"0000000000000000",reset,s2);
 s5 <= not load;
@@ -80,6 +86,8 @@ s6 <= load or increment;
 w1: Mux16 port map(input,s4,s5,s1);
 w3: Register16 port map(clock,s2,s6,s3);
 w4: Add16 port map(s3,i2,s4);
+
+-- importante: o output perde o primeiro bit!
 output <= s3(14 downto 0);
 
 end architecture;
