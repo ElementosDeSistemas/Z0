@@ -35,7 +35,7 @@ loadA <= instruction(10) or not instruction(0);
 loadD <= instruction(11) and instruction(0);
 loadM <= instruction(12) and instruction(0);
 
-loadPC <= (instruction(15) and not ng and not zr) or (instruction(14) and zr) or (instruction(13) and ng and not zr);
+loadPC <= ((instruction(15) and not ng and not zr) or (instruction(14) and zr) or (instruction(13) and ng and not zr)) and instruction(0);
 	
 end architecture;
 	
