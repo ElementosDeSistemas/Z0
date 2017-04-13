@@ -5,7 +5,7 @@ use ieee.std_logic_1164.all;
 
 entity ControlUnit is
     port(
-		instruction                 : in STD_LOGIC_VECTOR(15 to 0);  -- instrução para executar
+		instruction                 : in STD_LOGIC_VECTOR(15 downto 0);  -- instrução para executar
 		zr,ng                       : in STD_LOGIC;                      -- valores zr(se zero) e ng(se negativo) da ALU
 		muxALUI_A                   : out STD_LOGIC;                     -- mux que seleciona entre instrução e ALU para reg. A
 		muxAM_ALU                   : out STD_LOGIC;                     -- mux que seleciona entre reg. A e Mem. RAM para ALU
@@ -21,7 +21,7 @@ architecture CU of ControlUnit is
 begin	
 
 muxALUI_A <= not instruction(0);
-loadA <= not instruction(0);
+loadA <= not instruction(0) or instruction(10);
 muxAM_ALU <= instruction(3) and instruction(0);
 
 zx <= instruction(4) and instruction(0);
@@ -31,7 +31,6 @@ ny <= instruction(7) and instruction(0);
 f <= instruction(8) and instruction(0);
 no <= instruction(9) and instruction(0);
 
-loadA <= instruction(10) or not instruction(0);
 loadD <= instruction(11) and instruction(0);
 loadM <= instruction(12) and instruction(0);
 
