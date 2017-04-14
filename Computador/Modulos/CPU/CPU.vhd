@@ -84,7 +84,7 @@ signal zx,nx,zy,ny,f,no,zr,ng: std_logic;
 
 begin
 
-t0: ControlUnit port map (instruction, zr,ng, muxALUI_A,muxAM_ALU,zx,nx,zy,ny,f,no,loadA, loadD, writeM, loadPC);
+t0: ControlUnit port map (instruction, zr,ng, muxALUI_A,muxAM_ALU,zx,nx,zy,ny,f,no,loadA, loadD, loadM, loadPC);
 a1: Mux16 port map (saida_alu, instruction, muxALUI_A, saida_mux_a); --MUX 1
 a2: Register16 port map (clock, saida_mux_a, loadA, saida_a); -- REGISTRADOR A
 a3: Mux16 port map (saida_a, inM, muxAM_ALU, saida_mux_b); -- MUX 2
