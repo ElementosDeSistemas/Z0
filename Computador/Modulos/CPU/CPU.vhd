@@ -77,9 +77,9 @@ component ControlUnit is
 end component;
 
 --Signals
---signal muxALUI_A,muxAM_ALU,loadA, loadD, loadM, loadPC: std_logic;
---signal saida_mux_a,saida_mux_b,outM,saida_d, address, saida_alu,saida_a: STD_LOGIC_VECTOR(15 downto 0);
---signal zx,nx,zy,ny,f,no,zr,ng: std_logic;
+signal muxALUI_A,muxAM_ALU,loadA, loadD, loadM, loadPC: std_logic;
+signal saida_mux_a,saida_mux_b,outM,saida_d, address, saida_alu,saida_a: STD_LOGIC_VECTOR(15 downto 0);
+signal zx,nx,zy,ny,f,no,zr,ng: std_logic;
 
 
 begin
