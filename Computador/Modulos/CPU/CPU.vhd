@@ -19,7 +19,7 @@ architecture arch_CPU of CPU is
 
 --COMPONENTES
 
-component ALU is
+component ALU
   	port (
   			x,y:   in STD_LOGIC_VECTOR(15 downto 0); -- entradas de dados da ALU
   			zx:    in STD_LOGIC;                     -- zera a entrada x
@@ -35,7 +35,7 @@ component ALU is
 end component;
 
 
-component Mux16 is
+component Mux16
   	port (
   			a:   in  STD_LOGIC_VECTOR(15 downto 0);
   			b:   in  STD_LOGIC_VECTOR(15 downto 0);
@@ -44,7 +44,7 @@ component Mux16 is
 end component;
 
 
-component Register16 is
+component Register16
 	port(
 		clock:   in STD_LOGIC;
 		input:   in STD_LOGIC_VECTOR(15 downto 0);
@@ -54,7 +54,7 @@ component Register16 is
 end component;
 
 
-component PC is
+component PC
     port(
         clock     : in  STD_LOGIC;
 		increment : in  STD_LOGIC;
@@ -65,7 +65,7 @@ component PC is
     );
 end component;
 
-component ControlUnit is
+component ControlUnit
     port(
 		instruction                 : in STD_LOGIC_VECTOR(15 downto 0);  -- instrução para executar
 		zr,ng                       : in STD_LOGIC;                      -- valores zr(se zero) e ng(se negativo) da ALU
@@ -78,7 +78,7 @@ end component;
 
 --Signals
 signal muxALUI_A,muxAM_ALU,loadA, loadD, loadM, loadPC: std_logic;
-signal saida_mux_a,saida_mux_b,outM,saida_d, address, saida_alu,saida_a: STD_LOGIC_VECTOR(15 downto 0);
+signal saida_mux_a,saida_mux_b,saida_d, address, saida_alu,saida_a: STD_LOGIC_VECTOR(15 downto 0);
 signal zx,nx,zy,ny,f,no,zr,ng: std_logic;
 
 
