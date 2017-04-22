@@ -39,7 +39,7 @@
 
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE22F17C6
-set_global_assignment -name TOP_LEVEL_ENTITY ShiftRegisterPIPO16
+set_global_assignment -name TOP_LEVEL_ENTITY Computador
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 16.0.2
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "19:56:31  FEBRUARY 08, 2017"
 set_global_assignment -name LAST_QUARTUS_VERSION "16.1.0 Lite Edition"
@@ -51,37 +51,15 @@ set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
 set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
-<<<<<<< HEAD
-<<<<<<< HEAD
-set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
-set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-=======
->>>>>>> 13ae7ffde10b8320091d1a45fdbe8bc48bde37e0
-set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/ShiftRegisterSISO16.vhd
-set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/ShiftRegisterSIPO16.vhd
-set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/ShiftRegisterPISO16.vhd
-set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/ShiftRegisterPIPO16.vhd
-set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Register64.vhd
-set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Register32.vhd
-set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Register8.vhd
-set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Ram512.vhd
-set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Ram64.vhd
-set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Ram8.vhd
-set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Ram4K.vhd
-
 set_global_assignment -name NUM_PARALLEL_PROCESSORS ALL
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 
 
 #============================================================
 # CLOCK
 #============================================================
 set_location_assignment PIN_R8 -to CLK
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLK
 
 
 #============================================================
@@ -95,16 +73,6 @@ set_location_assignment PIN_D1 -to LED[4]
 set_location_assignment PIN_F3 -to LED[5]
 set_location_assignment PIN_B1 -to LED[6]
 set_location_assignment PIN_L3 -to LED[7]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[4]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[5]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[6]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[7]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[1]
 
 
 #============================================================
@@ -112,8 +80,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[1]
 #============================================================
 set_location_assignment PIN_J15 -to RST
 set_location_assignment PIN_E1 -to CYCLE
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RST
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CYCLE
 
 #============================================================
 # DIP SWITCH
@@ -122,10 +88,6 @@ set_location_assignment PIN_M1  -to DIP_SW[0]
 set_location_assignment PIN_T8  -to DIP_SW[1]
 set_location_assignment PIN_B9  -to DIP_SW[2]
 set_location_assignment PIN_M15 -to DIP_SW[3]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIP_SW[0]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIP_SW[1]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIP_SW[2]
-set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIP_SW[3]
 
 #============================================================
 # SDRAM
@@ -169,6 +131,61 @@ set_location_assignment PIN_P1 -to DRAM_ADDR[9]
 set_location_assignment PIN_N2 -to DRAM_ADDR[10]
 set_location_assignment PIN_N1 -to DRAM_ADDR[11]
 set_location_assignment PIN_L4 -to DRAM_ADDR[12]
+
+#============================================================
+# DISPLAY
+#============================================================
+set_location_assignment PIN_N16 -to LCD_CS_N
+set_location_assignment PIN_R14 -to LCD_D[15]
+set_location_assignment PIN_P16 -to LCD_D[14]
+set_location_assignment PIN_P15 -to LCD_D[13]
+set_location_assignment PIN_L15 -to LCD_D[12]
+set_location_assignment PIN_R16 -to LCD_D[11]
+set_location_assignment PIN_K16 -to LCD_D[10]
+set_location_assignment PIN_L16 -to LCD_D[9]
+set_location_assignment PIN_N11 -to LCD_D[8]
+set_location_assignment PIN_N9 -to LCD_D[7]
+set_location_assignment PIN_P9 -to LCD_D[6]
+set_location_assignment PIN_N12 -to LCD_D[5]
+set_location_assignment PIN_R10 -to LCD_D[4]
+set_location_assignment PIN_T13 -to LCD_D[3]
+set_location_assignment PIN_R13 -to LCD_D[2]
+set_location_assignment PIN_T12 -to LCD_D[1]
+set_location_assignment PIN_R12 -to LCD_D[0]
+set_location_assignment PIN_T10 -to LCD_RD_N
+set_location_assignment PIN_K15 -to LCD_RESET_N
+set_location_assignment PIN_P11 -to LCD_RS
+set_location_assignment PIN_R11 -to LCD_WR_N
+set_location_assignment PIN_J14 -to LCD_ON
+
+
+#============================================================
+#TECLADO
+#============================================================
+set_location_assignment PIN_B5 -to key_clk
+set_location_assignment PIN_A4 -to key_data
+
+
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RST
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CYCLE
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIP_SW[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIP_SW[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIP_SW[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DIP_SW[3]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[1]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQM[0]
@@ -208,32 +225,6 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[9]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[10]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[11]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[12]
-
-#============================================================
-# DISPLAY
-#============================================================
-set_location_assignment PIN_N16 -to LCD_CS_N
-set_location_assignment PIN_R14 -to LCD_D[15]
-set_location_assignment PIN_P16 -to LCD_D[14]
-set_location_assignment PIN_P15 -to LCD_D[13]
-set_location_assignment PIN_L15 -to LCD_D[12]
-set_location_assignment PIN_R16 -to LCD_D[11]
-set_location_assignment PIN_K16 -to LCD_D[10]
-set_location_assignment PIN_L16 -to LCD_D[9]
-set_location_assignment PIN_N11 -to LCD_D[8]
-set_location_assignment PIN_N9 -to LCD_D[7]
-set_location_assignment PIN_P9 -to LCD_D[6]
-set_location_assignment PIN_N12 -to LCD_D[5]
-set_location_assignment PIN_R10 -to LCD_D[4]
-set_location_assignment PIN_T13 -to LCD_D[3]
-set_location_assignment PIN_R13 -to LCD_D[2]
-set_location_assignment PIN_T12 -to LCD_D[1]
-set_location_assignment PIN_R12 -to LCD_D[0]
-set_location_assignment PIN_T10 -to LCD_RD_N
-set_location_assignment PIN_K15 -to LCD_RESET_N
-set_location_assignment PIN_P11 -to LCD_RS
-set_location_assignment PIN_R11 -to LCD_WR_N
-set_location_assignment PIN_J14 -to LCD_ON
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_CS_N
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_D[15]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_D[14]
@@ -257,29 +248,29 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_RD_N
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_RESET_N
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_RS
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LCD_WR_N
-
-
-#============================================================
-#TECLADO
-#============================================================
-set_location_assignment PIN_B5 -to key_clk
-set_location_assignment PIN_A4 -to key_data
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to key_clk
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to key_data
 
 
-set_global_assignment -name QIP_FILE Modulos/dispositivos/RAM_fpga/RAM16K.qip
-set_global_assignment -name QIP_FILE Modulos/dispositivos/ROM/ROM32K.qip
-set_global_assignment -name VHDL_FILE Modulos/dispositivos/Display/Screen.vhd
-set_global_assignment -name VHDL_FILE Modulos/dispositivos/Display/ILI9341.vhd
+set_global_assignment -name VHDL_FILE Modulos/CPU/CPU.vhd
+set_global_assignment -name VHDL_FILE Modulos/CPU/PC.vhd
+set_global_assignment -name VHDL_FILE Modulos/CPU/ControlUnit.vhd
 set_global_assignment -name VHDL_FILE Modulos/CPU/Computador.vhd
 set_global_assignment -name VHDL_FILE Modulos/CPU/MemoryIO.vhd
-set_global_assignment -name VHDL_FILE Modulos/CPU/ControlUnit.vhd
-set_global_assignment -name VHDL_FILE Modulos/CPU/PC.vhd
-set_global_assignment -name VHDL_FILE Modulos/CPU/CPU.vhd
+set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Register8.vhd
+set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Register16.vhd
+set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Register32.vhd
+set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Register64.vhd
+set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Ram8.vhd
+set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Ram64.vhd
+set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Ram512.vhd
+set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Ram4K.vhd
+set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/ShiftRegisterSISO16.vhd
+set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/ShiftRegisterSIPO16.vhd
+set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/ShiftRegisterPISO16.vhd
+set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/ShiftRegisterPIPO16.vhd
 set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/BinaryDigit.vhd
 set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/FlipFlopD.vhd
-set_global_assignment -name VHDL_FILE Modulos/CircuitosSequenciais/Register16.vhd
 set_global_assignment -name VHDL_FILE Modulos/UnidadeLogicaAritmetica/zerador16.vhd
 set_global_assignment -name VHDL_FILE Modulos/UnidadeLogicaAritmetica/inversor16.vhd
 set_global_assignment -name VHDL_FILE Modulos/UnidadeLogicaAritmetica/Inc16.vhd
@@ -288,11 +279,6 @@ set_global_assignment -name VHDL_FILE Modulos/UnidadeLogicaAritmetica/FullAdder.
 set_global_assignment -name VHDL_FILE Modulos/UnidadeLogicaAritmetica/comparador16.vhd
 set_global_assignment -name VHDL_FILE Modulos/UnidadeLogicaAritmetica/ALU.vhd
 set_global_assignment -name VHDL_FILE Modulos/UnidadeLogicaAritmetica/Add16.vhd
-<<<<<<< HEAD
->>>>>>> 9eab80007c9c3dca25322d7bbe17b354b81ef9a7
-=======
-
->>>>>>> 13ae7ffde10b8320091d1a45fdbe8bc48bde37e0
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/Or16.vhd
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/Or8Way.vhd
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/Not16.vhd
@@ -306,35 +292,18 @@ set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/Mux2Way.vhd
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/DMux8Way.vhd
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/DMux4Way.vhd
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/DMux2Way.vhd
+set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/DMux8Way16.vhd
+set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/nand_vhdl.vhd
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/BarrelShifter16.vhd
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/BarrelShifter8.vhd
 set_global_assignment -name VHDL_FILE Modulos/PortasLogicas/And16.vhd
-<<<<<<< HEAD
-<<<<<<< HEAD
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform1.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform2.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform3.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform6.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform7.vwf
-set_global_assignment -name VECTOR_WAVEFORM_FILE Waveform8.vwf
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
-=======
-=======
->>>>>>> 13ae7ffde10b8320091d1a45fdbe8bc48bde37e0
+set_global_assignment -name VHDL_FILE Modulos/dispositivos/Display/Screen.vhd
+set_global_assignment -name VHDL_FILE Modulos/dispositivos/Display/ILI9341.vhd
 set_global_assignment -name VHDL_FILE Modulos/dispositivos/Teclado/ps2_keyboard_to_ascii.vhd
 set_global_assignment -name VHDL_FILE Modulos/dispositivos/Teclado/ps2_keyboard.vhd
 set_global_assignment -name VHDL_FILE Modulos/dispositivos/Teclado/debounce.vhd
+set_global_assignment -name QIP_FILE Modulos/dispositivos/RAM_fpga/RAM16K.qip
+set_global_assignment -name QIP_FILE Modulos/dispositivos/ROM/ROM32K.qip
 set_global_assignment -name QIP_FILE Modulos/dispositivos/PLL/PLL.qip
-set_global_assignment -name CDF_FILE output_files/Chain18.cdf
-<<<<<<< HEAD
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
-set_global_assignment -name CDF_FILE Computador.cdf
->>>>>>> 9eab80007c9c3dca25322d7bbe17b354b81ef9a7
-=======
 set_global_assignment -name CDF_FILE Computador.cdf
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
->>>>>>> 13ae7ffde10b8320091d1a45fdbe8bc48bde37e0
