@@ -5,6 +5,8 @@
 
 package assembler;
 
+import java.util.List;
+
 /**
  * Mantém uma tabela com a correspondência entre os rótulos simbólicos e endereços numéricos de memória.
  */
@@ -13,6 +15,9 @@ public class SymbolTable {
     /**
      * Cria a tabela de símbolos.
      */
+    private List<String> tabela_simbolos;
+
+
     public SymbolTable() {
 
     }
@@ -32,7 +37,19 @@ public class SymbolTable {
      * @return Verdadeiro se símbolo está na tabela de símbolos, Falso se não está na tabela de símbolos.
      */
     public boolean contains(String symbol) {
+        boolean find = false;
+        for (int i = 0; i < tabela_simbolos.size();i++){
+            if (symbol == tabela_simbolos.get(i)){
+                find = true;
+            }
+        }
+        if (find == true){
+            return true;
+        }
+        else{
+            return false;
 
+        }
     }
 
     /**
@@ -41,7 +58,14 @@ public class SymbolTable {
      * @return valor numérico associado ao símbolo procurado.
      */
     public int getAddress(String symbol) {
+        int index = 0;
+        for (int i = 0; i < tabela_simbolos.size();i++){
+            if (symbol == tabela_simbolos.get(i)){
+                index = i;
 
+            }
+        }
+        return index;
     }
 
 }
