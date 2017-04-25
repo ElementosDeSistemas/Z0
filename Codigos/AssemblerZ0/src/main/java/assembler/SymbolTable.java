@@ -5,6 +5,8 @@
 
 package assembler;
 
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ public class SymbolTable {
     /**
      * Cria a tabela de símbolos.
      */
-    private List<String> tabela_simbolos;
+    private Hashtable<String, Integer> symbol_table = new Hashtable<String, Integer>();
 
 
     public SymbolTable() {
@@ -37,19 +39,7 @@ public class SymbolTable {
      * @return Verdadeiro se símbolo está na tabela de símbolos, Falso se não está na tabela de símbolos.
      */
     public boolean contains(String symbol) {
-        boolean find = false;
-        for (int i = 0; i < tabela_simbolos.size();i++){
-            if (symbol == tabela_simbolos.get(i)){
-                find = true;
-            }
-        }
-        if (find == true){
-            return true;
-        }
-        else{
-            return false;
-
-        }
+        return symbol_table.contains(symbol);
     }
 
     /**
@@ -59,13 +49,17 @@ public class SymbolTable {
      */
     public int getAddress(String symbol) {
         int index = 0;
-        for (int i = 0; i < tabela_simbolos.size();i++){
-            if (symbol == tabela_simbolos.get(i)){
+        List keys = new ArrayList(symbol_table.keySet());
+        for (int i = 0; i < keys.size(); i++) {
+            String actual_key = (String) keys.get(i);
+            if (symbol == actual_key){
                 index = i;
-
             }
         }
         return index;
-    }
+        }
+
+
+
 
 }
