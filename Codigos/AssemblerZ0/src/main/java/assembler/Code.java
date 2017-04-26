@@ -44,7 +44,7 @@ public class Code {
      */
     //feito por sabrina
     public static String toBinary(String symbol) {
-    	temp = Integer.valueOf(symbol);
+    	int temp = Integer.valueOf(symbol);
 
     	return Integer.toBinaryString(0x10000 | temp).substring(1);
     }
