@@ -5,6 +5,14 @@
 
 package assembler;
 
+import java.io.File;
+import java.net.URI;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
 /**
  * Encapsula o código de leitura. Carrega as instruções na linguagem assembly,
  * analisa, e oferece acesso as partes da instrução  (campos e símbolos).
@@ -19,12 +27,35 @@ public class Parser {
         L_COMMAND       // comandos de Label (símbolos)
     }
 
+    private List<String> lines;
+    private SymbolTable symbolTable;
+
     /** 
      * Abre o arquivo de entrada NASM e se prepara para analisá-lo.
      * @param file arquivo NASM que será feito o parser.
      */
     public Parser(String file) {
+        symbolTable = new SymbolTable();
+        try {
+            URI uri = this.getClass().getResource(file).toURI();
+            lines = Files.readAllLines(Paths.get(uri),
+                    Charset.defaultCharset());
 
+            int i = 0;
+            for (String line : lines) {
+
+                // nao é comentario ou nao é label
+                if (line.indexOf(';') != 0 || line.contains(":")){
+                    i += 1;
+                } else if (line.contains(":")){
+                    if (!symbolTable.contains(line)) {
+                        symbolTable.addEntry(line, i);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -34,7 +65,7 @@ public class Parser {
      * @return Verdadeiro se ainda há instruções, Falso se as instruções terminaram.
      */
     public boolean advance() {
-
+        return false;
     }
 
     /**
@@ -42,7 +73,7 @@ public class Parser {
      * @return a instrução atual para ser analilisada
      */
     public String command() {
-
+        return null;
     }
 
     /**
@@ -54,7 +85,7 @@ public class Parser {
      * @return o tipo da instrução.
      */
     public CommandType commandType(String command) {
-
+        return null;
     }
 
     /**
@@ -74,7 +105,7 @@ public class Parser {
      * @return o símbolo da instrução (sem os dois pontos).
      */
     public String label(String command) {
-
+        return "";
     }
 
     /**
@@ -84,6 +115,7 @@ public class Parser {
      * @return um vetor de string contento os tokens da instrução (as partes do comando).
      */
     public String[] instruction(String command) {
+        return null;
 
     }
 
