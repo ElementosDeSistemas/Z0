@@ -42,8 +42,11 @@ public class Code {
      * @param  symbol valor numérico decimal armazenado em uma String.
      * @return Valor em binário (String de 15 bits) representado com 0s e 1s.
      */
+    //feito por sabrina
     public static String toBinary(String symbol) {
+    	temp = Integer.valueOf(symbol)
 
+    	return Integer.toBinaryString(temp)
     }
 
 }
