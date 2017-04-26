@@ -46,7 +46,7 @@ public class Code {
     public static String toBinary(String symbol) {
     	temp = Integer.valueOf(symbol)
 
-    	return Integer.toBinaryString(temp)
+    	return Integer.toBinaryString(0x10000 | temp).substring(1);
     }
 
 }
