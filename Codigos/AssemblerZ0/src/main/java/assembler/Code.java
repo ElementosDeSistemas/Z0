@@ -25,7 +25,87 @@ public class Code {
      * @return Opcode (String de 7 bits) com código em linguagem de máquina para a instrução.
      */
     public static String comp(String[] mnemnonic) {
+    	String[] validInputs = new String[] {"movw","addw","incw","nop","subw","rsubw","decw","notw","negw","andw","orw"};
+    	int[] validInputSize = new int[]    {  3,      4,     2,     1,    4,     4,      2,    2,     2,     4,     4};
+    	
+    	int select = 0;
+    	int count = 0;
+    	String code = mnemnonic[0];
+    	
+    	String a = "0";
+    	
+    	for (String validate: validInputs){ //checks if the input is valid and prepare the selector for a switch case
+    		if(validate.equals(code) && validInputSize[count] == mnemnonic.length){
+    			count ++;
+    			select = count;
+    			break;
+    		}
+    		count++;
+    	}
+    	
+    	String[] betterName = mnemnonic; //why not call it anything that can be correctly read the first time one do.
+    	//yes! I know I could just change the argument name, but this is kind of a protest
+    	
+    	for (int i = 1; i < betterName.length; i ++){ // checks if a == 1 and mark with input the pointer is.
+    		if(betterName[i].indexOf("(") != -1){
+    			a = "1";
+    			break;
+    		}
+    	}
+    	
+    	switch (select){
+    	case 1: //mov
+    		if(betterName[1].indexOf("A") == -1){
+    			return "0001100";
+    		} else{
+    			return a + "110000";
+    		}
 
+    		
+    	case 2: //add
+    		
+    		return a + "000010";
+    		
+    		
+    	case 3: //inc
+    		
+    		return betterName[1].indexOf("A") == -1 ? "0011111": a + "110111";
+    		
+    	
+    	case 4: //nop
+    		return "0101010";
+    		
+    		
+    	case 5: //sub
+    		return a + "010011";
+    		
+    		
+    	case 6: //rsub
+    		return a + "000111";
+    		
+    	case 7: //dec
+    		return a + (betterName[1].indexOf("A") != -1 ? "110010":"001110");
+    		
+    		
+    	case 8: //not
+    		return a + (betterName[1].indexOf("A") != -1 ? "110001":"001101");
+    		
+    		
+    	case 9: //neg
+    		return a + (betterName[1].indexOf("A") != -1 ? "110011":"001111");
+    		
+    		
+    	case 10: //and
+    		return a + "000000";
+    		
+    		
+    	case 11: //or
+    		return a + "010101";
+    		
+    	
+    	default:
+    		return "0001100";
+    	}
     }
 
     /**
