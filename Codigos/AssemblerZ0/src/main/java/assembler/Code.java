@@ -180,7 +180,14 @@ public class Code {
     public static String toBinary(String symbol) {
     	int temp = Integer.valueOf(symbol);
 
-    	return Integer.toBinaryString(0x10000 | temp).substring(1);
+    	if (symbol.equals("0")) {
+    		return "0000000000000000";
+    	}
+    	else {
+    		return Integer.toBinaryString(0x10000 | temp).substring(1);
+    	}
+    		
+    	//estava dando erro apenas no 0 entao fiz um if
     }
 
 }
