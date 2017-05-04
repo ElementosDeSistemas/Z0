@@ -100,18 +100,18 @@ public class Parser {
      public CommandType commandType(String command) {
 
         // Se começa com l, de leaw
-        char first = command.charAt(0);
+        Character first = command.charAt(0);
          if(first == "l") {
              return CommandType.A_COMMAND;
          }
 
-         int length = command.length();
-         char last = command.chartAt(length - 1);
          // Se termina com :, é um label
+         int length = command.length();
+         Character last = command.chartAt(length - 1);
          if (last == ":") {
            return CommandType.L_COMMAND;
          }
-
+         // Caso seja outro comando
          return CommandType.C_COMMAND;
      }
 
