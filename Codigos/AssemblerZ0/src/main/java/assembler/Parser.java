@@ -30,7 +30,7 @@ public class Parser {
     private List<String> lines;
     private SymbolTable symbolTable;
 
-    /** 
+    /**
      * Abre o arquivo de entrada NASM e se prepara para analisá-lo.
      * @param file arquivo NASM que será feito o parser.
      */
@@ -84,71 +84,16 @@ public class Parser {
      * @param  command instrução a ser analisada.
      * @return o tipo da instrução.
      */
-    public CommandType commandType(String command) {
-        if(command.contains("lea")) {
-            return CommandType.A_COMMAND;
-        }
-        else if (command.contains("add")) {
-            return CommandType.C_COMMAND;
-        }
-        else if (command.contains("sub")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("rsub")) {
-            return CommandType.C_COMMAND;
-        }
-        else if (command.contains("inc")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("dec")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("not")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("neg")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("and")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("or")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("nop")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("sub")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("jmp")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("je")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("jne")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("jg")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("jge")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("jl")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("jle")) {
-            return CommandType.C_COMMAND;            
-        }
-        else if (command.contains("mov")) {
-            return CommandType.C_COMMAND;
-        }
-        else {
-            return CommandType.L_COMMAND;
-        }
-    }
+     public CommandType commandType(String command) {
+         if(command.contains("lea")) {
+             return CommandType.A_COMMAND;
+         } else if (command.contains(':')) {
+             return CommandType.L_COMMAND;
+         }
+         else {
+             return CommandType.C_COMMAND;
+         }
+     }
 
     /**
      * Retorna o símbolo ou valor numérico da instrução passada no argumento.
@@ -168,19 +113,19 @@ public class Parser {
      * @return o símbolo da instrução (sem os dois pontos).
      */
     public String label(String command) {
-    	
+
     	CommandType tipo_comando = commandType(command);
-    	
+
      	if (tipo_comando == CommandType.L_COMMAND) {
-     		
+
      		String simbol = command.substring(0, command.length() - 1);
-     		
+
      		return simbol;
      	}
      	else{
-     		
+
      		return null;
-     	}   
+     	}
     }
 
     /**
