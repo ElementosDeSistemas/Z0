@@ -29,6 +29,7 @@ public class Parser {
 
     private List<String> lines;
     private SymbolTable symbolTable;
+    private int currentInstruction;
 
     /**
      * Abre o arquivo de entrada NASM e se prepara para analisá-lo.
@@ -65,6 +66,10 @@ public class Parser {
      * @return Verdadeiro se ainda há instruções, Falso se as instruções terminaram.
      */
     public boolean advance() {
+
+      String currentCommand = command();
+
+
         return false;
     }
 
