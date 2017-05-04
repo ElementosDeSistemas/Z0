@@ -179,15 +179,13 @@ public class Code {
     //feito por sabrina
     public static String toBinary(String symbol) {
     	int temp = Integer.valueOf(symbol);
+    	int binaryString = Integer.toBinaryString(temp)
 
-    	if (symbol.equals("0")) {
-    		return "000000000000000";
-    	}
-    	else {
-    		return Integer.toBinaryString(0x10000 | temp).substring(1);
-    	}
+    	while(binaryString.length < 15) {
+    		binaryString = "0" + binaryString;
+		}
     		
-    	//estava dando erro apenas no 0 entao fiz um if
+    	//estava saindo com 16 bits entao mudei pra while mesmo...
     }
 
 }
