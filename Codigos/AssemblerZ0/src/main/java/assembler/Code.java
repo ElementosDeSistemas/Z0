@@ -184,6 +184,7 @@ public class Code {
     	while(binaryString.length() < 15) {
     		binaryString = "0" + binaryString;
 		}
+		
 		return binaryString;
     		
     	//estava saindo com 16 bits entao mudei pra while mesmo...
