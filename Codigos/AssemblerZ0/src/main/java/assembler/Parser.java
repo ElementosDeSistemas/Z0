@@ -73,7 +73,7 @@ public class Parser {
      * @return a instrução atual para ser analilisada
      */
     public String command() {
-        return null;
+        
     }
 
     /**
@@ -85,68 +85,68 @@ public class Parser {
      * @return o tipo da instrução.
      */
     public CommandType commandType(String command) {
-        if(command[0] == "l" && command[1] == "E" && command[2] == "a") {
-            return A_COMMAND;
+        if(command.contains("lea")) {
+            return CommandType.A_COMMAND;
         }
-        else if (command[0] == "a" && command[1] == "d" && command[2] == "d") {
-            return C_COMMAND;
+        else if (command.contains("add")) {
+            return CommandType.C_COMMAND;
         }
-        else if (command[0] == "s" && command[1] == "u" && command[2] == "b") {
-            return C_COMMAND;            
+        else if (command.contains("sub")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "r" && command[1] == "s" && command[2] == "u" && command[3] == "b") {
-            return C_COMMAND;
+        else if (command.contains("rsub")) {
+            return CommandType.C_COMMAND;
         }
-        else if (command[0] == "i" && command[1] == "n" && command[2] == "c") {
-            return C_COMMAND;            
+        else if (command.contains("inc")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "d" && command[1] == "e" && command[2] == "c") {
-            return C_COMMAND;            
+        else if (command.contains("dec")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "n" && command[1] == "o" && command[2] == "t") {
-            return C_COMMAND;            
+        else if (command.contains("not")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "n" && command[1] == "e" && command[2] == "g") {
-            return C_COMMAND;            
+        else if (command.contains("neg")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "a" && command[1] == "n" && command[2] == "d") {
-            return C_COMMAND;            
+        else if (command.contains("and")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "o" && command[1] == "r") {
-            return C_COMMAND;            
+        else if (command.contains("or")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "n" && command[1] == "o" && command[2] == "p") {
-            return C_COMMAND;            
+        else if (command.contains("nop")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "s" && command[1] == "u" && command[2] == "b") {
-            return C_COMMAND;            
+        else if (command.contains("sub")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "j" && command[1] == "m" && command[2] == "p") {
-            return C_COMMAND;            
+        else if (command.contains("jmp")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "j" && command[1] == "e") {
-            return C_COMMAND;            
+        else if (command.contains("je")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "j"0 && command[1] == "n" && command[2] == "e") {
-            return C_COMMAND;            
+        else if (command.contains("jne")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "j" && command[1] == "g") {
-            return C_COMMAND;            
+        else if (command.contains("jg")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "j" && command[1] == "g" && command[2] == "e") {
-            return C_COMMAND;            
+        else if (command.contains("jge")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "j" && command[1] == "l") {
-            return C_COMMAND;            
+        else if (command.contains("jl")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "j" && command[1] == "l" && command[2] == "e") {
-            return C_COMMAND;            
+        else if (command.contains("jle")) {
+            return CommandType.C_COMMAND;            
         }
-        else if (command[0] == "m" && command[1] == "o" && command[2] == "v") {
-            return C_COMMAND;
+        else if (command.contains("mov")) {
+            return CommandType.C_COMMAND;
         }
         else {
-            return L_COMMAND;
+            return CommandType.L_COMMAND;
         }
     }
 
