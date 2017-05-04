@@ -181,7 +181,7 @@ public class Code {
     	int temp = Integer.valueOf(symbol);
 
     	if (symbol.equals("0")) {
-    		return "0000000000000000";
+    		return "000000000000000";
     	}
     	else {
     		return Integer.toBinaryString(0x10000 | temp).substring(1);
