@@ -101,14 +101,14 @@ public class Parser {
 
         // Se começa com l, de leaw
         Character first = command.charAt(0);
-         if(first == "l") {
+         if(first == 'l') {
              return CommandType.A_COMMAND;
          }
 
          // Se termina com :, é um label
          int length = command.length();
-         Character last = command.chartAt(length - 1);
-         if (last == ":") {
+         Character last = command.charAt(length - 1);
+         if (last == ':') {
            return CommandType.L_COMMAND;
          }
          // Caso seja outro comando
