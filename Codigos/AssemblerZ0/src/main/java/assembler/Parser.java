@@ -86,7 +86,7 @@ public class Parser {
      * @return a instrução atual para ser analilisada
      */
     public String command() {
-        return null;
+        return lines.get(currentInstruction);
     }
 
     /**
