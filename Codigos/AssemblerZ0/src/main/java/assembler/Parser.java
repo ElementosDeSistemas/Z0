@@ -126,19 +126,12 @@ public class Parser {
      * @return o símbolo da instrução (sem os dois pontos).
      */
     public String label(String command) {
-
-    	CommandType tipo_comando = commandType(command);
-
-     	if (tipo_comando == CommandType.L_COMMAND) {
-
-     		String simbol = command.substring(0, command.length() - 1);
-
-     		return simbol;
-     	}
-     	else{
-
-     		return null;
-     	}
+      // Só queremos retornar o comando sem os ':'
+      // Checamos pela exisência dos `:`, só para assegurar que está tudo certo
+      if (command.indexOf(':') != 0 ){
+          return command.replace(":","");
+      } 
+    	return null;
     }
 
     /**
@@ -152,7 +145,7 @@ public class Parser {
     	mnemonicCodes[0]= command.split("\\s")[0];
     	String currentMnemonic = command.split("\\s")[1];
     	mnemonicCodes[1]  = currentMnemonic.split(",")[0];
-    	mnemonicCodes[2] = currentMnemonic.split(",")[1];   	
+    	mnemonicCodes[2] = currentMnemonic.split(",")[1];
     	return mnemonicCodes;
     }
 
