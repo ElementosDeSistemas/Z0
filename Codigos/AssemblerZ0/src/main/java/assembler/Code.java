@@ -16,6 +16,7 @@ public class Code {
      * @return Opcode (String de 3 bits) com código em linguagem de máquina para a instrução.
      */
     public static String dest(String[] mnemnonic) {
+
     	//destino dos mnem. codeTest tem tabela com possibilidades
     	//tem que retornar 3 numeros daquela tabelona dos slides (000 pra jump por exemplo)
     	//mnemnonic.length = new mnemnonic
@@ -61,6 +62,7 @@ public class Code {
      * @return Opcode (String de 7 bits) com código em linguagem de máquina para a instrução.
      */
     public static String comp(String[] mnemnonic) {
+
     	String[] validInputs = new String[] {"movw","addw","incw","nop","subw","rsubw","decw","notw","negw","andw","orw"};
     	int[] validInputSize = new int[]    {  3,      4,     2,     1,    4,     4,      2,    2,     2,     4,     4};
     	
@@ -150,6 +152,7 @@ public class Code {
      * @return Opcode (String de 3 bits) com código em linguagem de máquina para a instrução.
      */
     public static String jump(String[] mnemnonic) {
+
     	String code = mnemnonic[0];
     	switch (code){
     	case "jmp":
@@ -178,6 +181,7 @@ public class Code {
      */
     //feito por sabrina
     public static String toBinary(String symbol) {
+
     	int temp = Integer.valueOf(symbol);
     	String binaryString = Integer.toBinaryString(temp);
 
@@ -188,6 +192,7 @@ public class Code {
 		return binaryString;
     		
     	//estava saindo com 16 bits entao mudei pra while mesmo...
+
     }
 
 }
