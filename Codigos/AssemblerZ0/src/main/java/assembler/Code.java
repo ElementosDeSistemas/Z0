@@ -16,8 +16,44 @@ public class Code {
      * @return Opcode (String de 3 bits) com código em linguagem de máquina para a instrução.
      */
     public static String dest(String[] mnemnonic) {
-
+    	//destino dos mnem. codeTest tem tabela com possibilidades
+    	//tem que retornar 3 numeros daquela tabelona dos slides (000 pra jump por exemplo)
+    	//mnemnonic.length = new mnemnonic
+    	if (mnemnonic.length == 4) {
+    		if (mnemnonic[3].equals("%D")) {
+    			return "010";
+    		}
+    		else {
+    			return "100";
+    		}
+    		}
+    	else if (mnemnonic.length == 3) {
+    		if (mnemnonic[2].equals("%D")) {
+    			return "010";
+    		}
+    		else if (mnemnonic[2].equals("%A")) {
+    			return "100";
+    		}
+    		else {
+    			return "001";
+    			//quarta linha do codetest
+    		}
+    	}
+    	else if (mnemnonic.length == 2) {
+    		if (mnemnonic[1].equals("%D")) {
+    			return "010";
+    		}
+    		else {
+    			return "100";
+    		}
+    		}
+    	// todos os jumps sao 000!
+    	else {
+    		return "000";
+    	}
     }
+    //jean why do you write in english so much stawp dudee
+    //Comment vous vous sentiriez se j´écrivais comme ça, hein? Je blague rsrs
 
     /**
      * Retorna o código binário do mnemônico para realizar uma operação de cálculo.
