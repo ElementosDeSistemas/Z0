@@ -124,8 +124,13 @@ public class Parser {
      * @return somente o símbolo ou o valor número da instrução.
      */
     public String symbol(String command) {
-		return null;
-
+    	
+    	String[] s1 = command.split("\\s");
+    	String symbol = s1[1].replace("$", "");
+    	symbol = symbol.replace(",%A", "");
+    	System.out.println(symbol);
+    	return symbol;
+    	
     }
 
     /**
