@@ -54,6 +54,10 @@ public class Parser {
                     }
                 }
             }
+
+            // A primeira instruçao do arquivo
+            currentInstruction = 1;
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,8 +73,12 @@ public class Parser {
 
       String currentCommand = command();
 
+      if (currentCommand) {
+        currentInstruction += 1;
+        return true;
+      }
 
-        return false;
+      return false;
     }
 
     /**
