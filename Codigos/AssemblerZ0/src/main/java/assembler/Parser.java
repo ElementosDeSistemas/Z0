@@ -148,8 +148,12 @@ public class Parser {
      * @return um vetor de string contento os tokens da instrução (as partes do comando).
      */
     public String[] instruction(String command) {
-        return null;
-
+      String[] mnemonicCodes = new String[3];
+    	mnemonicCodes[0]= command.split("\\s")[0];
+    	String currentMnemonic = command.split("\\s")[1];
+    	mnemonicCodes[1]  = currentMnemonic.split(",")[0];
+    	mnemonicCodes[2] = currentMnemonic.split(",")[1];   	
+    	return mnemonicCodes;
     }
 
 }
