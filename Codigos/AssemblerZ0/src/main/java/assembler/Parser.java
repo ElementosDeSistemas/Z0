@@ -98,14 +98,12 @@ public class Parser {
      * @return o tipo da instrução.
      */
      public CommandType commandType(String command) {
-         if(command.contains("lea")) {
+         if(command.indexOf("lea") != 0) {
              return CommandType.A_COMMAND;
-         } else if (command.contains(':')) {
+         } else if (command.indexOf(':') != 0) {
              return CommandType.L_COMMAND;
          }
-         else {
-             return CommandType.C_COMMAND;
-         }
+         return CommandType.C_COMMAND;
      }
 
     /**
@@ -130,7 +128,7 @@ public class Parser {
       // Checamos pela exisência dos `:`, só para assegurar que está tudo certo
       if (command.indexOf(':') != 0 ){
           return command.replace(":","");
-      } 
+      }
     	return null;
     }
 
