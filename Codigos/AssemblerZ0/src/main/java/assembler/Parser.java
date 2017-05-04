@@ -69,6 +69,7 @@ public class Parser {
      * entrada o método retorna "Falso", senão retorna "Verdadeiro".
      * @return Verdadeiro se ainda há instruções, Falso se as instruções terminaram.
      */
+
     public boolean advance() {
 
       String currentCommand = command();
@@ -79,6 +80,7 @@ public class Parser {
       }
 
       return false;
+
     }
 
     /**
@@ -154,6 +156,7 @@ public class Parser {
     	mnemonicCodes[1]  = currentMnemonic.split(",")[0];
     	mnemonicCodes[2] = currentMnemonic.split(",")[1];
     	return mnemonicCodes;
+
     }
 
 }
