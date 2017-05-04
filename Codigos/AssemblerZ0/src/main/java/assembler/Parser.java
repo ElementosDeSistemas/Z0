@@ -157,6 +157,7 @@ public class Parser {
      * @return somente o símbolo ou o valor número da instrução.
      */
     public String symbol(String command) {
+		return null;
 
     }
 
@@ -167,7 +168,19 @@ public class Parser {
      * @return o símbolo da instrução (sem os dois pontos).
      */
     public String label(String command) {
-        return "";
+    	
+    	CommandType tipo_comando = commandType(command);
+    	
+     	if (tipo_comando == CommandType.L_COMMAND) {
+     		
+     		String simbol = command.substring(0, command.length() - 1);
+     		
+     		return simbol;
+     	}
+     	else{
+     		
+     		return null;
+     	}   
     }
 
     /**
