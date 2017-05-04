@@ -98,13 +98,15 @@ public class Parser {
      * @return o tipo da instrução.
      */
      public CommandType commandType(String command) {
-         if(command.contains("leaw")) {
+
+        // Se começa com l, de leaw
+         if(command.charAt(0) == "l") {
              return CommandType.A_COMMAND;
          }
 
          int length = command.length();
 
-         // Get the last character of command
+         // Se termina com :, é um label
          if (command.chartAt(length - 1) == ":") {
            return CommandType.L_COMMAND;
          }
