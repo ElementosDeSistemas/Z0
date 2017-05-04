@@ -73,7 +73,7 @@ public class Parser {
 
       String currentCommand = command();
 
-      if (currentCommand) {
+      if (currentCommand != null) {
         currentInstruction += 1;
         return true;
       }
