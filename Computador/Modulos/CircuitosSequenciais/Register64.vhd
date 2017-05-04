@@ -13,3 +13,20 @@ entity Register64 is
 		output: out STD_LOGIC_VECTOR(63 downto 0)
 	);
 end entity;
+architecture reg64 of Register64 is
+
+Component Register32 is
+	port(
+		clock:   in STD_LOGIC;
+		input:   in STD_LOGIC_VECTOR(31 downto 0);
+		load:    in STD_LOGIC;
+		output: out STD_LOGIC_VECTOR(31 downto 0)
+	);
+end component;
+
+begin
+
+p1: Register32 port map (clock,input(63 downto 32),load,output(63 downto 32));
+p2: Register32 port map (clock,input(31 downto 0),load,output(31 downto 0));
+
+end architecture;

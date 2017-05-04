@@ -1,7 +1,11 @@
+<<<<<<< HEAD
+# Luciano Soares
+=======
 # Testador de emulação
 # Arquivo: testComp.nasm
 # Criado por: Luciano Soares <lpsoares@insper.edu.br>
 # Data: 16/03/2017
+>>>>>>> upstream/master
 
 import sys, getopt
 import unittest
@@ -27,7 +31,7 @@ def test_Assembly(nomes_testes):
 			ram = {}
 			validacao = {}
 
-			# rotina de leitura do resultado da emulação
+			# rotina de leitura do resultado da emulacao
 			with open(resultado, 'r') as arquivo:
 				linhas = arquivo.read().splitlines()
 
@@ -41,7 +45,7 @@ def test_Assembly(nomes_testes):
 						print("|{0}|  =>  |{1:016b}|".format(e,v))
 					print("\n")
 
-			# rotina do teste da emulação
+			# rotina do teste da emulacao
 			with open(teste, 'r') as arquivo:
 				linhas = arquivo.read().splitlines()
 
@@ -66,25 +70,25 @@ def test_Assembly(nomes_testes):
 		debug = False
 
 		linha = []
-		# rotina do teste da emulação
+		# rotina do teste da emulacao
 		with open(teste, 'r') as arquivo:
 			linhas = arquivo.read().splitlines()
 			linha = linhas[0].split()
 
-		tipo = "não reconhecido"
+		tipo = "nao reconhecido"
 		poligonos = detectImage.maxpoly(imagem)
 		if poligonos == 1:
 			tipo = "ponto"
 		elif poligonos == 2:
 			tipo = "linha"
 		elif poligonos == 3:
-			tipo = "triângulo"
+			tipo = "triangulo"
 		elif poligonos == 4:
 			tipo = "quadrado"
 		elif poligonos == 5:
-			tipo = "pentágono"
+			tipo = "pentagono"
 		elif poligonos == 6:
-			tipo = "hexágono"
+			tipo = "hexagono"
 		elif poligonos > 6:
 			tipo = "poligono com mais de 6 faces"
 		
