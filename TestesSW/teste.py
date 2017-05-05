@@ -1,11 +1,9 @@
-<<<<<<< HEAD
-# Luciano Soares
-=======
+
 # Testador de emulação
 # Arquivo: testComp.nasm
 # Criado por: Luciano Soares <lpsoares@insper.edu.br>
 # Data: 16/03/2017
->>>>>>> upstream/master
+
 
 import sys, getopt
 import unittest
