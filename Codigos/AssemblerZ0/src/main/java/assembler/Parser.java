@@ -164,4 +164,9 @@ public class Parser {
 
     }
 
+    public SymbolTable getSymbolTable(){
+        return symbolTable;
+    }
+
+
 }

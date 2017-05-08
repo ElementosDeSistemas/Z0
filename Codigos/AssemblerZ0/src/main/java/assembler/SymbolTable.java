@@ -89,5 +89,4 @@ public class SymbolTable {
         }
         return index;
         }
-
 }
