@@ -4,6 +4,11 @@
  */
 package assembler;
 import java.io.BufferedReader;
+import java.io.FileReader;
+
+import org.w3c.dom.Text;
+
+import assembler.Parser.CommandType;
 /**
  * Classe principal que orquestra execução do Assembler.
  * Opções:
@@ -11,37 +16,41 @@ import java.io.BufferedReader;
  *   -f <arquivo mif>    parametro indica onde será salvo o arquivo gerado .mif
  */
 class AssemblerZ0 {
-	public Paser parser;
-	public Code  code;
-	public symbol_table;
+	public static Parser parser;
+	public static Code  code;
+	public static SymbolTable symbol_table;
 	public int linha;
 	
     public static void main(String[] args) {
-    	parser = new Paser();
-    	linha = 0 ;
+    	parser = new Parser("teste.txt");
+    	int linha = 0 ;
     	code = new Code();
-    	FileReader arq = new FileReader(<arquivo nasm>);
     	
-    	symbol_table = parser.getSymbolTable(arq);
+    	
+    	symbol_table = parser.getSymbolTable();
     	
     	while(parser.advance()){
-    		if (parser.CommandType() == Parser.CommandType.L_Command){
-    			symbol.addEntry(parser.Simbol(),linha);
+    		CommandType L_COMMAND;
+			CommandType C_COMMAND;
+			CommandType A_COMMAND;
+			
+			if (parser.commandType("teste.txt") == L_COMMAND){
+    			symbol_table.addEntry(parser.symbol(""),linha);
     		}
 
-    		else if (parser.CommandType() == Parser.CommandType.C_Command){
+    		else if (parser.commandType("teste.txt") == C_COMMAND){
     			linha++;
-    			arq.write("111" + code.Comp(parser.Instruction(parser.Command)) + code.Dest(parser.Instruction(parser.Command)));
+    			bw.write("111" + code.comp(parser.instruction(parser.command())) + code.dest(parser.instruction(parser.command())));
 
     	}
-    		else if (parser.CommandType() == Parser.CommandType.A_Command){
-    			linha++
-    			if (paser.isNum()){
-    				code.tobinary();
+    		else if (parser.commandType("teste.txt") == A_COMMAND){
+    			linha++;
+    			if (parser.isNum()){
+    				code.toBinary();
     			}
     			else{
     				//converter usando tabela	
-    				code.tobinary();
+    				code.toBinary();
 
     			}
     			
