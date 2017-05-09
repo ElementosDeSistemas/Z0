@@ -11,7 +11,7 @@ import pytest
 import loadTestes
 import detectImage
 
-nomes_testes = loadTestes.testes("TestesSW/testes.txt")
+nomes_testes = loadTestes.testes("TestesSW/testesAssembly.txt")
 
 @pytest.mark.parametrize(('nomes_testes'),nomes_testes)
 def test_Assembly(nomes_testes):
