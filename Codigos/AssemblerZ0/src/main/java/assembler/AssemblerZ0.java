@@ -20,7 +20,8 @@ class AssemblerZ0 {
     	parser = new Paser();
     	linha = 0 ;
     	code = new Code();
-    	FileReader arq = new FileReader(nome);
+    	FileReader arq = new FileReader(<arquivo nasm>);
+    	
     	symbol_table = parser.getSymbolTable(arq);
     	
     	while(parser.advance()){
