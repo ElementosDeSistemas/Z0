@@ -1,10 +1,15 @@
 /**
+ /**
  * Curso: Elementos de Sistemas
  * Arquivo: AssemblerZ0.java
  */
 package assembler;
 
 import assembler.Parser.CommandType;
+
+import java.io.PrintWriter;
+import java.util.LinkedList;
+
 /**
  * Classe principal que orquestra execução do Assembler.
  * Opções:
@@ -17,34 +22,68 @@ class AssemblerZ0 {
 	public static Code  code;
 	public static SymbolTable symbol_table;
 	public int linha;
-	
-    public static void main(String[] args) {
-    	parser = new Parser("src/test/resources/testComp.nasm");
+	public static LinkedList<String> binario;
+    
+	public static void main(String[] args) {
+    	parser = new Parser(args[0] + ".nasm");
     	int linha = 0 ;
     	code = new Code();
     	
     	symbol_table = parser.getSymbolTable();
     	
+    	PrintWriter writer = null;
+    	
+    	String command;
+    	
+    	try{
+    	     writer = new PrintWriter(args[0] + ".mif", "UTF-8");
+    	} catch (Exception e) {
+    	   System.err.println("Algo de errado com o arquivo");
+    	}
+    
+    	writer.println("CONTENT BEGIN");
+    	
+    	
+    	
     	while(parser.advance()){
-    		//CommandType L_COMMAND;
-			//CommandType C_COMMAND;
-			//CommandType A_COMMAND;
-			//if (parser.commandType("teste.txt") == CommandType.L_COMMAND){
-    		//	symbol_table.addEntry(parser.symbol(""),linha);
-    		//}
+    		
+    		binario = new LinkedList<String>();
 
     		if (parser.commandType(parser.command()) == CommandType.C_COMMAND){
     			linha++;
-    			// arq.bw
-    			System.out.println("111" + Code.comp(parser.instruction(parser.command())) + Code.dest(parser.instruction(parser.command())));
-    	    }
+    			command = ("111" + Code.comp(parser.instruction(parser.command())) + Code.dest(parser.instruction(parser.command())));
+    			if (writer != null){
+    			writer.println(command);
+    			binario.add(command);
+    		}}
     		else if (parser.commandType(parser.command()) == CommandType.A_COMMAND){
     			linha++;
-    			System.out.println("Print");
-    			System.out.println(parser.instruction(parser.command()));
-    			//Code.toBinary(parser.symbol(""));
-    			   			
-			}	
+    			System.out.println(parser.command());
+    			
+    			try{
+    				Integer.parseInt(parser.symbol(parser.command()));
+    				command= parser.symbol(parser.command());
+    			}
+    			catch(Exception e){
+    				command= Integer.toString(symbol_table.getAddress(parser.symbol(parser.command())));
+    			}
+    			if (writer != null){
+    				writer.println("0" + Code.toBinary(command));
+    				binario.add(("0" + Code.toBinary(command)));
+    			}
+    		}
     	}
-	}
+    	writer.println("");
+    	writer.println("WIDTH=16;");
+    	writer.println("DEPTH=" + linha +";");
+    	writer.println("");
+    	writer.println("ADDRESS_RADIX=UNS;");
+    	writer.println("DATA_RADIX=BIN;");
+		writer.println("END;");
+    	if (writer!=null){
+    		writer.close();
+    }
+  }
+   
 }
+	
