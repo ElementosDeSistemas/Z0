@@ -39,11 +39,6 @@ public class Parser {
     public Parser(String file) {
         symbolTable = new SymbolTable();
         try {
-        	System.out.println("Working Directory = " +
-                    System.getProperty("user.dir"));
-        	
-        	//int i = 0;
- 	
         	try (BufferedReader br_1p = new BufferedReader(new FileReader(file))) {
         	    String line;
         	    int i = 0;
@@ -55,7 +50,7 @@ public class Parser {
                             symbolTable.addEntry(line,i);
                         }      
                     }
-        	       System.out.println(line);// process the line.
+        	     
         	    }	
         	}
         	
@@ -155,7 +150,6 @@ public class Parser {
     	String[] s1 = command.split("\\s");
     	String symbol = s1[1].replace("$", "");
     	symbol = symbol.replace(",%A", "");
-    	System.out.println(symbol);
     	return symbol;	
     }
     /**
@@ -179,12 +173,7 @@ public class Parser {
      * @return um vetor de string contento os tokens da instrução (as partes do comando).
      */
     public String[] instruction(String command) {
-      //String[] mnemonicCodes = new String[3];
       String[] mnemonicCodes = command.split(" ");
-    	//mnemonicCodes[0]= command.split("\\s")[0];
-    	//String currentMnemonic = command.split("\\s")[1];
-    	//mnemonicCodes[1]  = currentMnemonic.split(",")[0];
-    	//mnemonicCodes[2] = currentMnemonic.split(",")[1];
    
       
    	if (mnemonicCodes.length <= 1){
@@ -200,10 +189,7 @@ public class Parser {
  		String[] instruction = new String[answer.size()];
  		instruction = answer.toArray(instruction);
  		return instruction;
-
  	}
-      
-
     }
 
     public SymbolTable getSymbolTable(){
