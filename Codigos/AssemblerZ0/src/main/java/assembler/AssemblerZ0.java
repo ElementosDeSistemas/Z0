@@ -33,7 +33,6 @@ class AssemblerZ0 {
     		//	symbol_table.addEntry(parser.symbol(""),linha);
     		//}
 
-    		
     		if (parser.commandType(parser.command()) == CommandType.C_COMMAND){
     			linha++;
     			System.out.println("111" + Code.comp(parser.instruction(parser.command())) + Code.dest(parser.instruction(parser.command())));

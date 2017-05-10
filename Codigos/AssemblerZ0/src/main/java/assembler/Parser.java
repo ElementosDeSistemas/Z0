@@ -106,7 +106,7 @@ public class Parser {
 			e.printStackTrace();
 		}
     
-      if (currentCommand != null) {
+      if (currentCommand != null && !currentCommand.equals("")) {
         return true;
       }
 
