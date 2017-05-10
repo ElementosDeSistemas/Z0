@@ -8,6 +8,7 @@ package assembler;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Mantém uma tabela com a correspondência entre os rótulos simbólicos e endereços numéricos de memória.
@@ -68,7 +69,14 @@ public class SymbolTable {
      */
 
     public boolean contains(String symbol) {
-        return symbol_table.contains(symbol);
+    	boolean contains = false;
+    	Set<String> keys = symbol_table.keySet();
+    	for(String key: keys){
+    		if (key.equals(symbol)) {
+    			contains = true;
+    		}
+    	}
+    	return contains;
 
     }
 
@@ -79,14 +87,8 @@ public class SymbolTable {
      */
 
     public int getAddress(String symbol) {
-        int index = 0;
-        List keys = new ArrayList(symbol_table.keySet());
-        for (int i = 0; i < keys.size(); i++) {
-            String actual_key = (String) keys.get(i);
-            if (symbol == actual_key){
-                index = i;
-            }
-        }
-        return index;
-        }
+    	int get = symbol_table.get(symbol) ;
+    	return get;
+    }
+    
 }
