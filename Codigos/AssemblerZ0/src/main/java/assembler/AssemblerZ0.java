@@ -35,10 +35,12 @@ class AssemblerZ0 {
 
     		if (parser.commandType(parser.command()) == CommandType.C_COMMAND){
     			linha++;
+    			// arq.bw
     			System.out.println("111" + Code.comp(parser.instruction(parser.command())) + Code.dest(parser.instruction(parser.command())));
     	    }
     		else if (parser.commandType(parser.command()) == CommandType.A_COMMAND){
     			linha++;
+    			System.out.println("Print");
     			System.out.println(parser.instruction(parser.command()));
     			//Code.toBinary(parser.symbol(""));
     			   			

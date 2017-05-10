@@ -14,6 +14,7 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -99,19 +100,19 @@ public class Parser {
      */
 
     public boolean advance() {
+    	currentCommand = "";
+    	while(currentCommand!=null){
+    			
     	try {
 			currentCommand = br.readLine();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    
-      if (currentCommand != null && !currentCommand.equals("")) {
+    	if (currentCommand != null && !currentCommand.trim().isEmpty() && currentCommand.charAt(0) != ';'){
         return true;
-      }
-
+      }}
       return false;
-
     }
 
     /**
@@ -189,8 +190,25 @@ public class Parser {
     	//String currentMnemonic = command.split("\\s")[1];
     	//mnemonicCodes[1]  = currentMnemonic.split(",")[0];
     	//mnemonicCodes[2] = currentMnemonic.split(",")[1];
-    	System.out.println("MM"+mnemonicCodes[0]);
-      return mnemonicCodes;
+   
+      
+   	if (mnemonicCodes.length <= 1){
+ 		return mnemonicCodes;
+ 	}
+ 	else {
+ 		String[] secondParts = mnemonicCodes[1].split(",");
+ 		List<String> answer = new ArrayList<String>();
+ 		answer.add(mnemonicCodes[0]);
+ 		for(int i = 0; i < secondParts.length; i++){
+ 			answer.add(secondParts[i]);
+ 		}
+ 		String[] instruction = new String[answer.size()];
+ 		instruction = answer.toArray(instruction);
+ 		return instruction;
+
+ 	}
+      
+
     }
 
     public SymbolTable getSymbolTable(){
