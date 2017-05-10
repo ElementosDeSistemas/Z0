@@ -134,9 +134,10 @@ public class Parser {
      * @return somente o símbolo ou o valor número da instrução.
      */
     public String arg1(String command) {
-
-        return null;
-
+		if (commandType(command) == CommandType.C_ARITHMETIC) {
+			return command;
+		}
+		return command.split(" ")[1];
     }
 
     /**
@@ -146,9 +147,7 @@ public class Parser {
      * @return o símbolo da instrução (sem os dois pontos).
      */
     public Integer arg2(String command) {
-
-        return null;
-
+		return Integer.parseInt(command.split(" ")[2]);
     }
 
 }
