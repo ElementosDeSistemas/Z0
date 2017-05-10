@@ -3,10 +3,6 @@
  * Arquivo: AssemblerZ0.java
  */
 package assembler;
-import java.io.BufferedReader;
-import java.io.FileReader;
-
-import org.w3c.dom.Text;
 
 import assembler.Parser.CommandType;
 /**
@@ -16,44 +12,37 @@ import assembler.Parser.CommandType;
  *   -f <arquivo mif>    parametro indica onde será salvo o arquivo gerado .mif
  */
 class AssemblerZ0 {
+	
 	public static Parser parser;
 	public static Code  code;
 	public static SymbolTable symbol_table;
 	public int linha;
 	
     public static void main(String[] args) {
-    	parser = new Parser("teste.txt");
+    	parser = new Parser("src/test/resources/testComp.nasm");
     	int linha = 0 ;
     	code = new Code();
-    	
     	
     	symbol_table = parser.getSymbolTable();
     	
     	while(parser.advance()){
-    		CommandType L_COMMAND;
-			CommandType C_COMMAND;
-			CommandType A_COMMAND;
-			
-			if (parser.commandType("teste.txt") == L_COMMAND){
-    			symbol_table.addEntry(parser.symbol(""),linha);
-    		}
+    		//CommandType L_COMMAND;
+			//CommandType C_COMMAND;
+			//CommandType A_COMMAND;
+			//if (parser.commandType("teste.txt") == CommandType.L_COMMAND){
+    		//	symbol_table.addEntry(parser.symbol(""),linha);
+    		//}
 
-    		else if (parser.commandType("teste.txt") == C_COMMAND){
+    		
+    		if (parser.commandType(parser.command()) == CommandType.C_COMMAND){
     			linha++;
-    			bw.write("111" + code.comp(parser.instruction(parser.command())) + code.dest(parser.instruction(parser.command())));
-
-    	}
-    		else if (parser.commandType("teste.txt") == A_COMMAND){
+    			System.out.println("111" + Code.comp(parser.instruction(parser.command())) + Code.dest(parser.instruction(parser.command())));
+    	    }
+    		else if (parser.commandType(parser.command()) == CommandType.A_COMMAND){
     			linha++;
-    			if (parser.isNum()){
-    				code.toBinary();
-    			}
-    			else{
-    				//converter usando tabela	
-    				code.toBinary();
-
-    			}
-    			
+    			System.out.println(parser.instruction(parser.command()));
+    			//Code.toBinary(parser.symbol(""));
+    			   			
 			}	
     	}
 	}

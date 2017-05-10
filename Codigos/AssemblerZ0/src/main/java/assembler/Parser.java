@@ -5,7 +5,10 @@
 
 package assembler;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URI;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -27,10 +30,12 @@ public class Parser {
         L_COMMAND       // comandos de Label (símbolos)
     }
 
-    private List<String> lines;
+    
     private SymbolTable symbolTable;
-    private int currentInstruction;
-
+    String currentCommand;
+    
+    BufferedReader br;
+    
     /**
      * Abre o arquivo de entrada NASM e se prepara para analisá-lo.
      * @param file arquivo NASM que será feito o parser.
@@ -38,25 +43,48 @@ public class Parser {
     public Parser(String file) {
         symbolTable = new SymbolTable();
         try {
-            URI uri = this.getClass().getResource(file).toURI();
-            lines = Files.readAllLines(Paths.get(uri),
-                    Charset.defaultCharset());
+        	System.out.println("Working Directory = " +
+                    System.getProperty("user.dir"));
+        	
+        	//int i = 0;
+ 	
+        	try (BufferedReader br_1p = new BufferedReader(new FileReader(file))) {
+        	    String line;
+        	    int i = 0;
+        	    while ((line = br_1p.readLine()) != null) {
+        	    	if (line.indexOf(';') != 0 || line.contains(":")){
+                        i += 1;
+                    } else if (line.contains(":")){
+                        if (!symbolTable.contains(line)) {
+                            symbolTable.addEntry(line,i);
+                        }      
+                    }
+        	       System.out.println(line);// process the line.
+        	    }	
+        	}
+        	
+        	br = new BufferedReader(new FileReader(file));
+        		
+        	
+            //URI uri = this.getClass().getResource("src/test/resources/testComp.nasm").toURI();
+            //lines = Files.readAllLines(Paths.get(uri),
+             //       Charset.defaultCharset());
 
-            int i = 0;
-            for (String line : lines) {
+            //int i = 0;
+            //for (String line : lines) {
 
                 // nao é comentario ou nao é label
-                if (line.indexOf(';') != 0 || line.contains(":")){
-                    i += 1;
-                } else if (line.contains(":")){
-                    if (!symbolTable.contains(line)) {
-                        symbolTable.addEntry(line, i);
-                    }
-                }
-            }
+              //  if (line.indexOf(';') != 0 || line.contains(":")){
+                 //   i += 1;
+               // } else if (line.contains(":")){
+                   // if (!symbolTable.contains(line)) {
+                     //   symbolTable.addEntry(line, i);
+                    //}
+                //}
+            //}
 
             // A primeira instruçao do arquivo
-            currentInstruction = 1;
+            
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,11 +99,14 @@ public class Parser {
      */
 
     public boolean advance() {
-
-      String currentCommand = command();
-
+    	try {
+			currentCommand = br.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    
       if (currentCommand != null) {
-        currentInstruction += 1;
         return true;
       }
 
@@ -88,7 +119,7 @@ public class Parser {
      * @return a instrução atual para ser analilisada
      */
     public String command() {
-        return lines.get(currentInstruction);
+        return currentCommand;
     }
 
     /**
@@ -129,10 +160,8 @@ public class Parser {
     	String symbol = s1[1].replace("$", "");
     	symbol = symbol.replace(",%A", "");
     	System.out.println(symbol);
-    	return symbol;
-    	
+    	return symbol;	
     }
-
     /**
      * Retorna o símbolo da instrução passada no argumento.
      * Deve ser chamado somente quando commandType() é L_COMMAND.
@@ -147,7 +176,6 @@ public class Parser {
       }
     	return null;
     }
-
     /**
      * Separa os mnemônicos da instrução fornecida em tokens em um vetor de Strings.
      * Deve ser chamado somente quando CommandType () é C_COMMAND.
@@ -155,18 +183,17 @@ public class Parser {
      * @return um vetor de string contento os tokens da instrução (as partes do comando).
      */
     public String[] instruction(String command) {
-      String[] mnemonicCodes = new String[3];
-    	mnemonicCodes[0]= command.split("\\s")[0];
-    	String currentMnemonic = command.split("\\s")[1];
-    	mnemonicCodes[1]  = currentMnemonic.split(",")[0];
-    	mnemonicCodes[2] = currentMnemonic.split(",")[1];
-    	return mnemonicCodes;
-
+      //String[] mnemonicCodes = new String[3];
+      String[] mnemonicCodes = command.split(" ");
+    	//mnemonicCodes[0]= command.split("\\s")[0];
+    	//String currentMnemonic = command.split("\\s")[1];
+    	//mnemonicCodes[1]  = currentMnemonic.split(",")[0];
+    	//mnemonicCodes[2] = currentMnemonic.split(",")[1];
+    	System.out.println("MM"+mnemonicCodes[0]);
+      return mnemonicCodes;
     }
 
     public SymbolTable getSymbolTable(){
         return symbolTable;
     }
-
-
 }
