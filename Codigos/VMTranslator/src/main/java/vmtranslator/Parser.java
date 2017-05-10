@@ -32,35 +32,21 @@ public class Parser {
      * @param file arquivo VM que será feito o parser.
      */
     public Parser(String file) {
-		symbolTable = new SymbolTable();
-        try {
-        	System.out.println("Working Directory = " +
-                    System.getProperty("user.dir"));
-        	
-        	//int i = 0;
- 	
-        	try (BufferedReader br_1p = new BufferedReader(new FileReader(file))) {
-        	    String line;
-        	    int i = 0;
-        	    while ((line = br_1p.readLine()) != null) {
-        	    	if (line.indexOf(';') != 0 || line.contains(":")){
-                        i += 1;
-                    } else if (line.contains(":")){
-                        if (!symbolTable.contains(line)) {
-                            symbolTable.addEntry(line,i);
-                        }      
-                    }
-        	       System.out.println(line);// process the line.
-        	    }	
-        	}
-        	
-        	br = new BufferedReader(new FileReader(file));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+		
+       //String line = null;
+    	try {
+    		FileReader fileReader = new FileReader(file);
+     		
+     		br =new BufferedReader(fileReader);
+     	
+     		//bufferedReader.close();
+     	}
+     	catch(FileNotFoundException ex){
+     		System.out.println("Unable to open file '" + file + "'"); 
+     	}
+         catch(IOException ex) {
+         	System.out.println("Error reading file '" + file + "'");  
+         }
     }
 
     /**
@@ -70,20 +56,19 @@ public class Parser {
      * @return Verdadeiro se ainda há instruções, Falso se as instruções terminaram.
      */
     public Boolean advance() {
-        
-		try {
+        currentCommand = "";
+    	while(currentCommand!=null){
+    			
+    	try {
 			currentCommand = br.readLine();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    
-		if (currentCommand != null) {
-			return true;
-	    }
+    	if (currentCommand != null && !currentCommand.trim().isEmpty() && currentCommand.charAt(0) != ';'){
+        return true;
+      }}
 
       return false;
-
     }
 
     /**
@@ -102,7 +87,7 @@ public class Parser {
      * @return o tipo da instrução.
      */
     public CommandType commandType(String command) {
-		String word = command.split(" ")[0]
+		String word = command.split(" ")[0];
 
 		if (word.equals("push")) {
 			return CommandType.C_PUSH;
@@ -137,7 +122,13 @@ public class Parser {
 		if (commandType(command) == CommandType.C_ARITHMETIC) {
 			return command;
 		}
-		return command.split(" ")[1];
+
+		try {
+			return command.split(" ")[1];
+		} catch(NullPointerException e) {
+			return e;
+		}
+		
     }
 
     /**
@@ -147,7 +138,13 @@ public class Parser {
      * @return o símbolo da instrução (sem os dois pontos).
      */
     public Integer arg2(String command) {
-		return Integer.parseInt(command.split(" ")[2]);
+		
+
+		try {
+			return Integer.parseInt(command.split(" ")[2]);
+		} catch(NullPointerException e) {
+			return e;
+		}
     }
 
 }
