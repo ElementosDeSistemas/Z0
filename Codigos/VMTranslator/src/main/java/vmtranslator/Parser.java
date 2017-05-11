@@ -5,6 +5,11 @@
 
 package vmtranslator;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  * Encapsula o código de leitura. Carrega as instruções na linguagem de máquina virtual a pilha,
  * analisa, e oferece acesso aos comandos.
@@ -126,7 +131,7 @@ public class Parser {
 		try {
 			return command.split(" ")[1];
 		} catch(NullPointerException e) {
-			return e;
+			return null;
 		}
 		
     }
@@ -143,7 +148,7 @@ public class Parser {
 		try {
 			return Integer.parseInt(command.split(" ")[2]);
 		} catch(NullPointerException e) {
-			return e;
+			return null;
 		}
     }
 
