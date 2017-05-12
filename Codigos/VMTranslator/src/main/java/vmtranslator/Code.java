@@ -15,12 +15,14 @@ import java.io.IOException;
  */
 public class Code {	
 	private BufferedWriter writer;
+	private int counter;
     /** 
      * Abre o arquivo de entrada VM e se prepara para analis�-lo.
      * @param filename nome do arquivo VM que ser� feito o parser.
      * @throws IOException 
      */
     public Code(String filename) throws IOException {
+    	counter = 0; //feito por sabrina
     	try{
             writer = new BufferedWriter(new FileWriter(filename));
         }catch (FileNotFoundException e){
@@ -34,7 +36,8 @@ public class Code {
      * @throws IOException 
      */
     public void writeArithmetic(String command) throws IOException {
-	   try{ 	
+	  //Feito por Sabrina
+    	try{ 	
     		if(command.equals("add")){
 	    		writer.write("leaw $SP, %A");
 	    		writer.write("movw (%A), %A");
@@ -81,18 +84,20 @@ public class Code {
 	    		writer.write("movw (%A), %D");
 	    		writer.write("decw %A");
 	    		writer.write("subw (%A), %D, %D");
-	    		writer.write("leaw $LOOP_GT,%A");
+	    		writer.write("leaw $LOOP_EQ_"+counter+",%A");
+	    		//writer.write("leaw $LOOP_"+Integer.toString(counter)+",%A"); acho q n precisa disso
 	    		writer.write("je");
 	    		writer.write("leaw $SP, %A");
 	    		writer.write("movw (%A), %A");
 	    		writer.write("movw $0, (%A)");
-	    		writer.write("leaw $LOOP_FIM,%A");
+	    		writer.write("leaw $LOOP_FIM_EQ"+counter+",%A");
 	    		writer.write("JMP");
-	    		writer.write("LOOP_GT:");
+	    		writer.write("LOOP_EQ_"+counter+":");
 	    		writer.write("leaw $SP, %A");
 	    		writer.write("movw (%A), %A");
 	    		writer.write("movw $-1, (%A)");
-	    		writer.write("$LOOP_FIM:");
+	    		writer.write("$LOOP_FIM_EQ"+counter+":");
+	    		counter += 1;
 	    	}
 	    	else if(command.equals("gt")){
 	    		writer.write("leaw $SP, %A");
@@ -105,18 +110,19 @@ public class Code {
 	    		writer.write("movw (%A), %D");
 	    		writer.write("decw %A");
 	    		writer.write("subw (%A), %D, %D");
-	    		writer.write("leaw $LOOP_GT,%A");
+	    		writer.write("leaw $LOOP_GT_"+counter+",%A");
 	    		writer.write("jg");
 	    		writer.write("leaw $SP, %A");
 	    		writer.write("movw (%A), %A");
 	    		writer.write("movw $0, (%A)");
-	    		writer.write("leaw $LOOP_FIM,%A");
+	    		writer.write("leaw $LOOP_FIM_GT"+counter+",%A");
 	    		writer.write("JMP");
-	    		writer.write("LOOP_GT:");
+	    		writer.write("LOOP_GT_"+counter+":");
 	    		writer.write("leaw $SP, %A");
 	    		writer.write("movw (%A), %A");
 	    		writer.write("movw $-1, (%A)");
-	    		writer.write("$LOOP_FIM:");
+	    		writer.write("$LOOP_FIM_GT"+counter+":");
+	    		counter += 1;
 	    	}
 	    	else if(command.equals("lt")){
 	    		writer.write("leaw $SP, %A");
@@ -129,18 +135,19 @@ public class Code {
 	    		writer.write("movw (%A), %D");
 	    		writer.write("decw %A");
 	    		writer.write("subw (%A), %D, %D");
-	    		writer.write("leaw $LOOP_GT,%A");
+	    		writer.write("leaw $LOOP_LT_"+counter+",%A");
 	    		writer.write("jl");
 	    		writer.write("leaw $SP, %A");
 	    		writer.write("movw (%A), %A");
 	    		writer.write("movw $0, (%A)");
-	    		writer.write("leaw $LOOP_FIM,%A");
+	    		writer.write("leaw $LOOP_FIM_LT"+counter+",%A");
 	    		writer.write("JMP");
-	    		writer.write("LOOP_GT:");
+	    		writer.write("LOOP_LT_"+counter+":");
 	    		writer.write("leaw $SP, %A");
 	    		writer.write("movw (%A), %A");
 	    		writer.write("movw $-1, (%A)");
-	    		writer.write("$LOOP_FIM:");
+	    		writer.write("$LOOP_FIM_LT"+counter+":");
+	    		counter += 1;
 	    	}
 	    	else if(command.equals("and")){
 	    		writer.write("leaw $SP, %A");
@@ -185,6 +192,7 @@ public class Code {
         	} 
     	
 	   }
+
 
     /**
      * Grava no arquivo de saida as instruções em Assembly para executar o comando de Push ou Pop.
