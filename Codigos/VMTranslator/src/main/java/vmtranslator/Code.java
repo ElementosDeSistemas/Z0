@@ -5,26 +5,186 @@
 
 package vmtranslator;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 /** 
- * Traduz da linguagem vm para códigos assembly.
+ * Traduz da linguagem vm para c�digos assembly.
  */
-public class Code {
-
+public class Code {	
+	private BufferedWriter writer;
     /** 
-     * Abre o arquivo de entrada VM e se prepara para analisá-lo.
-     * @param filename nome do arquivo VM que será feito o parser.
+     * Abre o arquivo de entrada VM e se prepara para analis�-lo.
+     * @param filename nome do arquivo VM que ser� feito o parser.
+     * @throws IOException 
      */
-    public Code(String filename) {
-
+    public Code(String filename) throws IOException {
+    	try{
+            writer = new BufferedWriter(new FileWriter(filename));
+        }catch (FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
-     * Grava no arquivo de saida as instruções em Assembly para executar o comando aritmético.
-     * @param  command comando aritmético a ser analisado.
+     * Grava no arquivo de saida as instru��es em Assembly para executar o comando aritm�tico.
+     * @param  command comando aritm�tico a ser analisado.
+     * @throws IOException 
      */
-    public void writeArithmetic(String command) {
-
-    }
+    public void writeArithmetic(String command) throws IOException {
+	   try{ 	
+    		if(command.equals("add")){
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("decw %A");
+	    		//dec para ir pra posicao anterior do stack pointer
+	    		writer.write("movw %A, %D");
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw %D, (%A)");
+	    		writer.write("movw %D, %A");
+	    		//salvar o A depois de ter destruido ele
+	    		writer.write("movw (%A), %D");
+	    		writer.write("decw %A");
+	    		writer.write("addw (%A), %D, %D");
+	    		writer.write("movw %D, (%A)");
+	    	
+	    	else if(command.equals("sub")){
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("decw %A");
+	    		writer.write("movw %A, %D");
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw %D, (%A)");
+	    		writer.write("movw %D, %A");
+	    		writer.write("movw (%A), %D");
+	    		writer.write("decw %A");
+	    		writer.write("subw (%A), %D, %D");
+	    		writer.write("movw %D, (%A)");
+	    		//copiei a logica do meu add e mudei o addw pra subw
+	    	}
+	    	else if(command.equals("neg")){
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("decw %A");
+	    		writer.write("negw (%A)");
+	    	}
+	    	else if(command.equals("eq")){
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("decw %A");
+	    		writer.write("movw %A, %D");
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw %D, (%A)");
+	    		writer.write("movw %D, %A");
+	    		writer.write("movw (%A), %D");
+	    		writer.write("decw %A");
+	    		writer.write("subw (%A), %D, %D");
+	    		writer.write("leaw $LOOP_GT,%A");
+	    		writer.write("je");
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("movw $0, (%A)");
+	    		writer.write("leaw $LOOP_FIM,%A");
+	    		writer.write("JMP");
+	    		writer.write("LOOP_GT:");
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("movw $-1, (%A)");
+	    		writer.write("$LOOP_FIM:");
+	    	}
+	    	else if(command.equals("gt")){
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("decw %A");
+	    		writer.write("movw %A, %D");
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw %D, (%A)");
+	    		writer.write("movw %D, %A");
+	    		writer.write("movw (%A), %D");
+	    		writer.write("decw %A");
+	    		writer.write("subw (%A), %D, %D");
+	    		writer.write("leaw $LOOP_GT,%A");
+	    		writer.write("jg");
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("movw $0, (%A)");
+	    		writer.write("leaw $LOOP_FIM,%A");
+	    		writer.write("JMP");
+	    		writer.write("LOOP_GT:");
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("movw $-1, (%A)");
+	    		writer.write("$LOOP_FIM:");
+	    	}
+	    	else if(command.equals("lt")){
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("decw %A");
+	    		writer.write("movw %A, %D");
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw %D, (%A)");
+	    		writer.write("movw %D, %A");
+	    		writer.write("movw (%A), %D");
+	    		writer.write("decw %A");
+	    		writer.write("subw (%A), %D, %D");
+	    		writer.write("leaw $LOOP_GT,%A");
+	    		writer.write("jl");
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("movw $0, (%A)");
+	    		writer.write("leaw $LOOP_FIM,%A");
+	    		writer.write("JMP");
+	    		writer.write("LOOP_GT:");
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("movw $-1, (%A)");
+	    		writer.write("$LOOP_FIM:");
+	    	}
+	    	else if(command.equals("and")){
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("decw %A");
+	    		writer.write("movw %A, %D");
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw %D, (%A)");
+	    		writer.write("movw %D, %A");
+	    		writer.write("movw (%A), %D");
+	    		writer.write("decw %A");
+	    		writer.write("andw (%A), %D, %D");
+	    		writer.write("movw %D, (%A)");
+	    		//copiei a logica do meu add e mudei o addw pra andw
+	    	}
+	    	else if(command.equals("or")){
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("decw %A");
+	    		writer.write("movw %A, %D");
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw %D, (%A)");
+	    		writer.write("movw %D, %A");
+	    		writer.write("movw (%A), %D");
+	    		writer.write("decw %A");
+	    		writer.write("orw (%A), %D, %D");
+	    		writer.write("movw %D, (%A)");
+	    		//copiei a logica do meu add e mudei o addw pra orw
+	    	}
+	    	else if(command.equals("not")){
+	    		writer.write("leaw $SP, %A");
+	    		writer.write("movw (%A), %A");
+	    		writer.write("decw %A");
+	    		writer.write("notw (%A)");
+	    		//copiei a logica do meu neg e mudei o negw pra notw
+	    	}
+	    	
+    		}
+    		
+    	catch (IOException e) {
+        	System.out.println("writeArithmetic error");
+        	} 
+    	
+	   }
 
     /**
      * Grava no arquivo de saida as instruções em Assembly para executar o comando de Push ou Pop.
@@ -60,7 +220,18 @@ public class Code {
      */
     public void writeGoto(String label) {
 
-    }
+        try {
+        	
+            writer.write("leaw %"+label+", %A");
+            writer.write("jne");
+            writer.write("nop");
+            }
+        catch (IOException e) {
+        	
+        }
+            System.out.println("writeGoto error");
+            
+        }
 
     /**
      * Grava no arquivo de saida as instruções em Assembly para gerar as instruções de goto condicional (jumps condicionais).
@@ -103,6 +274,14 @@ public class Code {
      */
     public void vmfile(String file) {
 
+    vmfile(filename);
+        
+        try{
+            writer = new BufferedWriter(new FileWriter("codeoutput.nasm"));
+        }
+        catch (FileNotFoundException e){
+            System.out.println(e.getMessage());
+        }
     }
 
 }
