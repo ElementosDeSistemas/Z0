@@ -207,7 +207,7 @@ public class Code {
     		writer.write("movw %A, %D");
     		writer.write("leaw $SP, %A");
     		writer.write("movw (%A), %A");
-    		writer.write("movw %A, %D");
+    		writer.write("")
     	}
     	catch(IOException e){
     		

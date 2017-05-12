@@ -202,18 +202,6 @@ public class Code {
      * O código deve ser colocado no início do arquivo de saída.
      */
     public void writeInit() {
-    	try {
-    		writer.write("leaw $256, %A");
-    		writer.write("movw %A, %D");
-    		writer.write("leaw $SP, %A");
-    		writer.write("movw (%A), %A");
-    		writer.write("movw %A, %D");
-    	}
-    	catch(IOException e){
-    		
-    		System.out.println("writeInit error")
-    		
-    	}
 
     }
 
