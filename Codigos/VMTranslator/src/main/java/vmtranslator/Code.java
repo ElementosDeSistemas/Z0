@@ -201,7 +201,61 @@ public class Code {
      * @param  index índice do segkento de memória a ser usado pelo comando.
      */
     public void writePushPop(Parser.CommandType command, String segment, Integer index) {
-
+    	try {
+	    	if (segment.equals("local")){
+	    		segment = "1";
+	    	}
+	    	
+	    	if (segment.equals("argument")){
+	    		segment = "2";
+	    	}
+	    	
+	    	if (segment.equals("this")){
+	    		segment = "3";
+	    	}
+	    	
+	    	if (segment.equals("that")) {
+	    		segment = "4";
+	    	}
+	    	
+	    	
+	    	if(command.equals(CommandType.C_POP)){
+	    		writer.write("leaw $0, %A");
+	    		writer.write("movw (%A) , %D");
+	    		writer.write("subw %D , $1 , %D");
+	    		writer.write("movw %D , (%A)");
+	    		writer.write("movw %D, %A");
+	    		writer.write("movw (%A) , %D");
+	    		writer.write("leaw $segment , %A");
+	    		writer.write("movw (%A) , %A");
+	    		for (int i = 0; i<index; i++){
+	    			writer.write("incw %A");
+	    		}
+	    		
+	    	else if(command.equals(CommandType.C_PUSH)){
+	    		writer.write("leaw $segment , %A");
+	    		writer.write("movw (%A) , %A");
+	    		for (int i = 0; i<index; i++){
+	    			writer.write("incw %A");
+	    		}
+	    		
+	    		writer.write("movw (%A) , %D");
+	    		writer.write("leaw $0 , %A");
+	    		writer.write("movw (%A) , %A");
+	    		writer.write("movw %D , (%A)");
+	    		writer.write("incw %A");
+	    		writer.write("movw %A , %D");
+	    		writer.write("leaw $0 , %A");
+	    		writer.write("movw %D , (%A)");
+	    	}
+	    	
+	    		writer.write("movw %D , (%A)");
+	    	}
+	    }
+    	
+    	catch (IOException e) {
+    		System.out.println("writePushPop error");
+    	}
     }
 
     /**
