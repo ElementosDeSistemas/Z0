@@ -345,8 +345,62 @@ public class Code {
      * Grava no arquivo de saida as instruções em Assembly para o retorno de uma sub rotina.
      */
     public void writeReturn() {
-
+    	try {
+	    	writer.write("leaw $LCL,%A");
+	    	writer.write("movw (%A),%D");
+	    	writer.write("leaw $R13,%A");
+	    	writer.write("movw %D,(%A)");
+	    	writer.write('leaw $5,%A');
+	    	writer.write('movw %A,%D');
+	    	writer.write('leaw $R13,%A);
+	    	writer.write('subw (%A),%D,%D');
+	    	writer.write('leaw $R15,%A');
+	    	writer.write("movw %D,(%A)");
+	    	writePushPop(Parser.CommandType.C_POP,'ARG',0);
+	    	writer.write("leaw $ARG,%A");
+	    	writer.write("movw (%A),%D");
+	    	writer.write("movw (%A),%D");
+	    	writer.write("addw %D,$1,%D");
+	    	writer.write("leaw $SP,%A");
+	    	writer.write("movw %D,(%A)");
+	    	
+	    	writer.write('leaw $1,%A');
+	    	writer.write('movw %A,%D');
+	    	writer.write('leaw $R13,%A);
+	    	writer.write('subw (%A),%D,%D');
+	    	writer.write('leaw $THAT,%A');
+	    	writer.write("movw %D,(%A)");
+	    	
+	    	writer.write('leaw $2,%A');
+	    	writer.write('movw %A,%D');
+	    	writer.write('leaw $R13,%A);
+	    	writer.write('subw (%A),%D,%D');
+	    	writer.write('leaw $THIS,%A');
+	    	writer.write("movw %D,(%A)");
+	    	
+	    	writer.write('leaw $3,%A');
+	    	writer.write('movw %A,%D');
+	    	writer.write('leaw $R13,%A);
+	    	writer.write('subw (%A),%D,%D');
+	    	writer.write('leaw $ARG,%A');
+	    	writer.write("movw %D,(%A)");
+	    	
+	    	writer.write('leaw $4,%A');
+	    	writer.write('movw %A,%D');
+	    	writer.write('leaw $R13,%A);
+	    	writer.write('subw (%A),%D,%D');
+	    	writer.write('leaw $LCL,%A');
+	    	writer.write("movw %D,(%A)");
+	    	
+	    	 writer.write("leaw $R15, %A");
+	         writer.write("jmp");
+	         writer.write("nop");
+    	}
+    	 catch (IOException e) {
+             System.out.println("Error : Return");
+         }
     }
+
 
     /**
      * Grava no arquivo de saida as instruções em Assembly para a declaração de uma função.
