@@ -607,7 +607,12 @@ public class Code {
     	     * @param  label define nome do label (marcador) a ser escrito.
     	     */
     	    public void writeLabel(String label) {
-
+    	       	try {
+    		    	writer.write(label + ":");
+    		    	}
+    	    	catch (IOException e) {
+    	    		System.out.println("writeLabel error");
+    	    	}
     	    }
 
     	    /**
@@ -636,7 +641,14 @@ public class Code {
     	     * @param  label define jump a ser realizado para um label (marcador).
     	     */
     	    public void writeIf(String label) {
-
+    	    	try {
+    		    	writer.write("leaw %" + label + ", %A");
+    		    	writer.write("jne");
+    		    	writer.write("nop");
+    		    	}
+    	    	catch (IOException e) {
+    	    		System.out.println("writeIf error");
+    	    	}
     	    }
 
     	    /**
@@ -679,17 +691,15 @@ public class Code {
     	     * Grava no arquivo de saida as instruções em Assembly para o retorno de uma sub rotina.
     	     */
     	    public void writeReturn() {
-
+    	    	try {
+    		    	writer.write("movw %A, %D");
+    		    	writer.write("ret");
+    		    	}
+    	    	catch (IOException e) {
+    	    		System.out.println("writeReturn error");
+    	    	}
     	    }
 
-    	    /**
-    	     * Grava no arquivo de saida as instruções em Assembly para a declaração de uma função.
-    	     * @param  functionName nome da função a ser criada.
-    	     * @param  numLocals número de argumentos a serem passados na função call.
-    	     */
-    	    public void writeFunction(String functionName, Integer numLocals) {
-
-    	    }
 
     	    /**
     	     * Armazena o nome do arquivo vm de origem.
