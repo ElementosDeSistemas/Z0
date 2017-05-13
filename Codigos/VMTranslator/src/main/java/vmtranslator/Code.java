@@ -285,6 +285,11 @@ public class Code {
      */
     public void writeLabel(String label) {
 
+    	try {
+    		writer.write(label + ":");}
+    		        
+    catch (IOException e) {
+    	System.out.println("Error: Label");}
     }
 
     /**
@@ -313,8 +318,19 @@ public class Code {
      * @param  label define jump a ser realizado para um label (marcador).
      */
     public void writeIf(String label) {
-
-    }
+    	
+    	
+    	try {
+    		
+    		writer.write("leaw" + " %" + label + ", %A");
+    		writer.write("jne");
+    		writer.write("nop");
+    		}
+    	
+		 catch (IOException error) {
+             System.out.println("Error: If");
+    	}
+}
 
     /**
      * Grava no arquivo de saida as instruções em Assembly para uma chamada de função (Call).
