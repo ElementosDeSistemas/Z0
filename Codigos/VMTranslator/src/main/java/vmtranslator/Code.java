@@ -354,8 +354,16 @@ public class Code {
      * @param  numLocals número de argumentos a serem passados na função call.
      */
     public void writeFunction(String functionName, Integer numLocals) {
-
-    }
+    	try {
+    	writeLabel(functionName);
+    	for(int i=0;i<numLocals;i++){
+    		writePushPop(Parser.CommandType.C_PUSH,'constant',0);
+    		}
+    	}
+    	 catch (IOException e) {
+             System.out.println("Error: Function");
+         }
+    }	
 
     /**
      * Armazena o nome do arquivo vm de origem.
