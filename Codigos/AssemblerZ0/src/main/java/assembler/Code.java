@@ -62,7 +62,6 @@ public class Code {
      * @return Opcode (String de 7 bits) com código em linguagem de máquina para a instrução.
      */
     public static String comp(String[] mnemnonic) {
-
     	String[] validInputs = new String[] {"movw","addw","incw","nop","subw","rsubw","decw","notw","negw","andw","orw"};
     	int[] validInputSize = new int[]    {  3,      4,     2,     1,    4,     4,      2,    2,     2,     4,     4};
     	
@@ -84,22 +83,69 @@ public class Code {
     	String[] betterName = mnemnonic; //why not call it anything that can be correctly read the first time one do.
     	//yes! I know I could just change the argument name, but this is kind of a protest
     	
-    	for (int i = 1; i < betterName.length; i ++){ // checks if a == 1 and mark with input the pointer is.
-    		if(betterName[i].indexOf("(") != -1){
+    	//for (int i = 1; i < betterName.length; i ++){ // checks if a == 1 and mark with input the pointer is.
+    		//if(betterName[i].indexOf("(") != -1){
+    			//a = "1";
+    			//break;
+    		//}
+    	//}
+    	
+    	
+    	
+    	if (betterName.length == 2){
+    		if (betterName[1].contains("(%A)") || betterName[1].contains("(%D)")){
+    			System.out.println("Alo");
+        		a = "1";
+        	}
+    	}
+    	if (betterName.length == 3){
+    		if (betterName[1].contains("(%A)") || betterName[1].contains("(%D)")){
+    			System.out.println("Mudei");
     			a = "1";
-    			break;
+    		}
+    	}
+    	if (betterName.length == 4){
+    		if (betterName[1].contains("(%A)") || betterName[1].contains("(%D)") || betterName[2].contains("(%A)") || betterName[2].contains("(%D)")){
+    			System.out.println("Mudei");
+    			a = "1";
     		}
     	}
     	
+   
     	switch (select){
     	case 1: //mov
-    		if(betterName[1].indexOf("A") == -1){
-    			return "0001100";
-    		} else{
+    		if (betterName.length == 2){
+    			if (betterName[1].contains("-1")){
+    				return a + "111010";
+    			}
+    			if (betterName[1].contains("0")){
+    				return a + "101010";
+    			}
+    			if (betterName[1].contains("1")){
+    				return a + "111111";
+    			}
+    		}
+    		if (betterName.length == 3){
+    			if (betterName[1].contains("-1") || betterName[2].contains("-1")){
+    				return a + "111010";
+    			}
+    			if (betterName[1].contains("0") || betterName[2].contains("0")){
+    				return a + "101010";
+    			}
+    			if (betterName[1].contains("1") || betterName[2].contains("1")){
+    				return a + "111111";
+    			}
+    		}
+    			
+    		if(betterName[1].contains("D")){
+    			System.out.println(a + "001100");
+    			return a + "001100";
+    		}
+    		else if (betterName[1].contains("A")){
+    			System.out.println(a + "110000");
     			return a + "110000";
     		}
-
-    		
+    			
     	case 2: //add
     		
     		return a + "000010";
@@ -111,7 +157,7 @@ public class Code {
     		
     	
     	case 4: //nop
-    		return "0101010";
+    		return a + "101010";
     		
     		
     	case 5: //sub
@@ -142,7 +188,7 @@ public class Code {
     		
     	
     	default:
-    		return "0001100";
+    		return a + "001100";
     	}
     }
 
@@ -188,7 +234,7 @@ public class Code {
     	while(binaryString.length() < 15) {
     		binaryString = "0" + binaryString;
 		}
-		
+
 		return binaryString;
     		
     	//estava saindo com 16 bits entao mudei pra while mesmo...
