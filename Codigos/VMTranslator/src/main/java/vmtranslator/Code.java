@@ -17,9 +17,6 @@ public class Code {
 	private BufferedWriter writer;
 	private int counter;
     /** 
-     * Abre o arquivo de entrada VM e se prepara para analis�-lo.
-     * @param filename nome do arquivo VM que ser� feito o parser.
-     * @throws IOException 
      */
     public Code(String filename) throws IOException {
     	counter = 0; //feito por sabrina

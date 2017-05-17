@@ -6,7 +6,6 @@
 package assembler;
 
 import java.io.BufferedReader;
-
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,47 +38,41 @@ public class Parser {
     public Parser(String file) {
         symbolTable = new SymbolTable();
         try {
+        	System.out.println("Working Directory = " +
+                    System.getProperty("user.dir"));
+        	
+        	//int i = 0;
+ 	
         	try (BufferedReader br_1p = new BufferedReader(new FileReader(file))) {
         	    String line;
         	    int i = 0;
         	    while ((line = br_1p.readLine()) != null) {
-        	    	if (line.indexOf(';') != 0 || line.contains(":")){
-                        i += 1;
+        	    	
+        	    	if (line.indexOf(';') == 0 || line.isEmpty() ){
+                        //i += 1;
                     } else if (line.contains(":")){
-                        if (!symbolTable.contains(line)) {
+                    	line = line.split(":")[0];
+                    	System.out.println("SS"+line);
+                    	if (!symbolTable.contains(line)) {
                             symbolTable.addEntry(line,i);
-                        }      
+                            System.out.println("SS"+line);
+                        }
+                    } else {
+                    	i++;
                     }
-        	     
+        	       System.out.println(line);// process the line.
         	    }	
         	}
         	
         	br = new BufferedReader(new FileReader(file));
-        		
-        	
-            //URI uri = this.getClass().getResource("src/test/resources/testComp.nasm").toURI();
-            //lines = Files.readAllLines(Paths.get(uri),
-             //       Charset.defaultCharset());
-
-            //int i = 0;
-            //for (String line : lines) {
-
-                // nao é comentario ou nao é label
-              //  if (line.indexOf(';') != 0 || line.contains(":")){
-                 //   i += 1;
-               // } else if (line.contains(":")){
-                   // if (!symbolTable.contains(line)) {
-                     //   symbolTable.addEntry(line, i);
-                    //}
-                //}
-            //}
-
-            // A primeira instruçao do arquivo
-            
+        		            
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
+        //currentCommand = "";
+        
     }
 
     /**
@@ -90,19 +83,29 @@ public class Parser {
      */
 
     public boolean advance() {
-    	currentCommand = "";
-    	while(currentCommand!=null){
     			
-    	try {
+		try {
 			currentCommand = br.readLine();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	if (currentCommand != null && !currentCommand.trim().isEmpty() && currentCommand.charAt(0) != ';'){
-        return true;
-      }}
-      return false;
+		
+		//System.out.println(currentCommand);
+   
+    	if(currentCommand==null){
+    		return false;
+    	}
+    	    	
+		if (currentCommand.trim().isEmpty()){
+			return advance();
+		}
+		
+		if (currentCommand.charAt(0) == ';'){
+			return advance();
+		}
+		
+    	return true;
     }
 
     /**
@@ -150,6 +153,7 @@ public class Parser {
     	String[] s1 = command.split("\\s");
     	String symbol = s1[1].replace("$", "");
     	symbol = symbol.replace(",%A", "");
+    	System.out.println("!"+symbol);
     	return symbol;	
     }
     /**
@@ -173,8 +177,8 @@ public class Parser {
      * @return um vetor de string contento os tokens da instrução (as partes do comando).
      */
     public String[] instruction(String command) {
+      //String[] mnemonicCodes = new String[3];
       String[] mnemonicCodes = command.split(" ");
-   
       
    	if (mnemonicCodes.length <= 1){
  		return mnemonicCodes;
@@ -189,6 +193,7 @@ public class Parser {
  		String[] instruction = new String[answer.size()];
  		instruction = answer.toArray(instruction);
  		return instruction;
+
  	}
     }
 
