@@ -1,0 +1,67 @@
+function Main.main 0
+push constant 160
+push constant 120
+push constant 30
+push constant 20
+push constant 30
+call Main.drawTrapezoid 5
+pop temp 0
+push constant 0
+return
+function Main.drawTrapezoid 1
+push argument 3
+push argument 2
+sub
+push constant 2
+call Math.divide 2
+pop local 0
+push argument 0
+push argument 1
+push argument 0
+push local 0
+add
+push argument 1
+push argument 4
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push local 0
+add
+push argument 1
+push argument 4
+add
+push argument 0
+push argument 3
+add
+push local 0
+sub
+push argument 1
+push argument 4
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push argument 3
+add
+push local 0
+sub
+push argument 1
+push argument 4
+add
+push argument 0
+push argument 3
+add
+push argument 1
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push argument 1
+push argument 0
+push argument 3
+add
+push argument 1
+call Screen.drawLine 4
+pop temp 0
+push constant 0
+return

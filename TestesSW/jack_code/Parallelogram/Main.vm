@@ -1,0 +1,12 @@
+function Main.main 0
+push constant 160
+push constant 120
+push constant 20
+push constant 30
+call Main.drawParallelogram 4
+pop temp 0
+push constant 0
+return
+function Main.drawParallelogram 0
+push constant 0
+return
