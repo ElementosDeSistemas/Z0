@@ -1,0 +1,51 @@
+function Main.main 0
+push constant 160
+push constant 120
+push constant 40
+call Main.drawDiamond 3
+pop temp 0
+push constant 0
+return
+function Main.drawDiamond 0
+push argument 0
+push argument 2
+sub
+push argument 1
+push argument 0
+push argument 1
+push argument 2
+add
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push argument 1
+push argument 2
+add
+push argument 0
+push argument 2
+add
+push argument 1
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push argument 2
+add
+push argument 1
+push argument 0
+push argument 1
+push argument 2
+sub
+call Screen.drawLine 4
+pop temp 0
+push argument 0
+push argument 1
+push argument 2
+sub
+push argument 0
+push argument 2
+sub
+push argument 1
+call Screen.drawLine 4
+pop temp 0
+push constant 0
+return

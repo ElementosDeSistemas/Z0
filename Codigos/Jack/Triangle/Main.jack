@@ -1,7 +1,7 @@
 /**
  * Main class para desenhar figuras geometricas na tela.
  * Arquivo : Triangle/Main.jack
- * Desenvolvido por:
+ * Desenvolvido por: Sabrina Simao
  */
 
 class Main {
@@ -16,6 +16,18 @@ class Main {
     
     /** Desenha uma triangulo na tela. */
     function void drawTriangle(int x, int y, int d) {
+    var int a;
+    var int b;
+    var int altura;
+    let a = Math.sqrt(3)+1;
+    let b = Math.divide(a,2);
+    let altura = Math.multiply(d,b);
+    //precisa chamar drawLine 3 vezes para cada lado do triangulo
+
+    do Screen.drawLine( x,  y, x+d, y);
+    do Screen.drawLine( x,  y, x+(d/2), y-altura);
+    do Screen.drawLine( x+d,  y, x+(d/2), y-altura);
+
         return;
     }
 
