@@ -1,22 +1,33 @@
 /**
+
  * Main class para desenhar figuras geometricas na tela.
+
  * Arquivo : Star/Main.jack
- * Desenvolvido por:
+
+ * Desenvolvido por: Gabriel
+
  */
 
 class Main {
 
     function void main() {
-    
         // Exemplo de chamada para subrotina
+
         do Main.drawStar(160, 120, 30);
-        
-        return;
-    }
-    
-    /** Desenha uma estrela na tela. */
-    function void drawStar(int x, int y, int d) {
         return;
     }
 
+    /** Desenha uma estrela na tela. */
+
+    function void drawStar(int x, int y, int d) {
+    
+		do Screen.drawLine(x-d,y-d,x,y+d);
+        do Screen.drawLine(x-d,y-d,x+d,y);
+        do Screen.drawLine(x+d,y,x-d,y);
+        do Screen.drawLine(x-d,y,x+d,y-d);
+        do Screen.drawLine(x+d,y-d,x,y+d);
+   
+        return;
+
+    }
 }
