@@ -18,31 +18,27 @@ class Main {
     function void drawHexagon(int x, int y, int d) {
         var int p1x;
         var int p1y;
-        let p1x = x - (d/2);
-        let p1y = y + d;
-
         var int p2x;
         var int p2y;
-        let p2x = x + (d/2);
-        let p2y = y + d;
-
         var int p3x;
         var int p3y;
-        let p3x = x + d;
-        let p3y = y;
-
         var int p6x;
         var int p6y;
-        let p6x = x - d;
-        let p6y = y;
-
         var int p4x;
         var int p4y;
-        let p4x = x + (d/2);
-        let p4y = y - d;
-
         var int p5x;
         var int p5y;
+        
+        let p1x = x - (d/2);
+        let p1y = y + d;
+        let p2x = x + (d/2);
+        let p2y = y + d;
+        let p3x = x + d;
+        let p3y = y;
+        let p6x = x - d;
+        let p6y = y;
+        let p4x = x + (d/2);
+        let p4y = y - d;
         let p5x = x - (d/2);
         let p5y = y - d;
 
