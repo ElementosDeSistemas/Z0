@@ -10,12 +10,25 @@ class Main {
     
         // Exemplo de chamada para subrotina
         do Main.drawParallelogram(160, 120, 20, 30);
+
         
         return;
     }
     
     /** Desenha um Paralelogramo na tela. */
     function void drawParallelogram(int x, int y, int d, int l) {
+    	var int e;
+
+    	let e = 2;
+
+    	do Screen.drawLine( x , y , x+d , y );
+
+    	do Screen.drawLine( x+d , y , x+d+e , y+l );
+
+    	do Screen.drawLine( x+e , y+l , x+d+e , y+l );
+
+    	do Screen.drawLine( x , y , x+e , y+l );
+        
         return;
     }
 
