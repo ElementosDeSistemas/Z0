@@ -1,21 +1,69 @@
 /**
  * Main class para desenhar figuras geometricas na tela.
  * Arquivo : Octagon/Main.jack
- * Desenvolvido por:
+ * Desenvolvido por: Pedro de la Peña
  */
 
 class Main {
 
     function void main() {
-    
+
         // Exemplo de chamada para subrotina
         do Main.drawOctagon(160, 120, 20);
-        
+
         return;
     }
-    
+
     /** Desenha um Octagono na tela. */
     function void drawOctagon(int x, int y, int d) {
+        var int p1x;
+		var int p2x;
+		var int p3x;
+		var int p4x;
+		var int p5x;
+		var int p6x;
+		var int p7x;
+		var int p8x;
+		
+		
+        var int p1y;
+        var int p2y;
+        var int p3y;
+        var int p4y;
+        var int p5y;
+        var int p6y;
+		var int p7y;
+		var int p8y;
+		
+		var int ra2;
+		
+		let ra2 = Math.sqrt(2);
+        let p1x = x - (d/2);
+        let p1y = y - (d/ra2) + (d/2);
+        let p2x = x + (d/2);
+        let p2y = y - (d/ra2) + (d/2);
+        let p3x = x + (d/ra2) + (d/2);
+        let p3y = y - (d/2);
+        let p4x = x + (d/ra2) + (d/2);
+        let p4y = y + (d/2);
+        let p5x = x + (d/2);
+        let p5y = y + (d/ra2) + (d/2);
+		let p6x = x - (d/2);
+        let p6y = y + (d/ra2) + (d/2);
+		let p7x = x - (d/ra2) + (d/2);
+		let p7y = y + (d/2);
+		let p8x = x - (d/ra2) + (d/2);
+		let p8y = y - (d/2);
+
+        do Screen.drawLine(p1x, p1y, p2x, p2y);
+        do Screen.drawLine(p2x, p2y, p3x, p3y);
+        do Screen.drawLine(p3x, p3y, p4x, p4y);
+        do Screen.drawLine(p4x, p4y, p5x, p5y);
+        do Screen.drawLine(p5x, p5y, p6x, p6y);
+        do Screen.drawLine(p6x, p6y, p7x, p7y);
+		do Screen.drawLine(p7x, p7y, p8x, p8y);
+		do Screen.drawLine(p8x, p8y, p1x, p1y);
+
         return;
     }
 
