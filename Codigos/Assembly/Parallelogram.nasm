@@ -1,3 +1,193 @@
 ; Parallelogram.nasm
 
 ; Desenha um paralelograma na tela.
+
+
+leaw $SCREEN, %A
+movw %A, %D
+movw $-1, (%A)
+addw %D,$1, %D
+movw %D, %A ; D = A
+movw $-1, (%A)
+addw %D,$1, %D
+movw %D, %A ; D = A
+movw $-1, (%A)
+addw %D,$1, %D
+movw %D, %A ; D = A
+movw $-1, (%A)
+addw %D,$1, %D
+movw %D, %A ; D = A
+movw $-1, (%A)
+addw %D,$1, %D
+movw %D, %A ; D = A
+movw $-1, (%A)
+leaw $16416, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16448, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16480, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16512, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16544, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16576, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16608, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16640, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16672, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16704, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16736, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16768, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16800, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16832, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16864, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16896, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16928, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16960, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16992, %A
+movw %A, %D
+movw $1, (%A)
+leaw $17024, %A
+movw %A, %D
+movw $1, (%A)
+leaw $17056, %A
+movw %A, %D
+movw $1, (%A)
+leaw $17088, %A
+movw %A, %D
+movw $1, (%A)
+leaw $17120, %A
+movw %A, %D
+movw $1, (%A)
+leaw $17152, %A
+movw %A, %D
+movw $1, (%A)
+leaw $17184, %A
+movw %A, %D
+movw $-1, (%A)
+addw %D,$1, %D
+movw %D, %A ; D = A
+movw $-1, (%A)
+addw %D,$1, %D
+movw %D, %A ; D = A
+movw $-1, (%A)
+addw %D,$1, %D
+movw %D, %A ; D = A
+movw $-1, (%A)
+addw %D,$1, %D
+movw %D, %A ; D = A
+movw $-1, (%A)
+addw %D,$1, %D
+movw %D, %A ; D = A
+movw $-1, (%A)
+addw %D,$1, %D
+movw %D, %A ; D = A
+movw $1, (%A)
+
+
+leaw $17158, %A
+movw %A, %D
+movw $1, (%A)
+leaw $17126, %A
+movw %A, %D
+movw $1, (%A)
+leaw $17094, %A
+movw %A, %D
+movw $1, (%A)
+leaw $17062, %A
+movw %A, %D
+movw $1, (%A)
+leaw $17030, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16998, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16966, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16934, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16902, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16870, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16838, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16806, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16774, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16742, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16710, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16678, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16646, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16614, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16582, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16550, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16518, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16486, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16454, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16422, %A
+movw %A, %D
+movw $1, (%A)
+leaw $16390, %A
+movw %A, %D
+movw $1, (%A)

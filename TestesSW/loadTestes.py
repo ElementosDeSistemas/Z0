@@ -6,7 +6,7 @@ def testes(nome_arquivo):
 
 	nomes_testes = []
 
-	# rotina de leitura do resultado da emulação
+	# rotina de leitura do resultado da emulacao
 	with open(nome_arquivo, 'r') as arquivo:
 		tmp = arquivo.read().splitlines()
 
