@@ -5,11 +5,6 @@
 
 package vmtranslator;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-
 /**
  * Encapsula o código de leitura. Carrega as instruções na linguagem de máquina virtual a pilha,
  * analisa, e oferece acesso aos comandos.
@@ -30,28 +25,12 @@ public class Parser {
         C_CALL             // 
     }
 
-	BufferedReader br;
-	String currentCommand;
     /** 
      * Abre o arquivo de entrada VM e se prepara para analisá-lo.
      * @param file arquivo VM que será feito o parser.
      */
     public Parser(String file) {
-		
-       //String line = null;
-    	try {
-    		FileReader fileReader = new FileReader(file);
-     		
-     		br =new BufferedReader(fileReader);
-     	
-     		//bufferedReader.close();
-     	}
-     	catch(FileNotFoundException ex){
-     		System.out.println("Unable to open file '" + file + "'"); 
-     	}
-         catch(IOException ex) {
-         	System.out.println("Error reading file '" + file + "'");  
-         }
+
     }
 
     /**
@@ -61,19 +40,9 @@ public class Parser {
      * @return Verdadeiro se ainda há instruções, Falso se as instruções terminaram.
      */
     public Boolean advance() {
-        currentCommand = "";
-    	while(currentCommand!=null){
-    			
-    	try {
-			currentCommand = br.readLine();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    	if (currentCommand != null && !currentCommand.trim().isEmpty() && currentCommand.charAt(0) != ';'){
-        return true;
-      }}
+        
+        return null;
 
-      return false;
     }
 
     /**
@@ -81,7 +50,9 @@ public class Parser {
      * @return a instrução atual para ser analilisada
      */
     public String command() {
-        return currentCommand;
+
+        return null;
+
     }
 
     /**
@@ -92,27 +63,9 @@ public class Parser {
      * @return o tipo da instrução.
      */
     public CommandType commandType(String command) {
-		String word = command.split(" ")[0];
 
-		if (word.equals("push")) {
-			return CommandType.C_PUSH;
-		} else if (word.equals("pop")) {
-			return CommandType.C_POP;
-		} else if (word.equals("label")) {
-			return CommandType.C_LABEL;
-		} else if (word.equals("goto")) {
-			return CommandType.C_GOTO;
-		} else if (word.equals("function")) {
-			return CommandType.C_FUNCTION;
-		} else if (word.equals("if-goto")) {
-			return CommandType.C_IF;
-		} else if (word.equals("return")) {
-			return CommandType.C_RETURN;
-		} else if (word.equals("call")) {
-			return CommandType.C_CALL;
-		}
+        return null;
 
-		return CommandType.C_ARITHMETIC;
     }
     
 
@@ -124,16 +77,9 @@ public class Parser {
      * @return somente o símbolo ou o valor número da instrução.
      */
     public String arg1(String command) {
-		if (commandType(command) == CommandType.C_ARITHMETIC) {
-			return command;
-		}
 
-		try {
-			return command.split(" ")[1];
-		} catch(NullPointerException e) {
-			return null;
-		}
-		
+        return null;
+
     }
 
     /**
@@ -143,13 +89,9 @@ public class Parser {
      * @return o símbolo da instrução (sem os dois pontos).
      */
     public Integer arg2(String command) {
-		
 
-		try {
-			return Integer.parseInt(command.split(" ")[2]);
-		} catch(NullPointerException e) {
-			return null;
-		}
+        return null;
+
     }
 
 }
