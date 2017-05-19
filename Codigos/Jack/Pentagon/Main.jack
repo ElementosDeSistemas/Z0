@@ -40,8 +40,8 @@ class Main {
     let y2 = (y+(d/2));
 
 
-    let x3 = x2 +(d+1);     // 9 porque sen 72 = 0.98... ele foi multiplicado por 10 porque não tem float
-    let y3 = y2 -(d+1);     // 3 porque cos 72=0.3
+    let x3 = x2 +(d+1);     // 1 porque sen 72 = 0.98... ele foi multiplicado por 10 porque não tem float nota: agora foi arredondado para 1
+    let y3 = y2 -(d+1);     // 1 porque cos 72=0.3 errondado para 1...
 
 
     let x4 = x;
