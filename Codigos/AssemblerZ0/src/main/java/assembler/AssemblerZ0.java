@@ -41,46 +41,51 @@ class AssemblerZ0 {
     	String command;
     	
     	try{
-    	     writer = new PrintWriter(args[2]);
-    	} catch (Exception e) {
-    	   System.err.println("Algo de errado com o arquivo");
+    	    writer = new PrintWriter(args[2]);
+    	} 
+    	catch (Exception e) {
+    		System.err.println("Algo de errado com o arquivo");
     	}
 
-    	System.out.println("--------- while ------------------ ");
-    
     	while(parser.advance()){
-    		System.out.println(" >>>>>  "+parser.command()+Integer.toString(linha));
     		if (parser.commandType(parser.command()) == CommandType.C_COMMAND){	
     			command = (linha + " : " + "111" + Code.comp(parser.instruction(parser.command())) + Code.dest(parser.instruction(parser.command()))+ Code.jump(parser.instruction(parser.command()))+";");
+    		
     			if (writer != null){
     				list.add(command);
     			}
-    			linha++;
+    		linha++;
     		}
+    		
     		else if (parser.commandType(parser.command()) == CommandType.A_COMMAND){
-    			System.out.println(parser.command());
-    			try{command= parser.symbol(parser.command());}
-    			catch(Exception e){	}
-    			if ( isNumeric(parser.symbol(parser.command())) ){
+    			try{
+    				command= parser.symbol(parser.command());
+    				}
+    			
+    			catch(Exception e){
+    				System.out.println("Erro");
+    				}
+
+    			if (isNumeric(parser.symbol(parser.command()))){
     				command= parser.symbol(parser.command());
 				}
+    			
     			else if (symbol_table.contains(parser.symbol(parser.command())) ){
-					System.out.println("Contido");
     				command= Integer.toString(symbol_table.getAddress(parser.symbol(parser.command())));
 				}
+    			
 				else {
-					System.out.println("Add");
 					symbol_table.addEntry(parser.symbol(parser.command()),symbolCount++);
 					command= Integer.toString(symbol_table.getAddress(parser.symbol(parser.command())));
        			}
+    			
     			if (writer != null){
     				list.add(linha + " : " + "0" + Code.toBinary(command) +";"); 				
     			}
+    			
     			linha++;
-    		}
-    		
-    	}
-			
+    		 }
+      	}		
     	writer.println("WIDTH=16;");
     	writer.println("DEPTH=" + linha +";");
     	writer.println("");
@@ -98,5 +103,5 @@ class AssemblerZ0 {
     	if (writer!=null){
     		writer.close();
     	}
-    	}
-	}
+    }
+}
