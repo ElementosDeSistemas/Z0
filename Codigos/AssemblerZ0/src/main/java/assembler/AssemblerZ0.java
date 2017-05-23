@@ -60,23 +60,23 @@ class AssemblerZ0 {
     		else if (parser.commandType(parser.command()) == CommandType.A_COMMAND){
     			try{
     				command= parser.symbol(parser.command());
-    				}
+    			}
     			
     			catch(Exception e){
     				System.out.println("Erro");
-    				}
+    			}
 
     			if (isNumeric(parser.symbol(parser.command()))){
     				command= parser.symbol(parser.command());
-				}
+			}
     			
     			else if (symbol_table.contains(parser.symbol(parser.command())) ){
     				command= Integer.toString(symbol_table.getAddress(parser.symbol(parser.command())));
-				}
+			}
     			
-				else {
-					symbol_table.addEntry(parser.symbol(parser.command()),symbolCount++);
-					command= Integer.toString(symbol_table.getAddress(parser.symbol(parser.command())));
+			else {
+				symbol_table.addEntry(parser.symbol(parser.command()),symbolCount++);
+				command= Integer.toString(symbol_table.getAddress(parser.symbol(parser.command())));
        			}
     			
     			if (writer != null){
@@ -84,7 +84,7 @@ class AssemblerZ0 {
     			}
     			
     			linha++;
-    		 }
+    		}
       	}		
     	writer.println("WIDTH=16;");
     	writer.println("DEPTH=" + linha +";");
