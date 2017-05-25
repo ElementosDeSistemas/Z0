@@ -16,18 +16,20 @@ def vmtranslator(jar,testes,in_dir,out_dir,processos):
 	start_time = time.time()
 
 	rotina_mkdir = ["mkdir"]
+	shell=False
 
 	if platform.system()=="Windows":
 		jar = jar.replace('/','\\')
 		testes = testes.replace('/','\\')
 		in_dir = in_dir.replace('/','\\')
 		out_dir = out_dir.replace('/','\\')
+		shell=True
 	else:
 		rotina_mkdir.append("-p") # para criar os subdiretórios no mkdir no UNIX
 
 	rotina_mkdir.append(out_dir)
 
-	subprocess.call(rotina_mkdir, shell=True) # cria subdiretório para resultados
+	subprocess.call(rotina_mkdir, shell=shell) # cria subdiretório para resultados
 
 	nomes_testes = loadTestes.testes(testes)
 
@@ -54,7 +56,6 @@ def vmtranslator(jar,testes,in_dir,out_dir,processos):
 		
 		saida = out_dir+"{0}.nasm".format(nome[0])
 
-		#rotina = ['java', '-jar', 'Codigos/VMTranslator/target/VMTranslator-1.0.jar',
 		rotina = ['java', '-jar', jar, entrada,"-o",saida]
 		
 		# remove rotina de bootstrap do vmtranslator
