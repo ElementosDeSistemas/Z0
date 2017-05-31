@@ -1,0 +1,11 @@
+function Main.main 0
+push constant 160
+push constant 120
+push constant 30
+call Main.drawPentagon 3
+pop temp 0
+push constant 0
+return
+function Main.drawPentagon 0
+push constant 0
+return

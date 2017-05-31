@@ -1,7 +1,7 @@
 /**
  * Main class para desenhar figuras geometricas na tela.
  * Arquivo : Trapezoid/Main.jack
- * Desenvolvido por:
+ * Desenvolvido por: O humilde Jean
  */
 
 class Main {
@@ -16,6 +16,16 @@ class Main {
     
     /** Desenha uma Trapezoide na tela. */
     function void drawTrapezoid(int x, int y, int d, int D, int l) {
+        
+        var int delta;
+        
+        let delta = (D - d) / 2;
+
+        do Screen.drawLine(x, y, x + delta, y + l);
+        do Screen.drawLine(x + delta, y + l, x + D - delta, y + l);
+        do Screen.drawLine(x + D - delta, y + l, x+ D, y);
+        do Screen.drawLine(x, y, x + D, y);  
+        
         return;
     }
 

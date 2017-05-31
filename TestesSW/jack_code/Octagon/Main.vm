@@ -1,0 +1,11 @@
+function Main.main 0
+push constant 160
+push constant 120
+push constant 20
+call Main.drawOctagon 3
+pop temp 0
+push constant 0
+return
+function Main.drawOctagon 0
+push constant 0
+return

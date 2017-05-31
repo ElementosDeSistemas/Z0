@@ -1,0 +1,11 @@
+function Main.main 0
+push constant 160
+push constant 120
+push constant 30
+call Main.drawStar 3
+pop temp 0
+push constant 0
+return
+function Main.drawStar 0
+push constant 0
+return

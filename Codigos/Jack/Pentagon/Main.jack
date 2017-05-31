@@ -1,7 +1,7 @@
 /**
  * Main class para desenhar figuras geometricas na tela.
  * Arquivo : Pentagon/Main.jack
- * Desenvolvido por:
+ * Desenvolvido por: Paulo Tozzo
  */
 
 class Main {
@@ -16,6 +16,50 @@ class Main {
     
     /** Desenha um Pentagono na tela. */
     function void drawPentagon(int x, int y, int d) {
+
+    var int x1; // todos os vertices(x1,y1;x2,y2...) começando da esquerda inferior e indo sentido anti-horario
+    var int y1;
+
+    var int x2;
+    var int y2;
+
+    var int x3;
+    var int y3;
+
+    var int x4;
+    var int y4;
+
+    var int x5;
+    var int y5;
+
+    let x1 = (x-(d/2));
+    let y1 = (y+(d/2));
+
+
+    let x2 = (x+(d/2));
+    let y2 = (y+(d/2));
+
+
+    let x3 = x2 +(d+1);     // 1 porque sen 72 = 0.98... ele foi multiplicado por 10 porque não tem float nota: agora foi arredondado para 1
+    let y3 = y2 -(d+1);     // 1 porque cos 72=0.3 errondado para 1...
+
+
+    let x4 = x;
+    let y4 = (y-(d*2));
+
+
+
+    let x5 = x1 -(d+1);
+    let y5 = y1 -(d+1);
+
+    //precisa chamar drawLine 5 vezes para cada lado do pentagono
+
+	do Screen.drawLine( x1,  y1, x2, y2);
+	do Screen.drawLine( x2,  y2, x3, y3);
+	do Screen.drawLine( x3,  y3, x4, y4);
+	do Screen.drawLine( x4,  y4, x5, y5);
+	do Screen.drawLine( x5,  y5, x1, y1);
+
         return;
     }
 

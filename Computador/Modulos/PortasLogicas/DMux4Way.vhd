@@ -10,3 +10,31 @@ entity DMux4Way is
 			q2:  out STD_LOGIC;
 			q3:  out STD_LOGIC);
 end entity;
+
+architecture behave of Dmux4Way is
+begin
+process (a, sel)
+begin
+if (sel = "00") then
+	q2 <= '0';  
+	q1 <= '0';
+	q0 <= a;
+	q3 <= '0';
+elsif (sel = "01") then
+	q0 <= '0';
+	q2 <= '0';
+	q1 <= a;
+	q3 <= '0';
+elsif (sel = "10") then
+	q0 <= '0';
+	q1 <= '0';
+	q2 <= a;
+	q3 <= '0';
+else
+	q0 <= '0';
+	q1 <= '0';
+	q3 <= a ;
+	q2 <= '0';
+end if;
+end process;
+end behave;
