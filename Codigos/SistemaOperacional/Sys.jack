@@ -1,0 +1,54 @@
+// Este arquivo é parte do www.nand2tetris.org
+// e o livro "The Elements of Computing Systems"
+// por Nisan e Schocken, MIT Press.
+// Nome do arquivo: Sys.jack
+// Traduzido por: Luciano Soares
+
+/**
+ * Biblioteca que oferece suporte a vários serviços de execução de programas.
+ */
+class Sys {
+
+    /** Executa todas as inicializações requeridas pelo SO. */
+    function void init() {
+
+        do Memory.init();
+        do Math.init();
+        do Screen.init();
+        do Keyboard.init();
+        do Output.init();
+
+        do Main.main();
+
+        do Sys.halt();
+        return;
+    }
+
+    /** Interrompe a execução do programa. */
+    function void halt() {
+        while(true) { }
+        return;
+    }
+
+    /** Espera uma duração aproximada em milissegundos e retorna. */
+    function void wait(int duration) {
+        var int counter;
+        let counter = -32767;
+        while(counter<32766) {
+            let counter = counter + 1;
+        }
+        while(counter>-32767) {
+            let counter = counter - 1;
+        }
+        return;
+    }
+
+    /** Exibe na tela um código de erro no formato "ERR<errorCode>",
+     *  e bloqueia a execução do programa. */
+    function void error(int errorCode) {
+        do Output.printString("ERR");
+        do Output.printInt(errorCode);
+        do Sys.halt()
+        return;
+    }
+}

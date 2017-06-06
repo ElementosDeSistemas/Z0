@@ -1,0 +1,154 @@
+// Este arquivo é parte do www.nand2tetris.org
+// e o livro "The Elements of Computing Systems"
+// por Nisan e Schocken, MIT Press.
+// Nome do arquivo: Math.jack
+// Traduzido por: Luciano Soares
+
+/**
+ * Biblioteca usada para funções matemáticas comuns.
+ * Observação: Compiladores Jack implementam multiplicação e divisão usando essas chamadas de SO.
+ */
+class Math {
+
+    static Array twoToThe;
+
+    /** Inicializa suporte para a biblioteca de matemática. */
+    function void init() {
+        
+        let twoToThe = Array.new(16);
+        let twoToThe[0]=1;
+        let twoToThe[1]=2;
+        let twoToThe[2]=4;
+        let twoToThe[3]=8;
+        let twoToThe[4]=16;
+        let twoToThe[5]=32;
+        let twoToThe[6]=64;
+        let twoToThe[7]=128;
+        let twoToThe[8]=256;
+        let twoToThe[9]=512;
+        let twoToThe[10]=1024;
+        let twoToThe[11]=2048;
+        let twoToThe[12]=4096;
+        let twoToThe[13]=8192;
+        let twoToThe[14]=16384;
+        //let twoToThe[15]=32768;
+        return;
+    }
+
+    /** Retorna o módulo (valor absoluto) de um valor x. */
+    function int abs(int x) {
+        if(x<0) {return -x;}
+        return x;
+    }
+
+    /** Retorna o produto de x e y.
+     * Quando um compilador Jack detecta o operador de multiplicação '*' no
+     * código do programa, ele invoca esse método para tratar do cálculo. 
+     * Em outras palavras, as expressões x*y e multiply(x, y) retornam o mesmo valor.
+     */
+    function int multiply(int x, int y) {
+        var int sum;
+        var int shiftedX;
+        var int i;
+
+        let sum = 0;
+        let shiftedX = x;
+
+        let i = 0;
+
+        while(i<16) {
+            if(Math.bit(y,i)) {
+                let sum = sum + shiftedX;
+            }
+            let shiftedX = shiftedX + shiftedX; // like * 2
+            let i = i + 1;
+        }
+
+        return sum;
+
+    }
+
+    /** Retorna a parte inteira da divisão de x por y.
+     * Quando um compilador Jack detecta o operador de divisão '/' no
+     * código do programa, ele invoca esse método para tratar do cálculo. 
+     * Em outras palavras, as expressões x/y e divide(x, y) retornam o mesmo valor.
+     */
+    function int divide(int x, int y) {
+        var int q;
+        var int tmp;
+        var boolean neg1;
+        var boolean neg2;
+
+        let neg1 = false;
+        let neg2 = false;
+
+        if(x<0){
+            let x = -x;
+            let neg1 = true;
+        }
+
+        if(y<0){
+            let y = -y;
+            let neg2 = true;
+        }
+
+        let tmp = y+y;
+
+        if(y>x) {return 0;}
+        let q = Math.divide(x, tmp );
+        if( ( x - Math.multiply(tmp,q) ) < y ) {
+            let tmp = q+q;
+        } else {
+            let tmp = q+q+1;
+        }
+
+        if( ( neg1 & (~neg2) )  | ( (~neg1) & neg2 )    ) { // in the case of negative and positive
+            let tmp = -tmp;
+        }
+
+        return tmp;   
+        
+    }
+
+    /** Retorna a parte inteira da raiz quadrada de x. */
+    function int sqrt(int x) {
+        var int y;
+        var int j;
+        var int tmp1;
+        var int tmp2;
+        
+        let y = 0;
+        let j = 7; // n/2-1
+
+        while( (j>0) | (j=0) ) {
+            let tmp1 = y + twoToThe[j];
+            let tmp2 = Math.multiply(tmp1,tmp1);
+            if( ((tmp2 < x) | (tmp2 = x)) & (tmp2 > 0) ) {  // number can becone negative
+                let y = tmp1; 
+            }
+            let j = j - 1;
+        } 
+
+        return y;
+
+    }
+
+    /** Retorna o maior número. */
+    function int max(int a, int b) {
+        if(a>b) { return a; }
+        return b;
+    }
+
+    /** Retorna o menor número. */
+    function int min(int a, int b) {
+        if(a<b) { return a; }
+        return b;
+    }
+
+    function boolean bit(int x, int i) {
+        if( (x<0) & (i=15) ) { return true; }
+        return x&twoToThe[i];
+    }
+
+
+}

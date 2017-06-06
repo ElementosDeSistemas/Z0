@@ -1,0 +1,146 @@
+// Este arquivo é parte do www.nand2tetris.org
+// e o livro "The Elements of Computing Systems"
+// por Nisan e Schocken, MIT Press.
+// Nome do arquivo: String.jack
+// Traduzido por: Luciano Soares
+
+/**
+ * Representa uma string de caracteres. Além de construir e descartar
+ * Strings, a classe possui métodos para obter e definir caracteres
+ * individuais na string, para apagar o último caractere da string,
+ * para adicionar um caracter ao final da string e outras operações 
+ * típicas para strings.
+ */
+class String {
+
+    field Array characters;
+    field int length;
+
+    /** Constrói uma nova string vazia com um comprimento máximo de maxLength
+      * e comprimento inicial de 0. */
+    constructor String new(int maxLength) {
+        let characters = Memory.alloc(maxLength+1);
+        let length = 0;
+        return this;
+    }
+
+    /** Libera a memória usada pela string. */
+    method void dispose() {
+        do Memory.deAlloc(characters);
+        return;
+    }
+
+    /** Retorna o comprimento atual da string. */
+    method int length() {
+        return length;
+    }
+
+    /** Retorna o caracter na posição j da string. */
+    method char charAt(int j) {
+        return characters[j];
+    }
+
+    /** Define um caracter para a posição j da string c. */
+    method void setCharAt(int j, char c) {
+        let characters[j]= c;
+        return;
+    }
+
+    /** Inclui c no final da string e retorna a string. */
+    method String appendChar(char c) {
+        let characters[length]= c;
+        let length = length + 1;
+        return this;
+    }
+
+    /** Apaga o último caracter da string. */
+    method void eraseLastChar() {
+        let length = length - 1;
+        return;
+    }
+
+    /** Retorna o valor como um inteiro da string, 
+     *  até encontrar um caracter que não seja um dígito numérico. */
+    method int intValue() {
+        var boolean negative;
+        var int counter;
+        var int value;
+        var char number;
+
+        let negative = false;
+        let counter = 0;
+        let value = 0;
+
+        if(length>0) {
+            if (characters[0]=45) {
+                let negative = true;
+                let counter = 1;
+            }
+        }
+
+        while(counter<length) {
+            let number = characters[counter];
+            if ( (number>47) & (number<58) ) {
+
+                let value = value * 10;
+
+                let value = value + (number-48);
+
+            } else {
+                if(negative) {
+                    let value = - value;
+                }
+                return value;
+            }
+            let counter = counter + 1;
+
+        }
+        if(negative) {
+            let value = - value;
+        }
+        return value;
+
+    }
+
+    method void int2String(int val){
+        var int lastDigit;
+
+        let lastDigit = val - ( (val/10) * 10);
+
+        if (val>9) {
+            do int2String(val/10);
+        }
+            
+        let characters[length] = lastDigit+48;
+        let length = length + 1;
+        return; 
+    
+    }
+
+    /** Define a string como um texto representando o valor inteiro fornecido. */
+    method void setInt(int val) {
+        let length = 0;
+        if(val<0) {
+            let characters[0] = 45;
+            let length = 1;
+            let val = - val;
+        }
+        do int2String(val);
+        return;
+    }
+
+    /** Retorna o caracter de nova linha. */
+    function char newLine() {
+        return 128;
+    }
+
+    /** Retorna o caracter de backspace. */
+    function char backSpace() {
+        return 129;
+    }
+
+    /** Retorna o caracter de aspas dupla (") . */
+    function char doubleQuote() {
+        return 34;
+    }
+}
